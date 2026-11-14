@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proving Grounds: 3D Platformer Mechanics - user guide - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="index.html">Documentation home</a><a href="BUYER_QUICKSTART.html">Quickstart</a><a href="README.html" class="cur">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="Mechanics/index.html">Overview</a><a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Mechanics/Double_Jump.html">Double Jump</a><a href="Mechanics/Spin.html">Spin</a><a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="Mechanics/Slam.html">Slam</a><a href="Mechanics/Wall_Run.html">Wall Run</a><a href="Mechanics/Rope_Swing.html">Rope Swing</a><a href="Mechanics/Grind_Rail.html">Grind Rail</a><a href="Mechanics/Glide.html">Glide</a><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Mechanics/Powers.html">Powers</a><a href="Mechanics/Shield.html">Shield</a><a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="Recipes/index.html">Overview</a><a href="Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="Abilities_and_Actions.html">Abilities and Actions</a><a href="API.html">Blueprint API reference</a><h4>Guides</h4><a href="BOSS_BODY.html">Build your own boss body</a><a href="SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="Integration/ALS/README.html">ALS-Refactored sample</a><a href="THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="proving-grounds-3d-platformer-mechanics-user-guide">Proving Grounds: 3D Platformer Mechanics - user guide</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#contents">Contents</a></li><li><a href="#1-overview">1. Overview</a></li><li><a href="#2-quick-start">2. Quick start</a></li><li><a href="#3-project-layout">3. Project layout</a></li><li><a href="#4-building-a-level">4. Building a level</a></li><li><a href="#5-level-table-and-progression">5. Level table and progression</a></li><li><a href="#6-game-modes">6. Game modes</a></li><li><a href="#7-powers-and-the-shield">7. Powers and the shield</a></li><li><a href="#8-boss-framework">8. Boss framework</a></li><li><a href="#9-theme-system">9. Theme system</a></li><li><a href="#10-blueprint-api-highlights">10. Blueprint API highlights</a></li><li><a href="#11-automated-tests">11. Automated tests</a></li><li><a href="#12-packaging">12. Packaging</a></li><li><a href="#13-known-limitations">13. Known limitations</a></li><li><a href="#14-version-history">14. Version history</a></li></ul></div>
+<p>Unreal Engine 5.7 - code plugin - Windows - version 1.0</p>
+<p>Full class, property and function reference: <a href="API.html">API.md</a> (generated from the source comments; every Details-panel tooltip and Blueprint node description in it is the same text).</p>
+<p>Asset origins and remaining distribution review: <a href="THIRD_PARTY_NOTICES.html">THIRD_PARTY_NOTICES.md</a>.</p>
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#1-overview">Overview</a> - 2. <a href="#2-quick-start">Quick start</a> - 3. <a href="#3-project-layout">Project layout</a> - 4. <a href="#4-building-a-level">Building a level</a> - 5. <a href="#5-level-table-and-progression">Level table and progression</a> - 6. <a href="#6-game-modes">Game modes</a> - 7. <a href="#7-powers-and-the-shield">Powers and the shield</a> - 8. <a href="#8-boss-framework">Boss framework</a> - 9. <a href="#9-theme-system">Theme system</a> - 10. <a href="#10-blueprint-api-highlights">Blueprint API highlights</a> - 11. <a href="#11-automated-tests">Automated tests</a> - 12. <a href="#12-packaging">Packaging</a> - 13. <a href="#13-known-limitations">Known limitations</a> - 14. <a href="#14-version-history">Version history</a></li>
+</ol>
+<hr />
+<h2 id="1-overview">1. Overview</h2>
+<p>This kit is a complete 3D platformer as a code plugin (<code>PlatformerKit</code>, with all its content). You build levels by placing actors and editing their Details-panel properties; you extend the game with Blueprints. You write no C++ for either.</p>
+<p><strong>In the box</strong></p>
+<ul>
+<li><strong>Hero</strong> (<code>ACorridorCharacter</code>): variable-height jump, double jump, coyote time, jump buffer, spin attack, slide, crouch/crawl, belly flop, crate bounces, ice, dark-matter and flipped-gravity movement, rails, wall runs, rope swings, mounts.</li>
+<li><strong>16 crate types</strong> (<code>ACorridorCrate</code>): basic, bounce, arrow, metal, fuse box, volatile box, checkpoint, "?", strong, "!" switches, shield crate, big orb, time crate, N-bounce crate. Stacks fall when their support breaks.</li>
+<li><strong>10 enemy kinds</strong> (<code>ACorridorEnemy</code>): walkers, spiked, shooter, spitter, crab, charger, flyer, armored, kamikaze. Spin one and it becomes a projectile.</li>
+<li><strong>Hazards, platforms and traversal</strong>: spinning, swinging, crushing, dropping, rolling and timed hazards; moving, sinking, breakable, rotating and bonus platforms; bounce pads, push fans, ice; grind rails with obstacles, wall runs, rope swings; a chase wall; ridden mounts with ramps.</li>
+<li><strong>5 powers</strong> (phase, cyclone, time slow, gravity, glide) and the <strong>shield</strong> that absorbs hits.</li>
+<li><strong>Progress</strong>: loot counter, crate/deaths/orbs/hidden/coloured gems, a deathless pickup, a perfect run, skins with unlock rules, pause menu, level end screen, a level table with unlock rules, a level select menu, saved best results.</li>
+<li><strong>Modes</strong>: Casual and Classic difficulty, time trial with medals and ghost, mirror mode.</li>
+<li><strong>Boss framework</strong>: a director that runs phases, a tile-grid arena, attack loops and final attacks, health bar, scenes. Two example boss maps.</li>
+<li><strong>Cameras</strong>: rail, side, chase and fixed views switched by boxes, a crossfader, and camera fade for what blocks the view.</li>
+<li><strong>Theme data asset</strong> (<code>UCorridorTheme</code>) that swaps looks, animations, sounds, effects, HUD icons and music without touching the maps.</li>
+<li><strong>Automated test runner</strong> (<code>-CrateTest</code>, <code>-JumpTest</code>).</li>
+</ul>
+<p><strong>Look and sound.</strong> The demos use the project's own Lab theme with original models and an original sound library. Replace looks and sounds through a theme asset (section 9, <a href="SOUND.html">SOUND.md</a>) or the placed actors' Details panels.</p>
+<p><strong>Technical.</strong> DirectX 12 / SM6, Lumen GI and reflections, virtual shadow maps, static lighting off (see "Project render settings" in the Quickstart). Input is Enhanced Input (<code>/PlatformerKit/Input</code>). All menus and screens are UMG widgets built in code; each can be replaced by a Blueprint child.</p>
+<hr />
+<h2 id="2-quick-start">2. Quick start</h2>
+<h3 id="install-the-plugin">Install the plugin</h3>
+<p>Requirements: Unreal Engine 5.7, Windows. A Blueprint-only project needs nothing else to play in the editor; packaging needs Visual Studio 2022 (see "Packaging").</p>
+<ol>
+<li>Open the product page in <strong>Fab</strong> (or the Epic Games Launcher &gt; Library &gt; Fab Library) and press <strong>Add to Project</strong>. Choose your Unreal Engine 5.7 project. (To install by hand, copy the plugin folder into your project's <code>Plugins</code> folder.)</li>
+<li>Open the project. If Unreal asks to enable the plugin or rebuild, accept. Otherwise open <strong>Edit &gt; Plugins</strong>, search for <strong>PlatformerKit</strong>, tick <strong>Enabled</strong> and <strong>Restart Now</strong>. The plugin enables the engine plugins it needs (Enhanced Input, ACL, Control Rig, RigVM, Full Body IK, Animation Data).</li>
+<li>In the Content Browser open <strong>Settings &gt; Show Plugin Content</strong>. The kit's assets are in <strong>PlatformerKit Content</strong>.</li>
+<li>Open <strong>PlatformerKit Content &gt; Maps &gt; <code>Corridor_Menu</code></strong> and press <strong>Play</strong>. Every map sets its own game mode, so you do <strong>not</strong> change Maps &amp; Modes, and the demo does not touch your project's game mode or input settings. Pick a level with the mouse or the gamepad stick; all of them are open.</li>
+<li>Optional: set <strong>Project Settings &gt; Maps &amp; Modes &gt; Game Default Map</strong> to <code>Corridor_Menu</code> so a packaged game starts at the menu.</li>
+</ol>
+<p>Put your own assets in your own Content folder, never inside <strong>PlatformerKit Content</strong>, so updating the plugin never overwrites your work.</p>
+<h3 id="project-render-settings">Project render settings</h3>
+<p>The demo maps are lit for Lumen. A project made from the UE 5.7 Third Person, Blank or another template at the default <strong>Maximum</strong> quality already has all of these. A project upgraded from UE4, or made with the <strong>Scalable</strong> preset, may not. Check <strong>Project Settings &gt; Engine &gt; Rendering</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+<th>Needs editor restart</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global Illumination &gt; Dynamic Global Illumination Method</td>
+<td>Lumen</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Reflections &gt; Reflection Method</td>
+<td>Lumen</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Shadows &gt; Shadow Map Method</td>
+<td>Virtual Shadow Maps</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Software Ray Tracing &gt; Generate Mesh Distance Fields</td>
+<td>On</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Default Settings &gt; Allow Static Lighting</td>
+<td>Off</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Without them the maps still load and play with no errors, but Unreal then lights them without Lumen (no dynamic global illumination, screen-space reflections), so the look differs from the listing images. Nothing else is needed: no input mappings, no collision channels or profiles, no console variables.</p>
+<h3 id="find-and-customize-the-blueprint-actors">Find and customize the Blueprint actors</h3>
+<p>Open <strong>PlatformerKit Content &gt; Blueprints</strong>. Gameplay actors in the original demos are Blueprint children; select one in the level and press <strong>Ctrl+B</strong> to locate its asset. Place one <code>Core/BP_Control</code> for difficulty, camera, theme, HUD and testing settings. The plugin's assets appear under <strong>PlatformerKit Content</strong> (Content Browser &gt; Settings &gt; Show Plugin Content).</p>
+<p><strong>Change the hero:</strong> duplicate the active theme, create or duplicate a <code>CorridorAnimSet</code>, set its Mesh and compatible clips, assign it to the new theme, then select that theme in <code>BP_Control &gt; 3 Theme</code> and restart Play. Follow <a href="BUYER_QUICKSTART.html">BUYER_QUICKSTART.md</a> for the complete path and a compatible-mesh example.</p>
+<h3 id="maps-platformerkitmaps">Maps (<code>/PlatformerKit/Maps</code>)</h3>
+<p>All eight maps are open from the menu.</p>
+<table>
+<thead>
+<tr>
+<th>Map</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Corridor_Menu</code></td>
+<td>The level select screen (one <code>ACorridorLevelSelect</code> actor).</td>
+</tr>
+<tr>
+<td><code>Course1_RunAndJump</code></td>
+<td>Course 1: running, jumping, crates and checkpoints.</td>
+</tr>
+<tr>
+<td><code>Course2_EnemiesHazards</code></td>
+<td>Course 2: enemies and hazards.</td>
+</tr>
+<tr>
+<td><code>Course3_Powers</code></td>
+<td>Course 3: the five powers, with 2D and 3D camera sections.</td>
+</tr>
+<tr>
+<td><code>Course4_RideChase</code></td>
+<td>Course 4: curvy grind rails with the rail camera, wall runs, ropes and a chase.</td>
+</tr>
+<tr>
+<td><code>Corridor_Boss1</code></td>
+<td>Boss 1, "The Machinist": ring arena, seven phases, retry from the last checkpoint phase.</td>
+</tr>
+<tr>
+<td><code>Corridor_Boss2</code></td>
+<td>Boss 2, "The Engine": split deck over a rift, seven phases.</td>
+</tr>
+<tr>
+<td><code>System_Gallery</code></td>
+<td>Open gallery: every crate type, the five powers, the enemy kinds and the platform types side by side.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controls">Controls</h3>
+<p>The keys live in the mapping context <code>/PlatformerKit/Input/IMC_Corridor</code> (actions <code>IA_MoveForward</code>, <code>IA_MoveRight</code>, <code>IA_Jump</code>, <code>IA_Spin</code>, <code>IA_Slide</code>, <code>IA_Power</code>, <code>IA_LookRight</code>, <code>IA_LookUp</code>, <code>IA_Pause</code>): open it to rebind. The hero's <strong>Input</strong> category in Details points at these assets; if one is cleared or missing the hero falls back to the built-in default keys below.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Keyboard / mouse</th>
+<th>Gamepad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move (along the camera)</td>
+<td>W A S D</td>
+<td>Left stick</td>
+</tr>
+<tr>
+<td>Jump (hold = higher, press again in the air = double jump)</td>
+<td>Space</td>
+<td>Bottom face button (A)</td>
+</tr>
+<tr>
+<td>Spin attack</td>
+<td>J, Left mouse button</td>
+<td>Left face button (X)</td>
+</tr>
+<tr>
+<td>Slide / crouch / belly flop</td>
+<td>K, Left Shift</td>
+<td>Right face button (B)</td>
+</tr>
+<tr>
+<td>Power on / off</td>
+<td>Q, Right mouse button</td>
+<td>Top face button (Y), Right trigger</td>
+</tr>
+<tr>
+<td>Pan the camera a little</td>
+<td>Arrow keys</td>
+<td>Right stick</td>
+</tr>
+<tr>
+<td>Pause menu</td>
+<td>Escape, P (in the editor's Play: P, Escape stops the session)</td>
+<td>Start / Options</td>
+</tr>
+<tr>
+<td>Console (live tuning)</td>
+<td>F10</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The moves have a page each, with every Details field and Blueprint node: <a href="Mechanics/Double_Jump.html">Double Jump</a> (jump buffer, coyote time, near miss), <a href="Mechanics/Spin.html">Spin</a> (mash chain, triple spin), <a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a>, <a href="Mechanics/Slam.html">Slam</a> and <a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a>. In short: Slide is slide with the stick pushed, crouch with it released, belly flop (slam) in the air; Jump during a slide or crouch gives the higher slide jump.</li>
+<li>While riding a mount the stick, jump and spin are the mount's (spin = boost).</li>
+<li>Console commands on the hero: <code>JumpScale</code>, <code>RunSpeed</code>, <code>CamDist</code>, <code>CamPitch</code>, <code>CamFov</code>, <code>Tuning</code> (prints the current values).</li>
+<li>For touch UI or your own input, call the hero's <code>OnJumpPressed</code>, <code>OnJumpReleased</code>, <code>OnSpinPressed</code>, <code>OnSlidePressed</code>, <code>OnSlideReleased</code>, <code>OnPowerPressed</code>, <code>OnPausePressed</code> and <code>AddStickInput</code> from Blueprint.</li>
+<li>The pause menu (<code>UCorridorPauseWidget</code>, opened by <code>ACorridorHUD::TogglePause</code>) stops the game and shows the level's crates, orbs and deaths so far, with "Resume", "Restart Level" and "Return to Map". The pause key or the gamepad's B / Circle closes it. It does not open over the level end or game over screen.</li>
+</ul>
+<hr />
+<h2 id="3-project-layout">3. Project layout</h2>
+<table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Source/PlatformerKit</code></td>
+<td>The plugin's C++ module (inside the plugin folder). Headers carry the comments that API.md is built from.</td>
+</tr>
+<tr>
+<td><code>Config/Game.ini</code> (plugin)</td>
+<td>Level table and menu map for the game mode, packaging folders.</td>
+</tr>
+<tr>
+<td>Project render settings</td>
+<td>See the Quickstart section "Project render settings".</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Maps</code></td>
+<td>The eight demo maps listed above.</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Corridor/Data</code></td>
+<td><code>DT_CorridorLevels</code>: the level table (section 5).</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Corridor/Materials</code></td>
+<td><code>M_MirrorPP</code> (mirror mode flip), <code>M_FlipYPP</code> (upside-down picture of the final boss), <code>M_Ghost</code> (time trial ghost).</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Corridor/Traversal</code></td>
+<td><code>M_CorridorRail</code>, <code>M_CorridorHazard</code>: stand-in materials of rails and rail obstacles.</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Input</code></td>
+<td><code>IMC_Corridor</code> and the nine <code>IA_</code> actions: rebind keys here (section 2).</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Crates</code></td>
+<td><code>M_Crate</code> and the <code>T_Crate_&lt;Type&gt;</code> face textures the crates load by name.</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Audio</code></td>
+<td>Sound library, sound classes and Sound Mix (<code>Mix</code>); theme mappings select event sounds (section 9, <a href="SOUND.html">SOUND.md</a>).</td>
+</tr>
+<tr>
+<td><code>/PlatformerKit/Characters/Mannequins</code></td>
+<td>Mannequin mesh, skeleton, animation blueprint: the default hero.</td>
+</tr>
+</tbody>
+</table>
+<p>Keep your own assets in your own folder. Everything under <code>Crates</code>, <code>Audio</code> and <code>Corridor</code> is cooked always (section 12).</p>
+<hr />
+<h2 id="4-building-a-level">4. Building a level</h2>
+<h3 id="conventions">Conventions</h3>
+<ul>
+<li>Scale: the hero is 180 cm tall (capsule 35 radius x 90 half height), runs at 643 cm/s, a crate is 77 cm. Lengths in the properties are centimetres, times are seconds.</li>
+<li>A crate's origin is its bottom centre: put it on the floor at Z = 0 and it sits on the floor.</li>
+<li>The default camera looks along +X (<code>ACorridorCharacter.CameraYaw</code> = 0): W runs toward +X. Distance 650, pitch -22, field of view 90. A camera view actor overrides it inside its box.</li>
+<li>Falling below <code>KillZ</code> (-1000) kills the hero. For water or pits you can see into, place a <code>ACorridorKillBox</code>.</li>
+</ul>
+<h3 id="minimum-level">Minimum level</h3>
+<ol>
+<li>New level from any template. Floor, a <code>PlayerStart</code>. The hero spawns there and that spot is the first respawn point.</li>
+<li>Leave <strong>World Settings &gt; GameMode Override</strong> at None: the project default is <code>ACorridorGameMode</code> with the hero and HUD set. (To change HUD or hero defaults make Blueprint children of <code>ACorridorGameMode</code>, <code>ACorridorCharacter</code>, <code>ACorridorHUD</code> and use the game mode child as override.)</li>
+<li>Place crates, enemies and so on from the table below. Add checkpoints, then an <code>ACorridorLevelEnd</code>.</li>
+<li>Add a row for the map in the level table if it should appear in the menu (section 5).</li>
+</ol>
+<p>At play start the game mode counts the level's crates, orbs and hidden gems itself: nothing to enter by hand.</p>
+<h3 id="the-level-control-acorridorcontrol">The level control - <code>ACorridorControl</code></h3>
+<p>One per level, anywhere (an editor-only sprite marks it): the single place for the level's daily settings. At play it hands its values to the game
+mode, the hero and the HUD; a level without one uses their own settings, exactly as before. From Blueprint: <code>Get</code> (the level's control, or none)
+and <code>Apply</code> (hands the values over again after a change at run time; a rule change mid-level starts a fresh count of <code>StartLives</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Difficulty</td>
+<td><code>Rule</code> Casual / Classic, <code>StartLives</code>, <code>MaxLives</code> (game mode <code>Difficulty</code>, <code>StartLives</code>, <code>MaxLives</code>).</td>
+</tr>
+<tr>
+<td>2 Camera</td>
+<td><code>CameraDistance</code>, <code>CameraPitch</code>, <code>FieldOfView</code> of the default camera (hero <code>SetDefaultCamera</code>); camera views whose own <code>FieldOfView</code> is 0 use the same lens.</td>
+</tr>
+<tr>
+<td>3 Theme</td>
+<td><code>Theme</code>: this level's look and sound. Empty falls back to the project Default Theme; development overrides are explained in section 9. Restart Play after changing the hero mesh or animation set.</td>
+</tr>
+<tr>
+<td>4 HUD</td>
+<td><code>Counters</code> Auto Hide / Always Shown, <code>HideAfter</code>, <code>bShowOrbs</code>, <code>bShowCrates</code>, <code>bShowLives</code> (HUD <code>bAlwaysShowCounters</code>, <code>TimeBeforeHide</code>, <code>bShowLoot</code>, <code>bShowCrates</code>, <code>bShowLives</code>).</td>
+</tr>
+<tr>
+<td>5 Testing</td>
+<td><code>bUnlockAllLevels</code> (put the control in the menu level: every level select row is open), <code>bImmortal</code> (hazard and enemy hits do nothing; falling out still respawns). Both off by default: leave them off for a release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="crates-acorridorcrate">Crates - <code>ACorridorCrate</code></h3>
+<p>One actor, <code>Type</code> picks the behaviour.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Basic</code></td>
+<td>Breaks on landing, spin or head-bump; gives <code>LootOnBreak</code> orbs; bounces the hero.</td>
+</tr>
+<tr>
+<td><code>Bounce</code></td>
+<td>Bounces the hero and gives <code>LootPerBounce</code> orbs each time; breaks after <code>BounceLootHits</code>.</td>
+</tr>
+<tr>
+<td><code>Arrow</code> / <code>MetalArrow</code></td>
+<td>High bounce (<code>ArrowBounceHeld</code> / <code>ArrowBounceUnheld</code>); the arrow breaks only by spin or explosion, the metal one never.</td>
+</tr>
+<tr>
+<td><code>Metal</code></td>
+<td>Plain bounce, unbreakable.</td>
+</tr>
+<tr>
+<td><code>Fuse</code></td>
+<td>Landing lights a <code>FuseTime</code> fuse; spin or explosion sets it off at once.</td>
+</tr>
+<tr>
+<td><code>Volatile</code></td>
+<td>Any touch detonates it; hops at random times (<code>VolatileHopInterval</code>).</td>
+</tr>
+<tr>
+<td><code>Checkpoint</code></td>
+<td>Breaking it moves the respawn point; <code>CheckpointLoot</code> orbs, <code>CheckpointPower</code> = power worn after respawn.</td>
+</tr>
+<tr>
+<td><code>Surprise</code></td>
+<td>Like Basic, <code>SurpriseLoot</code> (7-12) orbs.</td>
+</tr>
+<tr>
+<td><code>Strong</code></td>
+<td>Bounces the hero; opened only by a belly flop or an explosion.</td>
+</tr>
+<tr>
+<td><code>Switch</code></td>
+<td>Metal "!": makes outline crates real (all of them, or only <code>SwitchTargets</code>, which can also start moving and rotating platforms).</td>
+</tr>
+<tr>
+<td><code>Detonator</code></td>
+<td>Green "!": sets off every volatile box in the level.</td>
+</tr>
+<tr>
+<td><code>Shield</code></td>
+<td>Gives the shield companion (section 7).</td>
+</tr>
+<tr>
+<td><code>BigOrb</code></td>
+<td>One big orb worth <code>BigOrbLoot</code>; in Classic mode a life instead.</td>
+</tr>
+<tr>
+<td><code>Time</code></td>
+<td>Time trial only: no orbs, stops the clock <code>TimePause</code> seconds.</td>
+</tr>
+<tr>
+<td><code>NBounce</code></td>
+<td>Metal: bounces the hero <code>NBounces</code> times (1-9, the number on it counts down), then turns into a volatile box (set it off with a <code>Detonator</code> for the crate count); a death brings it back.</td>
+</tr>
+</tbody>
+</table>
+<p>Also: <code>bOutline</code> (see-through, no collision until a "!" crate makes it real; <code>OutlineCountdown</code> turns it back), <code>Size</code>, <code>ExplosionExtent</code>, <code>ChainDelay</code>, <code>StackFallTime</code>. Metal, MetalArrow, Switch and Detonator crates do not count toward the crate gem. Blueprint events: <code>OnBroken(bByExplosion)</code>, <code>OnExploded</code>.</p>
+<h3 id="enemies-acorridorenemy">Enemies - <code>ACorridorEnemy</code></h3>
+<p>Set <code>Kind</code> first: changing <code>Kind</code> (or <code>Cargo</code>) loads that kind's defaults into <code>Speed</code>, <code>TurnTime</code> and <code>bWaitForHero</code>. Draw the patrol on the <code>Path</code> spline (local, along the floor; one point = stands still; a flyer flies it as drawn). <code>SenseBox</code> wakes it when the hero enters.</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Plain</code></td>
+<td>Walks its path: stomp, spin, slide or belly flop kills it; touching it from the side kills you.</td>
+</tr>
+<tr>
+<td><code>SideSpikes</code></td>
+<td>Spiked sides: kill it from above only.</td>
+</tr>
+<tr>
+<td><code>TopSpikes</code></td>
+<td>Spiked top: only spin or slide.</td>
+</tr>
+<tr>
+<td><code>Shooter</code></td>
+<td>Stands, turns to you in range and throws.</td>
+</tr>
+<tr>
+<td><code>Spitter</code></td>
+<td>Spits a poison glob that pools; hides when you come close.</td>
+</tr>
+<tr>
+<td><code>Crab</code></td>
+<td>Waits, then walks sideways along its path.</td>
+</tr>
+<tr>
+<td><code>Charger</code></td>
+<td>Waits, winds up (<code>ChargeWindup</code>), runs its path fast.</td>
+</tr>
+<tr>
+<td><code>Flyer</code></td>
+<td>Flies a 3D path; <code>Cargo</code> None / Orbs / Crate (<code>CargoCrate</code> dropped when the hero passes under).</td>
+</tr>
+<tr>
+<td><code>Armored</code></td>
+<td>Spiked shield: <code>Shield</code> Forward, Up or Alternating (<code>ShieldSwitchTime</code>).</td>
+</tr>
+<tr>
+<td><code>Kamikaze</code></td>
+<td>Runs to the end and explodes; only a thrown enemy or crate kills it.</td>
+</tr>
+</tbody>
+</table>
+<p>A spun or slid enemy becomes a projectile (<code>LaunchSpeed</code>, <code>LaunchTime</code>) that breaks crates and other enemies; with <code>LaunchTarget</code> set it flies to that actor (this is how bosses are hit, section 8). An enemy killed before a checkpoint stays dead; after it, it returns when the hero respawns.</p>
+<h3 id="hazards-pits-ice-fans">Hazards, pits, ice, fans</h3>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ACorridorHazard</code></td>
+<td><code>Mesh</code> (the look, swap freely) + <code>KillZone</code> (size it to the dangerous part). <code>Death</code> picks the death kind, <code>Motion</code>: <code>None</code>, <code>Spin</code>, <code>Swing</code>, <code>Crush</code>, <code>Drop</code>, <code>Roll</code> (back and forth <code>RollDistance</code> along X every <code>RollPeriod</code>, the mesh turning as a wheel of <code>RollRadius</code>; the kill zone does not turn). <code>bTimed</code> adds the tell / active / off cycle (<code>TellTime</code>, <code>ActiveTime</code>, <code>OffTime</code>; <code>StartOffset</code> staggers a row). <code>bIgnoreShield</code> makes the shield not absorb it.</td>
+</tr>
+<tr>
+<td><code>ACorridorKillBox</code></td>
+<td>Pit or water volume; <code>Death</code> (default <code>Fall</code>).</td>
+</tr>
+<tr>
+<td><code>ACorridorSlipperyVolume</code></td>
+<td>Ice inside the box (hero values: <code>IceFriction</code>, <code>IceAccelerationScale</code>, <code>IceAirControl</code>...).</td>
+</tr>
+<tr>
+<td><code>ACorridorBouncePad</code></td>
+<td><code>BounceVelocity</code> (1286), <code>HeldBounceVelocity</code> (1800) with jump held.</td>
+</tr>
+<tr>
+<td><code>ACorridorPushFan</code></td>
+<td>Updraft column (<code>LiftSpeed</code>, <code>Radius</code>, <code>Height</code>); tilt it for a sideways fan; <code>SetOn</code>.</td>
+</tr>
+<tr>
+<td><code>ACorridorWater</code></td>
+<td>Water for jetboards: size <code>Box</code>, its top face is the surface (<code>Surface</code> is the look). Touching it on foot or on another mount kills (<code>Death</code>, default <code>Water</code>; <code>bKillsOnFoot</code>). Several can sit at different heights: a board floats on the highest one under it.</td>
+</tr>
+<tr>
+<td><code>ACorridorWhirlpool</code></td>
+<td>Jetboard hazard on the water: pulls a ridden board round and in within <code>Radius</code> (<code>EdgePull</code> almost sideways at the rim, <code>CenterPull</code> straight in at <code>CenterRadius</code>), drowns the rider within <code>KillRadius</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Death kinds (<code>ECorridorDeath</code>): Touch, Fall, Explosion, Squash, Water, Drown, Poison, Electric, Burn, Lava, Ice, Knockback, FallDrop, volatile box, RailHigh, RailLow, RailHang, Bite. Each has its own timing and effect. On most the camera stops and the hero leaves the frame; Bite (set it as a chaser's <code>Death</code> for a monster that catches the hero) is a caught death: the camera moves in on the hero (<code>CaughtPushIn</code> 193 cm over <code>CaughtPushTime</code> 0.5 s on the hero's camera director) and the respawn waits 2 s more. In your own Blueprint hazards call the hero's <code>TakeHit(How, bIgnoreShield)</code>; use <code>Die</code> only to kill regardless of the shield.</p>
+<h3 id="platforms">Platforms</h3>
+<p>All derive from <code>ACorridorPlatform</code> (swappable <code>Mesh</code>, <code>bResetOnRespawn</code>, warning shake).</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ACorridorMovingPlatform</code></td>
+<td>Draw the <code>Path</code> spline. <code>StartOn</code>: <code>OnStep</code>, <code>OnTrigger</code> (call <code>Trigger()</code>), <code>Always</code>. <code>Route</code>: <code>StepToReturn</code>, <code>OneWay</code>, <code>PingPong</code>, <code>Loop</code>. <code>Speed</code> 257, <code>bBreakOnAttack</code>.</td>
+</tr>
+<tr>
+<td><code>ACorridorPlatformTrigger</code></td>
+<td>Box that starts the platforms listed in <code>Targets</code> when the hero walks in.</td>
+</tr>
+<tr>
+<td><code>ACorridorSinkingPlatform</code></td>
+<td>Dips, sinks <code>SinkDepth</code>, stays down <code>DownTime</code>, rises.</td>
+</tr>
+<tr>
+<td><code>ACorridorBreakablePlatform</code></td>
+<td>Cracks <code>BreakDelay</code> after landing, returns after <code>RespawnTime</code>.</td>
+</tr>
+<tr>
+<td><code>ACorridorRotatingPlatform</code></td>
+<td>Holds <code>HoldTime</code>, turns <code>RotationAmount</code> (90) about <code>Axis</code> (<code>Roll</code>, <code>Pitch</code>, <code>Yaw</code>) eased over <code>TurnTime</code>, holds, turns back (<code>bKeepTurning</code>: on the same way). <code>CycleOffset</code> staggers a row, a <code>TellTime</code> shake comes before each turn, <code>StartOn</code> as on the moving platform. Tipped past the walkable slope, the hero slides off.</td>
+</tr>
+<tr>
+<td><code>ACorridorBonusPlatform</code></td>
+<td>Carries the hero along <code>Path</code> in <code>Duration</code>. Place two at the same spot: the way in (starts the bonus rule: deaths there do not count) and the way back (<code>bReturnTrip</code>, optionally <code>TeleportTo</code> with a fade). A bonus room somewhere else: the way in's <code>TeleportTo</code> is another bonus platform with <code>bReturnTrip</code> - you come out on it and it carries you in (it can wait out of sight: under the floor, behind the play line); the same at the room's exit, back to the path. <code>CameraView</code> switches the view as a platform takes you on. <code>RequiredGem</code> turns it into a gem platform.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="traversal-chase-mounts">Traversal, chase, mounts</h3>
+<p>Each has its own page in the <a href="Mechanics/index.html">Mechanics Reference</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ACorridorGrindRail</code>, <code>ACorridorRailObstacle</code></td>
+<td><a href="Mechanics/Grind_Rail.html">Grind Rail</a></td>
+</tr>
+<tr>
+<td><code>ACorridorWallRun</code></td>
+<td><a href="Mechanics/Wall_Run.html">Wall Run</a></td>
+</tr>
+<tr>
+<td><code>ACorridorRopeSwing</code></td>
+<td><a href="Mechanics/Rope_Swing.html">Rope Swing</a></td>
+</tr>
+<tr>
+<td><code>ACorridorMount</code>, <code>ACorridorJetboard</code>, <code>ACorridorMountRamp</code>, <code>ACorridorMountStatGate</code></td>
+<td><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a></td>
+</tr>
+<tr>
+<td><code>ACorridorChaser</code></td>
+<td>Kill wall running along <code>Path</code> behind the hero, rubber-banded by distance. <code>StartBox</code> starts it; <code>Body</code> is the monster's look. Its steps (<code>StepInterval</code> 0.45 s, quicker with its rate) shake the camera by distance (<code>StepShake</code> 5 cm up, <code>StepShakeTime</code>, <code>StepShakeRange</code>) and play the <code>ChaseStep</code> event (sound + rumble). While it has the hero in reach the hero runs with the anim set's <code>RunScared</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="checkpoints-orbs-gems-hints-level-end">Checkpoints, orbs, gems, hints, level end</h3>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ACorridorCheckpointTrigger</code></td>
+<td>Invisible checkpoint; <code>ForcedPower</code> = power worn after respawn. (The <code>Checkpoint</code> crate does the same.)</td>
+</tr>
+<tr>
+<td><code>ACorridorLoot</code></td>
+<td>An orbs; flies to the HUD counter, where the icon pops and a burst of rays and sparkles flies out (<code>ACorridorHUD::LootBurstTime</code> 0.467 s, <code>LootBurstColor</code>; 0 = none).</td>
+</tr>
+<tr>
+<td><code>ACorridorGem</code></td>
+<td><code>Color</code> Clear = the level's hidden gem; Red / Green / Blue / Yellow / Purple = coloured gem kept across levels.</td>
+</tr>
+<tr>
+<td><code>ACorridorDeathlessPickup</code></td>
+<td>Can be taken only while the run has no deaths (a bonus path death does not count). After a death it turns see-through (<code>GhostMaterial</code>) and can't be taken: restart the level to try again. Taken = saved at once in the level's results (<code>bDeathlessPickup</code>); once owned it is see-through on later runs. Place it late in the level, one per level.</td>
+</tr>
+<tr>
+<td><code>ACorridorHintTrigger</code></td>
+<td>Shows <code>Hint</code> on the HUD for <code>Duration</code> (2.5 s).</td>
+</tr>
+<tr>
+<td><code>ACorridorLevelEnd</code></td>
+<td>Finishes the level (<code>FinishLevel</code>): results, gems, level end screen. Its end scene (<code>bEndScene</code>, on by default) cuts the view to the hero's front and moves in (<code>EndViewStart</code> → <code>EndViewZoom</code> over <code>EndViewTime</code>, 1.25 s) while the hero plays its anim set's <code>Celebrate</code>; the level end screen sits on the right so the hero stays in view.</td>
+</tr>
+<tr>
+<td><code>ACorridorPowerShrine</code>, <code>ACorridorPowerRemover</code></td>
+<td>Give / take a power (section 7).</td>
+</tr>
+</tbody>
+</table>
+<p>On a death the hero returns to the last checkpoint; the screen goes black just as it respawns and comes back after (<code>DeathFadeOut</code> 0.5 s, <code>DeathFadeIn</code> 0.6 s, <code>DeathFadeColor</code>; 0 = no fade, none on the Classic game over). Crates broken and enemies killed since then come back, and so does the orbs taken since then in Casual mode; in Classic mode taken orbs stays taken.</p>
+<h3 id="cameras-acorridorcameraview">Cameras - <code>ACorridorCameraView</code></h3>
+<p>The hero walking into one of its boxes (<code>Volume</code>, plus any box you add) makes it the active view, blended over <code>BlendInTime</code>. <code>Mode</code>: <code>Rail</code> (rides the <code>Rail</code> spline above the path), <code>PlayerOffset</code> (hero + world offset), <code>Fixed</code> (the actor's own transform), <code>Behind</code> (behind the hero's facing, swinging round with it at <code>BehindYawSpeed</code>). <code>Preset</code> fills the numbers: <code>Corridor</code> (behind the hero), <code>Side</code> (2D beside the rail), <code>Chase</code> (in front), <code>Follow</code>, <code>Vehicle</code> (behind a jetboard), <code>Custom</code>. <code>ACorridorCameraCrossfader</code> mixes two views along a short spline. With no view the hero's default camera is used.</p>
+<p><code>FieldOfView</code> (degrees, blended in with the switch; 0 = the hero's camera director <code>DefaultFieldOfView</code>, 90) gives a view its own lens: narrow for a boss arena, wide for a vista.</p>
+<hr />
+<p><strong>Camera fade.</strong> Something that blocks the camera's view of the hero from one spot (a swinging hazard, a pillar, an enemy on a ledge): place an
+<code>ACorridorCameraFadeVolume</code> where the hero stands at that moment and pick the blocking actors in its <code>FadeableActors</code>; they may stand outside the box.
+While the hero is inside they fade out (dithered, collision stays) and come back when the hero leaves. Each actor's <code>UCorridorCameraFadeComponent</code>
+(added with the defaults if missing) holds <code>FadeOutTime</code> / <code>FadeInTime</code>, <code>FadedAlpha</code> (0 = gone, 0.25-0.35 = a ghost) and <code>CameraDistance</code>
+(fade on its own while the camera is that close, no volume needed).
+The smooth fade needs a Masked material with Dither Opacity Mask on and the scalar parameter <code>CameraFade</code> in its Opacity Mask (<code>MF_CorridorCameraFade</code> is that parameter), or map
+your material to such a version in <code>ReplacementMaterials</code>. The shipped shape, crate, hazard and mannequin materials already have theirs
+(<code>/PlatformerKit/Corridor/Materials/CameraFade</code>); <code>M_PlasterWall</code> (a door-wall material) fades as it is. A mesh with neither -
+the prototype grid included - is hidden halfway through the fade instead.</p>
+<h2 id="5-level-table-and-progression">5. Level table and progression</h2>
+<p><code>DT_CorridorLevels</code> is a Data Table with row struct <code>FCorridorLevelRow</code>. It feeds the level select, the unlock rules, "Continue" and the time trial medals.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Row name</td>
+<td>The level id. Results are saved under it. It must equal the map's short name (for example <code>Course1_RunAndJump</code>), or set <code>LevelId</code> on the level's game mode.</td>
+</tr>
+<tr>
+<td><code>DisplayName</code></td>
+<td>Name in the menu (empty: the row name).</td>
+</tr>
+<tr>
+<td><code>Map</code></td>
+<td>The map this row opens (soft reference).</td>
+</tr>
+<tr>
+<td><code>UnlockAfter</code></td>
+<td>Row names whose finish opens this level; empty = open from the start.</td>
+</tr>
+<tr>
+<td><code>UnlockCount</code></td>
+<td>How many of <code>UnlockAfter</code> must be finished; 0 = all.</td>
+</tr>
+<tr>
+<td><code>BronzeTime</code>, <code>SilverTime</code>, <code>GoldTime</code>, <code>MasterTime</code></td>
+<td>Time trial medal limits in seconds; 0 = no such medal.</td>
+</tr>
+</tbody>
+</table>
+<p>The shipped table has the menu's seven entries (Course 1 to 4, Boss 1, Boss 2, System Gallery); all of them are open from the start. Unlock rules are an optional feature for the game you build.</p>
+<p><strong>Adding a level:</strong> make the map, add a row (same name as the map), set <code>Map</code>, set the unlock rule. A level that is not in the table is always open and has no medals.</p>
+<p><strong>Where the table is read:</strong> <code>ACorridorGameMode.LevelTable</code>, <code>MenuMap</code> and <code>SkinTable</code> come from the plugin's <code>Config/Game.ini</code>, section <code>[/Script/PlatformerKit.CorridorGameMode]</code>. The menu actor has its own <code>LevelTable</code> and <code>SkinTable</code> properties, set them to the same assets.</p>
+<p><strong>Level select (<code>ACorridorLevelSelect</code>, in <code>Corridor_Menu</code>):</strong> a list of the table rows with saved gems ("n / 6"), "done", "deathless" and "perfect"; locked levels are greyed. Beside it a card shows the focused or hovered level: six gem badges, deathless pickup, perfect run, best deaths / orbs / crates, time trial best and medal, mirrored gems, or what unlocks it (<code>ShowCard</code>, <code>CardLevel</code>). <code>WidgetClass</code> accepts a Blueprint child of <code>UCorridorLevelSelectWidget</code> with your own design. The widget's <code>bShowMirror</code> shows the MIRROR toggle (section 6).</p>
+<p><strong>Skins (<code>DT_CorridorSkins</code>, rows of <code>FCorridorSkinRow</code>):</strong> a skin is a <code>Mesh</code> (same skeleton as the hero) and / or a <code>Materials</code> list (one per mesh slot, empty entry = the mesh's own), opened by its <code>Unlock</code> rule: <code>Always</code>, <code>LevelGems</code> (6 / 6 in <code>Level</code>), <code>LevelComplete</code> (<code>Level</code> finished), <code>TotalGems</code>, <code>DeathlessPickups</code> or <code>PerfectRuns</code> (<code>Count</code> over every saved level). <code>ForMesh</code> limits a skin to one hero mesh, so a theme with its own hero keeps its look. The level select's SKIN button steps through the open ones (saved at once) and names what opens the next locked one; the hero puts the saved skin on when a level starts (<code>ApplySkin</code>; a power's costume takes it off while worn). The demo table: Quinn (finish Test Course), Gold (10 gems), Midnight (1 deathless pickup), Crimson (1 perfect run). From Blueprints: <code>UCorridorProgress</code> <code>IsSkinUnlocked</code>, <code>GetSkinRequirement</code>, <code>GetSkin</code>, <code>SetSkin</code>.</p>
+<p><strong>Results.</strong> At the level end (<code>FinishLevel</code>) the game mode awards, and the save keeps the best of every run:</p>
+<ul>
+<li>crate gem: every crate that counts was broken in one run;</li>
+<li>deaths gem: <code>Deaths</code> no more than <code>MaxDeathsForGem</code> (3);</li>
+<li>orb gems: 1 to 3, at <code>OrbGemPercents</code> (40 / 60 / 80 %) of the level's orbs;</li>
+<li>hidden gems: <code>ACorridorGem</code> with <code>Color</code> Clear found in the run;</li>
+<li>deathless pickup: <code>ACorridorDeathlessPickup</code> taken (saved the moment it is taken, not at the level end);</li>
+<li>perfect run (<code>bPerfectRun</code>): no deaths, every crate and orbs up to the third orb gem in one run; hidden gems not needed, never in a time trial. <code>IsPerfectRun</code> tells a HUD whether the run still qualifies;</li>
+<li>time trial: best time and medal.</li>
+</ul>
+<p>The level end screen (<code>UCorridorLevelEndWidget</code>) shows them (plus "Deathless pickup yes / no" and "PERFECT RUN") with "Replay" and "Continue"; the six gem slots come in one by one (<code>GemRevealTime</code> 1.25 s, <code>GemRevealStep</code> 0.15 s, 0 = all at once), each earned one with the theme's <code>GemAppear</code> sound, then the stats line. Sounds: <code>LevelEndAppear</code>, <code>LevelEndGems</code>, <code>LevelEndDeaths</code>, <code>LevelEndReward</code> (perfect run or deathless pickup). After the end scene, Replay / Continue first sends the hero running off the screen's left (<code>Leave</code>, <code>ExitRunTime</code> 0.6 s, <code>LevelEndContinue</code> / <code>LevelEndReplay</code> + <code>LevelEndReplayVoice</code>) while the view holds still. Continue opens the next open row in table order, else <code>MenuMap</code>, else replays the level. Coloured gems are saved at once and open gem platforms (<code>RequiredGem</code>). Save slot: <code>ProgressSlot</code> ("CorridorProgress"), a <code>UCorridorSaveGame</code>; <code>UCorridorProgress</code> reads it from any Blueprint (<code>GetLevelResult</code>, <code>IsLevelUnlocked</code>, <code>GetGemCount</code>).</p>
+<hr />
+<h2 id="6-game-modes">6. Game modes</h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>How it is turned on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Casual / Classic</strong></td>
+<td><code>ACorridorGameMode.Difficulty</code> (a Config property: set it in a game mode Blueprint child or in your project's <code>Config/DefaultGame.ini</code> under <code>[/Script/PlatformerKit.CorridorGameMode]</code>). Casual: endless lives, deaths counted, orbs taken since the checkpoint returns. Classic: <code>StartLives</code> 4, <code>MaxLives</code> 99, <code>OrbPerLife</code> 100 orbs = a life, orbs stays taken, no lives = game over screen ("TRY AGAIN" / "RETURN TO MAP").</td>
+</tr>
+<tr>
+<td><strong>Time trial</strong></td>
+<td>Place an <code>ACorridorTimeTrialClock</code> at the level start. Touching it calls <code>StartTimeTrial</code>: the clock runs, deaths cost no lives, the finish keeps only time and medal. Its <code>Rules</code> layer removes orbs, hidden gems, the deathless pickup and big orb crates and turns "?" crates into plain ones. Tag crates <code>TimeCrate1</code> / <code>TimeCrate2</code> / <code>TimeCrate3</code> to make them time crates that stop the clock 1 / 2 / 3 seconds; tag anything a time trial must not have <code>NoTimeTrial</code>. By default (<code>bRequireFinished</code>) the clock only exists once the level was finished. Medal times come from the level table row.</td>
+</tr>
+<tr>
+<td><strong>Ghost</strong></td>
+<td>On by default in a time trial (<code>bTimeTrialGhost</code>). The run is recorded every <code>SnapInterval</code> (0.15 s); a new best time is saved in the slot <code>&lt;ProgressSlot&gt;_Ghost_&lt;level id&gt;</code> (<code>&lt;level id&gt;_Mirror</code> in mirror mode) and replays as a see-through copy (<code>M_Ghost</code>) in the next run.</td>
+</tr>
+<tr>
+<td><strong>Mirror</strong></td>
+<td>The level select's MIRROR toggle (a level opened with the travel option <code>?Mirror</code>), the <code>bMirrored</code> property, or <code>SetMirrored(true)</code> at run time. The picture is flipped left-right by the post-process material <code>MirrorMaterial</code> (default <code>M_MirrorPP</code>; empty = only the stick input flips). Results are saved under <code>&lt;level id&gt;_Mirror</code>. In the menu a mirrored level opens once the normal one is finished.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-powers-and-the-shield">7. Powers and the shield</h2>
+<p>The five powers (Phase, Cyclone, Time Slow, Gravity, Glide) are on the <a href="Mechanics/Powers.html">Powers</a> page (Glide has its own: <a href="Mechanics/Glide.html">Glide</a>); the shield is on <a href="Mechanics/Shield.html">Shield</a>. Both are Option B (Corridor Character) only.</p>
+<hr />
+<h2 id="8-boss-framework">8. Boss framework</h2>
+<p>A boss fight is data plus a few placed actors. <code>Corridor_Boss1</code> and <code>Corridor_Boss2</code> are complete examples: open them first.</p>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Actor</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Director</td>
+<td><code>ACorridorBossDirector</code></td>
+<td>Runs <code>Phases</code> in order, keeps the health (<code>MaxHealth</code>, <code>BossName</code>), sends a death back to the last checkpoint phase, shows the health bar, finishes the level when the last phase ends (<code>bFinishLevelOnWin</code>). <code>StartFight</code> if <code>bStartOnBeginPlay</code> is off.</td>
+</tr>
+<tr>
+<td>Phase</td>
+<td><code>FCorridorBossPhase</code> (array element)</td>
+<td><code>Name</code>; <code>End</code>: <code>Hits</code> (after <code>HitsToEnd</code> boss hits), <code>Timed</code> (<code>Duration</code>) or <code>Manual</code> (<code>AdvancePhase</code> / <code>SetPhase</code>); <code>bShowHealth</code>, <code>HealthOnBegin</code>; <code>Sequence</code> (a Level Sequence scene while the hero waits); <code>Camera</code>; <code>bCheckpoint</code> with <code>PlayerStart</code>; <code>IntroDelayFirst</code> / <code>IntroDelayRetry</code>; <code>EnableActors</code>.</td>
+</tr>
+<tr>
+<td>Arena</td>
+<td><code>ACorridorTileGrid</code></td>
+<td><code>Size</code> columns x rows of tiles (<code>TileSize</code>); tiles can be dropped (shake, hold, fall) and raised. Add an <code>ACorridorKillBox</code> below it.</td>
+</tr>
+<tr>
+<td>Attackers</td>
+<td><code>ACorridorLaneLauncher</code>, <code>ACorridorMissileRain</code>, <code>ACorridorTileChaser</code></td>
+<td>Lane shots (jump, slide or dodge), missiles that land on the hero's tile, a runner that walks the tiles.</td>
+</tr>
+<tr>
+<td>Hit point</td>
+<td><code>ACorridorBossTarget</code></td>
+<td>Where the boss takes damage: an enemy spun with this as its <code>LaunchTarget</code> flies here and the director loses <code>Damage</code> health (after <code>DamageDelay</code>, with bullet time). Set its <code>Director</code>.</td>
+</tr>
+<tr>
+<td>Script</td>
+<td><code>ACorridorBossAttackLoop</code></td>
+<td>A phase's attacks as data (<code>Steps</code>). Refs: <code>LaneLauncher</code>, <code>Missiles</code>, <code>Grid</code>, <code>Chaser</code>, <code>BossTarget</code>, <code>BallClass</code>. <code>IntroDelayFirst</code>, <code>IntroDelayRetry</code>, <code>bLoop</code>, <code>LoopGap</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Building a fight</strong></p>
+<ol>
+<li>Build the arena: tile grid, kill box, camera view, <code>PlayerStart</code>.</li>
+<li>Place the attackers you want and an <code>ACorridorBossTarget</code> (set its <code>Director</code>). Place a <code>ACorridorTileChaser</code> with <code>Grid</code>, <code>Target</code> = the boss target and an <code>EnemyClass</code>.</li>
+<li>Place one <code>ACorridorBossAttackLoop</code> per phase. Fill <code>Steps</code> with <code>FCorridorAttackStep</code> entries: <code>Attack</code>, <code>PauseAfter</code>, <code>EveryLoops</code>, plus the fields that attack uses (<code>Lane</code>, <code>Shot</code>, <code>Lanes</code>, <code>Tiles</code>, <code>Ring</code>, <code>Value</code>, <code>Width</code>, <code>bReverse</code>).</li>
+<li>Place the director. Add one <code>Phases</code> entry per phase; list in its <code>EnableActors</code> the attack loop and the attackers it drives. A phase's actors start when it begins and stop when it ends or the hero dies.</li>
+<li>Make the hero hit the boss: spin the tile runner into the boss target (<code>Hits</code> phases end after <code>HitsToEnd</code> of them).</li>
+</ol>
+<p><code>ECorridorAttack</code> steps used by the shipped fights: <code>LaneShot</code>, <code>LaneVolley</code>, <code>MissileAtHero</code>, <code>DropTiles</code>, <code>RaiseTiles</code>, <code>SpawnChaser</code>. More steps exist; every step and its fields are listed in <a href="API.html">API.md</a>.</p>
+<p>Your own attackers implement <code>UCorridorBossListener</code> (Class Settings &gt; Implemented Interfaces) and get <code>OnBossPhaseBegin</code>, <code>OnBossPhaseEnd</code>, <code>OnBossHeroDied</code>, <code>OnBossHit</code>. For delayed steps in Blueprint save <code>GetToken</code> and test <code>IsTokenCurrent</code> afterwards: a phase change, a death or a boss hit cancels pending steps. The director also has the events <code>OnPhaseBegin</code>, <code>OnPhaseEnd</code>, <code>OnBossDamaged</code>, <code>OnFightWon</code>, and <code>HitBoss</code>, <code>AdvancePhase</code>, <code>SetPhase</code> as nodes.</p>
+<p>Phases in the shipped maps: Boss 1 runs Arrival, Warmup, Comb, QuarterFall, Horseshoe, Meltdown, Shutdown. Boss 2 runs Ignition, Sidewinder, Severance, PhaseWalk, Reroute, Redline, Shutdown.</p>
+<p><strong>The boss body.</strong> The visible boss (parts that move, light up and hurt) is a separate actor, <code>ACorridorBossBody</code>: see <a href="BOSS_BODY.html">BOSS_BODY.md</a>. It listens to the director and the attack loops, so any fight you build here can use it.</p>
+<hr />
+<h2 id="9-theme-system">9. Theme system</h2>
+<p><code>UCorridorTheme</code> is a data asset that holds everything that gives the kit its look and sound. With no theme active the kit uses its built-in look (basic shapes, textured crate boxes, the mannequin) and the sounds in <code>/PlatformerKit/Audio</code>.</p>
+<p><strong>Create:</strong> Content Browser &gt; Add &gt; Miscellaneous &gt; Data Asset &gt; <code>CorridorTheme</code>.</p>
+<p><strong>Activate:</strong> assign the theme in the level's <code>BP_Control &gt; 3 Theme</code>. To use one project-wide default, leave the level's Theme empty and select <strong>Project Settings &gt; Game &gt; Corridor Platformer &gt; Default Theme</strong>.</p>
+<p>For troubleshooting, the full priority is: command-line <code>-Theme=</code> override, level <code>BP_Control</code> Theme, development-only <code>DevTheme</code>, then the project Default Theme. <code>-Theme=None</code> forces no theme. An empty <code>DevTheme</code> does not disable the project default. Normal buyer setup needs neither the command line nor a config-file edit.</p>
+<p>If an Anim Set is already assigned directly on your <code>BP_Character</code> child, it takes priority over the theme's Anim Set. Clear that character override when the theme should choose the hero. The built-in <code>BP_Character</code> leaves it empty.</p>
+<p>The theme is loaded by path at run time: add its folder to Project Settings &gt; Packaging &gt; Additional Asset Directories to Cook.</p>
+<p><strong>Fields</strong> (all <code>EditAnywhere</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hero</td>
+<td><code>AnimSet</code> (<code>UCorridorAnimSet</code>: the hero mesh and one clip per state; the hero's <code>AnimSet</code> property or <code>-AnimSet=</code> also takes one). Optional slots, skipped when empty: <code>RunLeanLeft</code> / <code>RunLeanRight</code> (the run leans into turns, fully at <code>TurnLeanRate</code>), <code>IceIdle</code> / <code>IceRun</code> / <code>IceRunStop</code> (on ice; the stop loop runs while it slides out), <code>IdleFidgets</code> (one plays after <code>IdleTimeOut</code>, 30 s, standing still), <code>Teeter</code> (standing still on an edge with a drop of <code>TeeterHeight</code> 50 cm under the hero's middle; <code>IsOverLedge</code>), <code>NearMiss</code> (a ledge just missed), <code>Celebrate</code> (level end), <code>LeaveContinue</code> / <code>LeaveReplay</code> (the run out after the level end screen)</td>
+</tr>
+<tr>
+<td>Sound</td>
+<td><code>Sounds</code> (event name to <code>FCorridorSoundList</code>: <code>Variants</code>, <code>Volume</code>), <code>Music</code>, <code>MusicVolume</code></td>
+</tr>
+<tr>
+<td>Crates</td>
+<td><code>CrateMeshes</code> (by crate type), <code>OutlineCrateMesh</code>, <code>FuseCountdownMaterials</code>, <code>FuseDecalSlot</code></td>
+</tr>
+<tr>
+<td>Powers</td>
+<td><code>PowerMeshes</code>, <code>PowerRigs</code>, <code>PowerCostumes</code>, <code>ShieldMesh</code>, <code>ShieldGoldMaterial</code>, <code>ShieldIdle</code>, <code>ShieldOrbit</code>, <code>ShieldFace</code>, <code>ShieldAppear</code></td>
+</tr>
+<tr>
+<td>Enemies</td>
+<td><code>EnemyLooks</code> (by kind name; a Flyer with cargo: <code>Flyer_Orb</code> / <code>Flyer_Crate</code>; an enemy's <code>LookName</code> picks any other key, so two creatures of one kind can look different)</td>
+</tr>
+<tr>
+<td>Traversal</td>
+<td><code>PropMeshes</code> (level art placed as <code>ACorridorThemeProp</code> by key), <code>RailObstacleLooks</code></td>
+</tr>
+<tr>
+<td>Loot</td>
+<td><code>LootMesh</code></td>
+</tr>
+<tr>
+<td>Vehicles</td>
+<td><code>JetboardLook</code> (<code>Mesh</code>, <code>Anims</code> for the board itself, <code>Offset</code> from the hero's mesh)</td>
+</tr>
+<tr>
+<td>Fx</td>
+<td><code>Effects</code> (event name to <code>FCorridorFxList</code>: <code>UCorridorFx</code> assets, <code>bAttach</code>), <code>FxScale</code></td>
+</tr>
+<tr>
+<td>HUD</td>
+<td><code>HudLootIcon</code>, <code>HudCrateIcon</code>, <code>HudClockIcon</code>, <code>HudLivesIcon</code>, <code>HudIconFrames</code>, <code>HudIconFps</code>, <code>HudDigits</code>, <code>HudDigitHeight</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>UCorridorFx</code> is a particle effect: a list of <code>FCorridorFxEmitter</code> played on the CPU with instanced meshes (no Niagara). Place an <code>ACorridorAmbientFx</code> (<code>Fx</code>, <code>Scale</code>) for scenery effects - torch fire, waterfall mist, dust motes: it plays from the start of play, looping emitters for good. Particles spawn at <code>Origin</code>, inside a sphere (<code>SphereRadius</code>) and/or anywhere in a box (<code>BoxMin</code> / <code>BoxMax</code>, e.g. dust over a whole room). Crate, loot, enemy and prop looks from a theme show in game worlds only; in the editor viewport the built-in stand-ins show.</p>
+<p><strong>Sounds.</strong></p>
+<ul>
+<li>No theme: an event named <code>Jump</code> looks for <code>/PlatformerKit/Audio/SFX_Jump</code>. If no matching asset exists, the event is silent. Theme keys can share clips, so the number of files is not the number of events.</li>
+<li>With a theme: a sound plays only if the theme's <code>Sounds</code> maps the event name (a theme decides alone). Death sounds are <code>Death_&lt;kind&gt;</code> (for example <code>Death_Fall</code>). Power events try <code>&lt;Event&gt;_&lt;Power&gt;</code> (<code>_Phase</code>, <code>_Cyclone</code>, <code>_TimeSlow</code>, <code>_Gravity</code>, <code>_Glide</code>) first, then <code>&lt;Event&gt;</code>.</li>
+<li>Animation clips can play an event with a <code>UCorridorSfxNotify</code> (fields <code>Sfx</code>, <code>Fx</code>, <code>Socket</code>). On the hero the floor's surface picks a variant first: give a floor material the physical material <code>PM_Grass</code> and a step plays <code>Footstep_Grass</code> (sound or theme effect) where that name exists, else <code>Footstep</code>. <code>GetFootSurface</code> returns the name (<code>Grass</code>).</li>
+<li>Gamepad rumble rides on the same event names: the hero's <code>Rumbles</code> map (strength, duration, heavy / buzz motors; filled for blasts, deaths, impacts, breaks, bounces, pickups) rumbles whenever that event plays, with or without a sound. <code>Death_Fall</code> falls back to <code>Death</code>. Strength fades from <code>RumbleNear</code> (600 cm) to <code>RumbleFar</code> (2500 cm); the same event waits <code>RumbleGap</code> (0.15 s); <code>RumbleScale</code> 0 turns it off. Call <code>Rumble(Event, Location)</code> from your own Blueprints.</li>
+</ul>
+<p>Event names played by the code:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Events</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hero</td>
+<td><code>Jump</code>, <code>CycloneJump</code>, <code>Land</code>, <code>NearMiss</code>, <code>Spin</code>, <code>SpinBlocked</code>, <code>Slide</code>, <code>Slam</code>, <code>SlamStart</code>, <code>WallLeap</code>, <code>RopeLeap</code>, <code>RailLand</code>, <code>RailTransfer</code>, <code>IceStart</code>, <code>WaterSplash</code>, <code>Death</code>, <code>ExtraLife</code></td>
+</tr>
+<tr>
+<td>Crates</td>
+<td><code>Bounce</code>, <code>BounceMetal</code>, <code>Break</code>, <code>Checkpoint</code>, <code>Explosion</code>, <code>FuseBeep</code>, <code>CountdownStart</code>, <code>CountdownEnd</code>, <code>CrateSwitch</code>, <code>Detonator</code>, <code>CrateGem</code></td>
+</tr>
+<tr>
+<td>Orbs and gems</td>
+<td><code>Loot</code>, <code>LootTally</code>, <code>Gem</code>, <code>GemAppear</code></td>
+</tr>
+<tr>
+<td>Level end screen</td>
+<td><code>LevelEndAppear</code>, <code>LevelEndGems</code>, <code>LevelEndDeaths</code>, <code>LevelEndReward</code>, <code>LevelEndContinue</code>, <code>LevelEndReplay</code>, <code>LevelEndReplayVoice</code></td>
+</tr>
+<tr>
+<td>Enemies</td>
+<td><code>EnemyStomp</code>, <code>EnemySpun</code>, <code>EnemyShoot</code>, <code>EnemySpit</code>, <code>EnemyHide</code>, <code>EnemyShieldUp</code>, <code>EnemyShieldDown</code>, <code>EnemyKamikazeFuse</code>, <code>EnemyKamikazeBlast</code>, <code>EnemyCrateDrop</code>, <code>EnemyFallImpact</code></td>
+</tr>
+<tr>
+<td>Hazards, platforms</td>
+<td><code>HazardTell</code>, <code>HazardActive</code>, <code>HazardOff</code>, <code>HazardDrop</code>, <code>HazardImpact</code>, <code>BouncePad</code>, <code>PlatformCrack</code>, <code>PlatformBreak</code>, <code>PushFan</code>, <code>BonusStart</code>, <code>BonusStop</code></td>
+</tr>
+<tr>
+<td>Chase, mounts</td>
+<td><code>ChaseStart</code>, <code>ChaseStep</code>, <code>ChaserEnter</code>, <code>MountStart</code>, <code>MountJump</code>, <code>MountBoost</code>, <code>MountLaunch</code>, <code>MountEnd</code></td>
+</tr>
+<tr>
+<td>Jetboard</td>
+<td><code>JetboardStart</code>, <code>JetboardJump</code>, <code>JetboardBoost</code>, <code>JetboardLaunch</code>, <code>JetboardSplash</code>, <code>JetboardEnd</code></td>
+</tr>
+<tr>
+<td>Loops (played while it lasts)</td>
+<td><code>RailGrind</code>, <code>RailHang</code> (on a grind rail), <code>JetboardDrive</code> (riding a jetboard), <code>Whirlpool</code> (each whirlpool)</td>
+</tr>
+<tr>
+<td>Powers</td>
+<td><code>ShieldPickup</code>, <code>ShieldLose</code>, <code>PowerPortalIn</code>, <code>PowerPortalOut</code>, <code>PowerVoice</code>, <code>PowerEquip</code>, <code>PowerUnequip</code>, <code>PowerOn</code>, <code>PowerOff</code>, <code>PowerAppear</code>, <code>PowerDisappear</code>, <code>PowerRemove</code></td>
+</tr>
+<tr>
+<td>Time trial, boss</td>
+<td><code>TimeTrialStart</code>, <code>BossHit</code>, <code>BallServe</code>, <code>BallReturn</code>, <code>BombThrow</code>, <code>LaneShotJump</code>, <code>MissileLaunch</code>, <code>MissileImpact</code>, <code>TurretAppear</code>, <code>TurretBreak</code>, <code>TurretRing</code>, <code>WorldSpeedWarn</code></td>
+</tr>
+</tbody>
+</table>
+<p>Effect keys (<code>Effects</code>) follow the same idea; the tooltip of <code>Effects</code> lists the main ones (Jump, Land, Footstep, Spin, Slide, Slam, Death, CrateBreak, CrateBounce, FuseExplode, ...). Without a theme the template plays its own simple particle bursts. Traversal (<code>bTraversalFx</code> on the hero): a theme holds <code>RailGrind</code> / <code>RailHang</code> at the feet / hands while riding / hanging a rail, and wall-run clips play <code>WallRunStep</code> / <code>WallRunHand</code> from their notifies; without a theme the hero throws sparks off the rail and a puff off the wall every 0.2 s.</p>
+<hr />
+<h2 id="10-blueprint-api-highlights">10. Blueprint API highlights</h2>
+<h3 id="abilities-and-actions">Abilities and actions</h3>
+<p>Pick which mechanics exist with one checkbox each (<strong>Corridor | Abilities</strong>) or <strong>Set Ability Enabled</strong> at run time; read what the hero is doing with <strong>Get Corridor Action</strong> and the events <strong>On Action Started / Ended</strong>. See <a href="Abilities_and_Actions.html">Abilities and Actions</a> and the <a href="Mechanics/index.html">Mechanics Reference</a>.</p>
+<h3 id="nodes-you-will-use-first">Nodes you will use first</h3>
+<p>The full list, grouped by topic, is the <a href="API.html">Blueprint API reference</a>. The nodes you will use first. "Game mode" = Get Game Mode, Cast To CorridorGameMode.</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Example in a Level Blueprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Game mode <code>FinishLevel</code></td>
+<td>A Box Trigger of your own: On Actor Begin Overlap, Cast to CorridorCharacter, game mode <code>FinishLevel</code>.</td>
+</tr>
+<tr>
+<td>Game mode <code>SetMirrored(bOn)</code></td>
+<td>Event BeginPlay, game mode, <code>SetMirrored(true)</code> for a mirrored-only level.</td>
+</tr>
+<tr>
+<td>Game mode <code>AddLife(Count)</code></td>
+<td>A custom pickup overlaps the hero: game mode <code>AddLife(1)</code> (Classic).</td>
+</tr>
+<tr>
+<td>Game mode <code>GetLevelResult(Level)</code></td>
+<td>Event BeginPlay: <code>GetLevelResult("Course1_RunAndJump")</code>, branch on <code>bCompleted</code> to open a secret door.</td>
+</tr>
+<tr>
+<td>Hero <code>TakeHit(How, bIgnoreShield)</code></td>
+<td>Your own spike Blueprint, On Component Begin Overlap, cast the other actor to CorridorCharacter, <code>TakeHit(How = Burn)</code>.</td>
+</tr>
+<tr>
+<td>Hero <code>Bounce(Velocity, HeldVelocity)</code></td>
+<td>A custom spring pad: overlap, hero <code>Bounce(1200, 1600)</code>.</td>
+</tr>
+<tr>
+<td>Hero <code>GetPowers</code> then <code>Equip(Power)</code></td>
+<td>Event BeginPlay: <code>Get Player Pawn</code>, cast to CorridorCharacter, <code>GetPowers</code>, <code>Equip(TimeSlow)</code> to start with a power.</td>
+</tr>
+<tr>
+<td>Hero <code>AddCameraShake(Amplitude, Duration, Frequency)</code></td>
+<td>After a custom explosion: <code>AddCameraShake((0, 20, 20), 0.4, 25)</code>.</td>
+</tr>
+<tr>
+<td>Moving platform <code>Trigger</code></td>
+<td>A button Blueprint: overlap, reference to the platform in the level, <code>Trigger</code>.</td>
+</tr>
+<tr>
+<td>Crate <code>IsBroken</code></td>
+<td>Tick or a timer: when <code>IsBroken</code> of a crate reference is true, open a gate.</td>
+</tr>
+<tr>
+<td>Boss director <code>StartFight</code> / <code>AdvancePhase</code> / <code>SetPhase(Phase)</code></td>
+<td>An arena entrance trigger: overlap, director reference, <code>StartFight</code>.</td>
+</tr>
+<tr>
+<td>Hero events <code>OnCorridorJump(bDoubleJump)</code>, <code>OnSpinStarted</code></td>
+<td>Implement them in a Blueprint child of <code>ACorridorCharacter</code> to add your own sounds or effects.</td>
+</tr>
+<tr>
+<td>Crate events <code>OnBroken(bByExplosion)</code>, <code>OnExploded</code></td>
+<td>Implement them in a Blueprint child of <code>ACorridorCrate</code> (set <code>Type</code> in its defaults) for a custom pop.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-automated-tests">11. Automated tests</h2>
+<p>The kit contains an in-game test runner (<code>ACorridorTestRunner</code>) that was used to check the kit during development. It needs a dedicated test course that is not part of the product, so you can ignore it. To test your own levels, play them: the demo courses show every mechanic working.</p>
+<hr />
+<h2 id="12-packaging">12. Packaging</h2>
+<p>Standard flow: <strong>Platforms &gt; Windows &gt; Package Project</strong> or the Project Launcher (Win64, Development or Shipping). Set <strong>Project Settings &gt; Maps &amp; Modes &gt; Game Default Map</strong> to <code>Corridor_Menu</code> if the game should start at the menu. Blueprint-only projects: see the Quickstart section "Packaging".</p>
+<ul>
+<li>The plugin's <code>Config/Game.ini</code> always cooks the plugin's <code>Audio</code>, <code>Crates</code>, <code>Corridor</code> and <code>Themes</code> folders. Nothing references these assets directly: the code loads sounds (<code>SFX_&lt;Event&gt;</code>), crate face textures and <code>M_Crate</code>, the mirror, flip and ghost materials and the level table by path at run time, so a cook would otherwise leave them out. You do not need to add them.</li>
+<li>Put anything else the code loads by name in those folders or add its folder under Project Settings &gt; Packaging &gt; Additional Asset Directories to Cook: extra <code>SFX_</code> clips, your theme asset and its content.</li>
+<li>List your maps under Project Settings &gt; Packaging &gt; List of maps to include in a packaged build. The level select opens maps by soft reference from the level table, so every map in the table must be cooked.</li>
+<li>Blueprint-only projects need Visual Studio 2022 with the C++ workload for the first package: see the Quickstart section "Packaging".</li>
+<li>After packaging, run the game, check the menu, one level with the sound on, a death, and the level end screen.</li>
+</ul>
+<hr />
+<h2 id="13-known-limitations">13. Known limitations</h2>
+<ul>
+<li>Sound events that have no <code>SFX_&lt;Event&gt;</code> clip stay silent. With a theme active, events the theme does not map are silent too. Optional voice slots remain unfilled; see section 9 for the event lookup rules.</li>
+<li>The demo look is the project's own Lab theme. Real art for your game comes from your meshes or a theme (section 9).</li>
+<li>Menus and result screens use a plain built-in layout; for another design make Blueprint children of <code>UCorridorLevelSelectWidget</code>, <code>UCorridorLevelEndWidget</code>, <code>UCorridorGameOverWidget</code>, <code>UCorridorPauseWidget</code>, <code>UCorridorBossHealthWidget</code> and set <code>WidgetClass</code>, <code>LevelEndWidgetClass</code>, <code>GameOverWidgetClass</code>, <code>PauseWidgetClass</code>, <code>HealthWidgetClass</code>.</li>
+<li>The level select, the time trial ghost and the test runner address local player 0. No split-screen or multiplayer setup is included.</li>
+<li>A level's results are saved under its level id: the row name in the level table must match the map name (or <code>LevelId</code> on the game mode), otherwise results are saved under the map name and the menu will not show them.</li>
+<li>The time trial clock is only present once the level was finished (<code>bRequireFinished</code>); a mirrored level opens in the menu only after the normal one is finished.</li>
+<li>A theme and anything loaded by name must be in a cooked folder (section 12).</li>
+</ul>
+<hr />
+<h2 id="14-version-history">14. Version history</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>First release: menu, Courses 1-4, Boss 1 and 2, System Gallery.</td>
+</tr>
+</tbody>
+</table>
+<hr /><div class="pn"><a href="BUYER_QUICKSTART.html">&larr; Quickstart</a><a href="Mechanics/index.html">Mechanics Reference &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quickstart - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="index.html">Documentation home</a><a href="BUYER_QUICKSTART.html" class="cur">Quickstart</a><a href="README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="Mechanics/index.html">Overview</a><a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Mechanics/Double_Jump.html">Double Jump</a><a href="Mechanics/Spin.html">Spin</a><a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="Mechanics/Slam.html">Slam</a><a href="Mechanics/Wall_Run.html">Wall Run</a><a href="Mechanics/Rope_Swing.html">Rope Swing</a><a href="Mechanics/Grind_Rail.html">Grind Rail</a><a href="Mechanics/Glide.html">Glide</a><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Mechanics/Powers.html">Powers</a><a href="Mechanics/Shield.html">Shield</a><a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="Recipes/index.html">Overview</a><a href="Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="Abilities_and_Actions.html">Abilities and Actions</a><a href="API.html">Blueprint API reference</a><h4>Guides</h4><a href="BOSS_BODY.html">Build your own boss body</a><a href="SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="Integration/ALS/README.html">ALS-Refactored sample</a><a href="THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="quickstart">Quickstart</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#install-the-plugin">Install the plugin</a></li><li><a href="#project-render-settings">Project render settings</a></li><li><a href="#find-the-controls">Find the controls</a></li><li><a href="#replace-the-heros-mesh-and-animation-set">Replace the hero's mesh and animation set</a></li><li><a href="#integrate-with-your-own-character">Integrate with your own character</a></li><li><a href="#build-curvy-grind-rails">Build curvy grind rails</a></li><li><a href="#adjust-the-workshop-pickup-presentation">Adjust the Workshop pickup presentation</a></li><li><a href="#change-settings-during-play">Change settings during Play</a></li><li><a href="#saved-blueprint-examples">Saved Blueprint examples</a></li><li><a href="#packaging">Packaging</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#more-documentation">More documentation</a></li></ul></div>
+<p>This 3D platformer mechanics kit is configured through the Content Browser, Details and Blueprint nodes. No code is needed.</p>
+<h2 id="install-the-plugin">Install the plugin</h2>
+<p>Requirements: Unreal Engine 5.7, Windows. A Blueprint-only project needs nothing else to play in the editor; packaging needs Visual Studio 2022 (see "Packaging").</p>
+<ol>
+<li>Open the product page in <strong>Fab</strong> (or the Epic Games Launcher &gt; Library &gt; Fab Library) and press <strong>Add to Project</strong>. Choose your Unreal Engine 5.7 project. (To install by hand, copy the plugin folder into your project's <code>Plugins</code> folder.)</li>
+<li>Open the project. If Unreal asks to enable the plugin or rebuild, accept. Otherwise open <strong>Edit &gt; Plugins</strong>, search for <strong>PlatformerKit</strong>, tick <strong>Enabled</strong> and <strong>Restart Now</strong>. The plugin enables the engine plugins it needs (Enhanced Input, ACL, Control Rig, RigVM, Full Body IK, Animation Data).</li>
+<li>In the Content Browser open <strong>Settings &gt; Show Plugin Content</strong>. The kit's assets are in <strong>PlatformerKit Content</strong>.</li>
+<li>Open <strong>PlatformerKit Content &gt; Maps &gt; <code>Corridor_Menu</code></strong> and press <strong>Play</strong>. Every map sets its own game mode, so you do <strong>not</strong> change Maps &amp; Modes, and the demo does not touch your project's game mode or input settings. Pick a level with the mouse or the gamepad stick; all of them are open.</li>
+<li>Optional: set <strong>Project Settings &gt; Maps &amp; Modes &gt; Game Default Map</strong> to <code>Corridor_Menu</code> so a packaged game starts at the menu.</li>
+</ol>
+<p>Put your own assets in your own Content folder, never inside <strong>PlatformerKit Content</strong>, so updating the plugin never overwrites your work.</p>
+<h2 id="project-render-settings">Project render settings</h2>
+<p>The demo maps are lit for Lumen. A project made from the UE 5.7 Third Person, Blank or another template at the default <strong>Maximum</strong> quality already has all of these. A project upgraded from UE4, or made with the <strong>Scalable</strong> preset, may not. Check <strong>Project Settings &gt; Engine &gt; Rendering</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+<th>Needs editor restart</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global Illumination &gt; Dynamic Global Illumination Method</td>
+<td>Lumen</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Reflections &gt; Reflection Method</td>
+<td>Lumen</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Shadows &gt; Shadow Map Method</td>
+<td>Virtual Shadow Maps</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Software Ray Tracing &gt; Generate Mesh Distance Fields</td>
+<td>On</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Default Settings &gt; Allow Static Lighting</td>
+<td>Off</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Without them the maps still load and play with no errors, but Unreal then lights them without Lumen (no dynamic global illumination, screen-space reflections), so the look differs from the listing images. Nothing else is needed: no input mappings, no collision channels or profiles, no console variables.</p>
+<h2 id="find-the-controls">Find the controls</h2>
+<p>Open <strong>PlatformerKit Content &gt; Blueprints</strong>. Select a placed gameplay actor and press <strong>Ctrl+B</strong> to locate its Blueprint. Put one <code>Core/BP_Control</code> in each level. Its numbered Details categories control difficulty, camera, theme, HUD and testing.</p>
+<p>All menu entries are open: Course 1 to 4, Boss 1, Boss 2 and the System Gallery. Use System Gallery to inspect every mechanic, the courses to play them in context, and the two boss maps for the fights.</p>
+<h2 id="replace-the-heros-mesh-and-animation-set">Replace the hero's mesh and animation set</h2>
+<p>Stop Play before editing the assets. The gameplay character remains <code>BP_Character</code>; the steps below change its appearance and clips. They do not turn an arbitrary Pawn or an unrelated Third Person Blueprint into the template's gameplay character; for that, see <strong>Integrate with your own character</strong> below.</p>
+<ol>
+<li>Duplicate the theme you want to customize into your own Content folder. Keep the original as a reset point.</li>
+<li>Open the duplicate's <strong>Hero &gt; Anim Set</strong>. If populated, duplicate that Anim Set too. If empty, create <strong>Add &gt; Miscellaneous &gt; Data Asset &gt; CorridorAnimSet</strong>. Both Workshop themes use <code>Characters/HeroActions/DA_HeroActions</code>. Duplicate this set to keep its existing slide, rail, wall, rope and vehicle clips while editing your variant.</li>
+<li>In the new Anim Set, assign <strong>Mesh &gt; Mesh</strong>. Use animation clips authored for that mesh's skeleton, or retarget your own appropriately licensed clips to it.</li>
+<li>Fill <strong>Ground &gt; Idle, Walk, Run</strong> and <strong>Air &gt; Jump Start, Fall Loop</strong>, plus <strong>Ground &gt; Land</strong>. Idle is required to avoid a reference pose. Optional action slots can be filled later; a locomotion sample is not a complete action-animation set.</li>
+<li>Set <strong>Mesh Scale</strong> and <strong>Mesh Yaw</strong> so the mesh fits the existing capsule and faces the movement direction. Keep the collision capsule at radius 35 cm and half height 90 cm for the default movement tuning.</li>
+<li>Assign the new Anim Set to the duplicate theme. Select that theme on the level's <strong>BP_Control &gt; 3 Theme</strong>. Leave the <code>BP_Character</code> Anim Set override empty if the theme should select it.</li>
+<li>Start Play. Check idle, movement, a double jump, spin, checkpoint death/respawn and completion. Verify the replacement remains visible after respawn.</li>
+</ol>
+<p>The local rehearsal uses the existing <code>SKM_Quinn_Simple</code> mesh with <code>SK_Mannequin</code>, Mesh Scale 1 and Mesh Yaw -90. Its six existing Epic clips are <code>MM_Idle</code>, <code>MF_Unarmed_Walk_Fwd</code>, <code>MF_Unarmed_Jog_Fwd</code>, <code>MM_Jump</code>, <code>MM_Fall_Loop</code> and <code>MM_Land</code>. No new animation or retarget is required for this compatible-skeleton example. A different skeleton still needs its own compatible clip set; arbitrary skeletons and human setup time have not been verified.</p>
+<h2 id="integrate-with-your-own-character">Integrate with your own character</h2>
+<p>Three ways to give a character you already have the kit's gameplay. Each was measured in actual Play on Unreal Engine 5.7 (tables at the end of this section). Rows marked <em>same code path</em> use the same component calls as a measured row but were not played one by one.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Your character keeps</th>
+<th>The kit adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong> - add the Corridor Hero component (any Character)</td>
+<td>movement, jump height, animation, camera, input</td>
+<td>crates, enemy stomp / touch, checkpoints, death and respawn, kill volumes, hazards, pickups, triggers</td>
+</tr>
+<tr>
+<td><strong>B</strong> - reparent to CorridorCharacter (standard Character Movement Component)</td>
+<td>mesh, Anim Blueprint, camera and input (External modes)</td>
+<td>Option A + the kit's jump, double jump, spin, slide, slam and grind rails</td>
+</tr>
+<tr>
+<td><strong>C</strong> - ALS-Refactored character (C++)</td>
+<td>ALS locomotion, animation, camera, input, mantling, rolling</td>
+<td>Option A + double jump, spin, slide, slam and grind rails</td>
+</tr>
+</tbody>
+</table>
+<h3 id="option-a-keep-your-character-exactly-as-it-is">Option A - keep your character exactly as it is</h3>
+<ol>
+<li>Open your character Blueprint &gt; <strong>Components</strong> &gt; <strong>Add</strong> &gt; type <strong>Corridor Hero</strong> &gt; select it. <strong>Compile</strong>, <strong>Save</strong>.</li>
+<li>Play. Crates break when you land on them (and bounce you), enemies are stomped from above and kill you from the side, checkpoints are kept, and a death respawns you at the last checkpoint. Tune it in the component's Details: <strong>1. Bounce</strong> (Crate Bounce Velocity 771 cm/s, Held Bounce Scale 1.25) · <strong>2. Attack</strong> (Attack Radius 110 cm) · <strong>3. Death</strong> (Respawn Delay 0.8 s, Immortal).</li>
+<li>Attacks: from your attack input (or an attack montage notify) call <strong>Start Attack</strong> on the Corridor Hero component (Duration 0.3 s by default); crates and enemies inside Attack Radius break / fall. Or implement the <strong>Corridor Hero</strong> interface (Class Settings &gt; Interfaces &gt; Add &gt; Corridor Hero) and return true from <strong>Is Hero Attacking</strong> while your own attack runs.</li>
+<li>Optional interface events: <strong>On Hero Bounce</strong> (return true if you launch the character yourself), <strong>On Hero Hit</strong> (return true to use your own health instead of the kit's death), <strong>On Hero Respawned</strong>. Component events: <strong>On Died</strong>, <strong>On Respawned</strong>.</li>
+</ol>
+<p>Your movement, jump height, animation, camera and input stay yours. Double jump, spin, slide and slam work on Option A through the component's <strong>Move Jump</strong>, <strong>Move Spin</strong> and <strong>Move Slide</strong> nodes. Grind rails, wall runs and ropes need the kit's movement solver: on a stock Character Movement they are scenery you pass under or walk on (Option B or C give them to you). Powers, mounts, glide and the shield are Option B only. Which one to pick: <a href="Recipes/5_Option_A_or_B.html">Option A, B or C</a>; per-mechanic support: <a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a>. The component keeps the checkpoint itself, so it also works with your own game mode; with the kit's <code>BP_GameMode</code> a death is counted in the HUD and medals like the kit hero's.</p>
+<h3 id="option-b-the-kits-moves-on-your-character">Option B - the kit's moves on your character</h3>
+<p>For characters on the standard Character Movement Component, such as the Third Person template character.
+1. Your character Blueprint &gt; <strong>Class Settings</strong> &gt; Details &gt; <strong>Class Options</strong> &gt; <strong>Parent Class</strong> &gt; <strong>CorridorCharacter</strong>. <strong>Compile</strong>. Your <code>CameraBoom</code> / <code>FollowCamera</code> keep their names (the kit's own are <code>CorridorCameraBoom</code> / <code>CorridorCamera</code>).
+2. <strong>Class Defaults</strong> &gt; Details &gt; <strong>Corridor &gt; Integration</strong>:
+   - <strong>Animation Mode = External</strong>: your mesh and Anim Blueprint stay. The kit's spin, slide, double jump and slam clips play as montages on <strong>Action Slot</strong> (default <code>DefaultSlot</code>); your Anim Blueprint needs a <code>Slot 'DefaultSlot'</code> node before Output Pose (the Third Person <code>ABP_Unarmed</code> has one). Your locomotion comes back when the action ends. The clips are on the UE5 Mannequin skeleton: a UE5 Mannequin-based character plays them with no extra step (no Compatible Skeletons entry is needed in 5.7). A character with different bone names needs the clips retargeted (IK Retargeter) into a copy of <code>DA_HeroActions</code>, set as <strong>Anim Set</strong> (Details &gt; Corridor | Animation).
+   - <strong>Input Mode = External</strong>: the kit adds no input of its own. Your existing <strong>Jump</strong> / <strong>Stop Jumping</strong> nodes now run the kit's jump, held jump and double jump. Bind your own keys to <strong>On Spin Pressed / Released</strong>, <strong>On Slide Pressed / Released</strong> (slide on the ground with the stick pushed, crouch without it, slam in the air) and <strong>On Power Pressed</strong>. With <strong>Input Mode = Own</strong> instead, the kit's input is added at <strong>Corridor Input Priority</strong> 1, above your contexts (0), so a key both map (Space, arrows) does only the kit's action.
+   - <strong>Camera Mode = External</strong>: your camera stays active; the kit's camera and camera director switch off.
+3. Movement feel: the kit sets walk speed, jump velocity and gravity at Play. Everything else on your <strong>Character Movement</strong> stays yours; the Third Person template keeps Air Control 0.35, Max Acceleration 1500, Braking Deceleration Walking 2000 / Falling 1500, Rotation Rate 500 and Use Separate Braking Friction on. For the kit's exact air steering and stops (the demo levels are tuned on them), click the reset arrow on those fields in the Character Movement Details (kit: 0.9, 3214, 0 / 5266, 720, off).
+4. Slide, triple-spin and Cyclone speeds are kept as a multiple of your walk speed, even if your character rewrites Max Walk Speed every frame.</p>
+<h3 id="option-c-als-refactored">Option C - ALS-Refactored</h3>
+<p>Two sample classes ship as source text in <code>Documentation/Integration/ALS/</code> (not a module of the kit; ALS-Refactored is not part of the kit). Tested with ALS-Refactored tag <code>ue-5.7</code> (commit 3268c12a20, MIT licence) on Unreal Engine 5.7.
+1. Copy <code>AlsCorridorMovementComponent.h</code>, <code>AlsCorridorCharacter.h</code> and <code>AlsCorridorCharacter.cpp</code> into your game module's source folder.
+2. In your module's <code>.Build.cs</code>, add <code>"ALS", "ALSExtras", "EnhancedInput"</code> and the kit's module <code>"PlatformerKit"</code> to <code>PublicDependencyModuleNames</code>. 3. ALS's example character has no initializer constructor, so a subclass cannot swap its movement component. In <code>Plugins/ALS/Source/ALSExtras</code> change two lines: header <code>AAlsCharacterExample();</code> -&gt; <code>explicit AAlsCharacterExample(const FObjectInitializer&amp; ObjectInitializer = FObjectInitializer::Get());</code>; cpp <code>AAlsCharacterExample::AAlsCharacterExample()</code> -&gt; <code>AAlsCharacterExample::AAlsCharacterExample(const FObjectInitializer&amp; ObjectInitializer) : Super{ObjectInitializer}</code>. If your own class derives from <code>AAlsCharacter</code> directly, change the sample's base class to yours instead; no ALS edit is needed then.
+4. Build. Open your ALS character Blueprint (for example <code>B_Als_Character</code>) &gt; Class Settings &gt; <strong>Parent Class = Als Corridor Character</strong> &gt; <strong>Compile</strong> &gt; <strong>Save</strong>. Its Character Movement is now <code>AlsCorridorMovementComponent</code>; mesh, Anim Blueprint (<code>AB_Als</code>), settings and camera stay as they were.
+5. Details &gt; <strong>Corridor Hero &gt; 4. Moves</strong>: heights and speeds (defaults = the kit hero's: double jump +211 cm, slide x1.6, slam 1286 cm/s, 36 cm hop). <strong>Corridor &gt; Spin Action / Slide Action</strong>: your two Input Actions (add their keys to your Input Mapping Context). Jump stays ALS's Jump action: on the ground ALS jumps, in the air it is the kit's double jump, on a rail it hops.
+6. Optional: <strong>Spin / Slide / Double Jump / Slam Clip</strong> play on <strong>Action Slot</strong> of your Anim Blueprint (the kit's clips are on the UE5 Mannequin skeleton; ALS uses its own <code>SK_Als</code>, so retarget first). Blueprint getters for your Anim Blueprint: <strong>Is Sliding</strong>, <strong>Is Slamming</strong>, <strong>Get Hero Traversal</strong> (Grind / WallRun / Rope).
+7. Movement feel: <code>AlsCorridorMovementComponent</code> Rise / Fall Gravity Scale = 1 keeps ALS's own jump arc; 3.3 / 1.08 is the kit hero's gravity shaping. With ALS's 375 cm/s walk, the kit's demo gaps are tuned for a faster hero, so judge the values in your own levels.</p>
+<p>ALS mantles onto crates (its own feature); a crate that breaks under a mantle makes ALS ragdoll (ALS setting Mantling &gt; Start Ragdolling On Target Primitive Destruction). The sample blocks ALS mantling during the slam and turns the slam's 1286 cm/s landing into a normal ALS landing (ALS would ragdoll above 1000 cm/s). Wall runs and ropes take the same code path as the grind rail but were not played on ALS. ALS has no grind or slide pose of its own; map <strong>Get Hero Traversal</strong> / <strong>Is Sliding</strong> in its Anim Blueprint.</p>
+<h3 id="game-animation-sample-gasp">Game Animation Sample (GASP)</h3>
+<ul>
+<li><strong>Option A:</strong> the Corridor Hero component needs only a Character, so a GASP character takes the same code path as the measured Third Person character. It has not been played on a GASP character yet.</li>
+<li><strong>Option B on GASP has not been verified yet:</strong> whether its motion-matching Anim Blueprint plays the kit's clips on <code>DefaultSlot</code> over the full body (or needs Action Slot set to its own slot), and its gait Max Walk Speed rewrite during Play. Use Option A with GASP until then.</li>
+</ul>
+<h3 id="measured-option-a-and-b-third-person-template-quinn-abp_unarmed-actual-play">Measured: Option A and B (Third Person template Quinn, <code>ABP_Unarmed</code>, actual Play)</h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Kit <code>BP_Character</code></th>
+<th>Option A: Quinn + Corridor Hero</th>
+<th>Option B: Quinn reparented, External x3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Third Person content next to the kit</td>
+<td>-</td>
+<td>mesh / Anim Blueprint stay at /Game/Characters; kit 0 missing dependencies</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Blueprint compile errors / warnings</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Anim Blueprint / camera in Play</td>
+<td>CorridorAnimInstance / CorridorCamera</td>
+<td>ABP_Unarmed / your camera</td>
+<td>ABP_Unarmed / FollowCamera active, CorridorCamera off</td>
+</tr>
+<tr>
+<td>Crate stomp</td>
+<td>broken, bounce 729 cm/s</td>
+<td>broken, bounce 755 cm/s</td>
+<td>broken, bounce 729 cm/s</td>
+</tr>
+<tr>
+<td>Attack a crate</td>
+<td>broken (On Spin Pressed)</td>
+<td>broken (Start Attack 0.3 s)</td>
+<td>broken (On Spin Pressed)</td>
+</tr>
+<tr>
+<td>Enemy stomp</td>
+<td>enemy defeated, bounce 922 cm/s</td>
+<td>enemy defeated, bounce 948 cm/s</td>
+<td>enemy defeated, bounce 922 cm/s</td>
+</tr>
+<tr>
+<td>Enemy touch -&gt; death -&gt; respawn</td>
+<td>at the checkpoint, 0 cm</td>
+<td>at the checkpoint, 0 cm; death counted by the game mode</td>
+<td>at the checkpoint, 0 cm</td>
+</tr>
+<tr>
+<td>Ground jump apex (0.3 s hold)</td>
+<td>234.7 cm</td>
+<td>127.5 cm (the character's own 500 cm/s jump, untouched)</td>
+<td>234.6 cm (same 1157 cm/s jump and rise profile)</td>
+</tr>
+<tr>
+<td>Double jump apex</td>
+<td>375 cm</td>
+<td>-</td>
+<td>340 cm (second press timing; 291-466 cm across runs for both)</td>
+</tr>
+<tr>
+<td>Kit clip on the slot (Anim Blueprint stays ABP_Unarmed)</td>
+<td>-</td>
+<td>-</td>
+<td>spin, slide, double jump, slam; locomotion returns after each</td>
+</tr>
+<tr>
+<td>Grind rail</td>
+<td>grind, 1029 cm/s</td>
+<td>none (passes under, by design)</td>
+<td>grind, 1029 cm/s</td>
+</tr>
+<tr>
+<td>Log errors / ensures / wrong-skeleton lines</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Kill volumes, hazards, pickups, triggers</td>
+<td>-</td>
+<td><em>same code path</em></td>
+<td><em>same code path</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="measured-option-c-als-refactored-ue-57-actual-play">Measured: Option C (ALS-Refactored <code>ue-5.7</code>, actual Play)</h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Stock <code>B_Als_Character</code></th>
+<th><code>B_Als_Character</code> reparented to Als Corridor Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compile / log errors, ensures, script errors</td>
+<td>-</td>
+<td>0 / 0</td>
+</tr>
+<tr>
+<td>Anim Blueprint / ALS locomotion modes in Play</td>
+<td>AB_Als</td>
+<td>AB_Als; Grounded / InAir (None on the rail)</td>
+</tr>
+<tr>
+<td>Walk speed / jump apex</td>
+<td>375 cm/s / 90.0 cm</td>
+<td>375 cm/s / 90.0 cm (ALS's own)</td>
+</tr>
+<tr>
+<td>Double jump</td>
+<td>-</td>
+<td>+211.0 cm above the press point</td>
+</tr>
+<tr>
+<td>Slide</td>
+<td>-</td>
+<td>375 -&gt; 600 cm/s (x1.6)</td>
+</tr>
+<tr>
+<td>Crate stomp / spin attack / slam</td>
+<td>-</td>
+<td>broken, bounce 755 cm/s / broken / dropped at 1286 cm/s, crate flattened, ~36 cm hop</td>
+</tr>
+<tr>
+<td>Enemy stomp / touch</td>
+<td>-</td>
+<td>enemy defeated, bounce 948 cm/s / death -&gt; respawn at the checkpoint</td>
+</tr>
+<tr>
+<td>Grind rail</td>
+<td>-</td>
+<td>grind at 1029 cm/s (same as the kit hero), rail hop taken</td>
+</tr>
+</tbody>
+</table>
+<h2 id="build-curvy-grind-rails">Build curvy grind rails</h2>
+<p>Place <strong>BP_GrindRail</strong> and edit its <strong>Path</strong> spline like any spline: add points for S-bends, raise or lower them for climbs and drops. The hero rides every bend at <strong>Speed</strong>, leans into it (<strong>Curve Lean Radius</strong>, the Anim Set's Rail Lean Left / Right clips) and banks (<strong>Curve Bank Angle</strong>, 0 = upright). Two read-only values under <strong>Corridor &gt; Rail</strong> show what your line asks for: <strong>Tightest Curve Radius</strong> and <strong>Peak Turn Rate</strong>. Keep the radius at or above Speed / 150 deg/s (393 cm at the default 1029 cm/s); tighter bends still ride, but the camera turns no faster than its <strong>Max Turn Rate</strong> there.</p>
+<p>While grinding, the camera follows the rail: it rides behind and above the hero and turns into a bend before the hero reaches it. Tune it for every rail on the hero's <strong>Camera Director &gt; Rail Camera</strong> (follow distance, height, look ahead, slope follow, turn smoothing, max turn rate, blend time), or for one rail with <strong>Override Camera</strong> + <strong>Camera Settings</strong> on that rail. <strong>Rail Camera</strong> off on a rail keeps the level camera there.</p>
+<p>To put an obstacle on a bend, set the <strong>BP_RailObstacle</strong>'s <strong>On Rail</strong> to the rail and <strong>Rail Distance</strong> to the spot: it sits on the line and turns with it. A jump between rails works on bends too: push the stick toward the other rail and press Jump, or end one rail over a gap so its launch lands on the next one. Course 4's rail section shows each of these.</p>
+<h2 id="adjust-the-workshop-pickup-presentation">Adjust the Workshop pickup presentation</h2>
+<p>Open your duplicate Workshop theme. <strong>Orb Visual Scale</strong> changes the displayed Orb and its flight to the HUD. <strong>Pickup Guide Distance</strong> sets the recognition range in centimetres. The supplied values are 2.0 and 700. Set the distance to zero to hide the contextual card and marker. In Workshop Run, approach an intact crate and check its symbol, name and action in the HUD.</p>
+<p>In the theme's effect map, choose an event such as <strong>Loot</strong>, <strong>Slam</strong> or <strong>ShieldLose</strong> to replace its effects. The supplied effects are under <code>Art/Feedback/Effects</code>. Preserve the existing debris entries when customizing <strong>CrateBreak</strong>. The <strong>EnemyImpact</strong> event plays where a launched enemy hits its first neighbor.</p>
+<p>For shared UI colors and font faces, duplicate the UI style data asset under <strong>Themes</strong> (the one the demo menu uses) and assign your style on the level’s BP_Control under HUD. Open the level menu and play a route to check both menu and HUD text.</p>
+<h2 id="change-settings-during-play">Change settings during Play</h2>
+<p>From a Level Blueprint or your own gameplay Blueprint, get the level's <code>BP_Control</code>, set the relevant properties, then call its <strong>Apply</strong> node.</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Expected behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Camera Distance, Camera Pitch, Field of View</td>
+<td>Updates the default camera. A placed camera view can still supply its own framing.</td>
+</tr>
+<tr>
+<td>Counters, Hide After, Show Orbs / Crates / Lives</td>
+<td>Updates the HUD settings.</td>
+</tr>
+<tr>
+<td>Rule, Start Lives, Max Lives</td>
+<td>A rule or life-limit change during Play starts a fresh life count.</td>
+</tr>
+<tr>
+<td>Camera or HUD only</td>
+<td>Preserves the current life count.</td>
+</tr>
+<tr>
+<td>Theme / hero Anim Set</td>
+<td>Configure before Play and restart Play so the already-spawned actors initialize from it.</td>
+</tr>
+</tbody>
+</table>
+<p>Keep <strong>Immortal</strong> off when checking damage and respawn. Keep all demo entries open; unlock rules are an optional feature for the game you build.</p>
+<h2 id="saved-blueprint-examples">Saved Blueprint examples</h2>
+<p>The three actors in <strong>Blueprints &gt; Examples</strong> demonstrate runtime changes through the existing control. Place one <code>BP_Control</code> and the example actor in your level. Select the example and edit <strong>1 Example Settings</strong> in Details. The examples do nothing automatically; call <strong>Apply Example</strong> during Play when your game needs the change.</p>
+<p>Each saved function gets the level control, checks that it exists, sets only its own group of properties, then calls <strong>Apply</strong>. If no control exists it returns safely. The graphs use ordinary Blueprint and native project functions; no authoring plugin, Python or console command is needed.</p>
+<table>
+<thead>
+<tr>
+<th>Example actor</th>
+<th>Editable defaults</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BP_CameraExample</code></td>
+<td>Distance 880 cm, pitch -24 degrees, FOV 84 degrees</td>
+<td>Changes the default camera; preserves remaining lives. A camera-view actor can still override framing.</td>
+</tr>
+<tr>
+<td><code>BP_HudExample</code></td>
+<td>Auto Hide, 3 seconds, orbs hidden, crates/lives shown</td>
+<td>Changes counter settings; preserves remaining lives.</td>
+</tr>
+<tr>
+<td><code>BP_RuleExample</code></td>
+<td>Classic, 6 starting lives, maximum 9</td>
+<td>Changed rule/life limits reset lives to the starting count, capped by the maximum. Reapplying unchanged values preserves remaining lives.</td>
+</tr>
+</tbody>
+</table>
+<p>Three Level Blueprint recipes:</p>
+<ol>
+<li><strong>Camera on an event:</strong> place <code>BP_CameraExample</code>, open the Level Blueprint, drag that actor from the World Outliner into the graph, drag from its reference and choose <strong>Apply Example</strong>. Connect your event's execution pin to the call. For an initial preview, use Event BeginPlay followed by Delay 0.1 seconds so the control and hero have initialized.</li>
+<li><strong>HUD on a trigger:</strong> place <code>BP_HudExample</code> and a Trigger Box. Select the trigger, open the Level Blueprint and add its Begin Overlap event. Compare Other Actor with Get Player Pawn using Equal (Object) and Branch. Connect True to <strong>Apply Example</strong> on the placed HUD example reference.</li>
+<li><strong>Rules at a checkpoint:</strong> place <code>BP_RuleExample</code>, configure its life limits, then call <strong>Apply Example</strong> from your checkpoint activation event using its actor reference. A changed limit resets lives immediately, so use this deliberately. Calling it again with the same rule and limits does not refill lives.</li>
+</ol>
+<p>Open an example's <strong>Apply Example</strong> function to inspect or copy the underlying Get / Is Valid / Set / Apply chain. The internal <code>QA_BlueprintExamples</code> fixture contains three saved Level Blueprint calling functions and a separate save slot; it is excluded from delivery copies. The three example actors themselves are included.</p>
+<h2 id="packaging">Packaging</h2>
+<ol>
+<li>Add the maps you ship to <strong>Project Settings &gt; Packaging &gt; List of maps to include in a packaged build</strong>. The plugin already adds its Audio, Crates, Corridor and Themes folders to the cook list.</li>
+<li>Package as usual: <strong>Platforms &gt; Windows &gt; Package Project</strong>.</li>
+<li><strong>Blueprint-only projects:</strong> a Blueprint-only project has no code of its own, so Unreal builds a temporary code target for the plugin during packaging. The first package takes a few minutes longer and needs <strong>Visual Studio 2022 with the "Game development with C++" workload</strong> installed.</li>
+<li>If the packaged game logs <code>Plugin '&lt;name&gt;' failed to load because module '&lt;name&gt;' could not be found</code>, the plugin was copied by hand into your project's own <code>Plugins</code> folder and its <code>.uplugin</code> file lacks <code>"EnabledByDefault": false</code>. Add that line, or install through Fab / the launcher (which puts the plugin in the engine's Marketplace folder), and package again.</li>
+<li>After packaging, run the game and check the menu, one course, one boss start, a death and the level end screen.</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>Wrong hero:</strong> check the level's Theme, the theme's Anim Set and a direct Anim Set override on the character. A developer command-line override can also take precedence.</li>
+<li><strong>Reference pose:</strong> confirm Idle exists and the clips use the mesh's skeleton. An empty or incompatible set cannot provide a valid pose.</li>
+<li><strong>Mesh faces sideways or has the wrong size:</strong> adjust Mesh Yaw / Mesh Scale in the Anim Set first.</li>
+<li><strong>Camera does not match BP_Control:</strong> check whether a camera-view actor is active.</li>
+<li><strong>Changing the camera restores lives:</strong> verify that Rule, Start Lives and Max Lives were not also changed before Apply.</li>
+<li><strong>The package does not start or a module is missing:</strong> see "Packaging" above.</li>
+<li><strong>The demos look flat or dark:</strong> check "Project render settings" above.</li>
+<li><strong>Glide falls normally:</strong> activate the equipped Glide power and keep Jump held while descending.</li>
+</ul>
+<h2 id="more-documentation">More documentation</h2>
+<p><a href="Mechanics/index.html">Mechanics Reference</a> (a page per mechanic) · <a href="Recipes/index.html">Recipes</a> (task pages) · <a href="Abilities_and_Actions.html">Abilities and Actions</a></p>
+<ul>
+<li><a href="BOSS_BODY.html">BOSS_BODY.md</a>: build your own boss from static-mesh parts.</li>
+<li><a href="SOUND.html">SOUND.md</a>: volume, sound keys, swapping sounds.</li>
+<li><a href="SWAP_ENEMY_MODEL.html">SWAP_ENEMY_MODEL.md</a>: your own enemy model.</li>
+<li><a href="README.html">README.md</a>: the full user guide. <a href="index.html">INDEX.md</a>: all documents.</li>
+</ul><div class="pn"><a href="index.html">&larr; Proving Grounds: 3D Platformer Mechanics - documentation index</a><a href="README.html">Proving Grounds: 3D Platformer Mechanics - user guide &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

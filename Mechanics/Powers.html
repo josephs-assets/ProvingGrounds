@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Powers - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../index.html">Documentation home</a><a href="../BUYER_QUICKSTART.html">Quickstart</a><a href="../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="index.html">Overview</a><a href="Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Double_Jump.html">Double Jump</a><a href="Spin.html">Spin</a><a href="Slide_and_Crouch.html">Slide and Crouch</a><a href="Slam.html">Slam</a><a href="Wall_Run.html">Wall Run</a><a href="Rope_Swing.html">Rope Swing</a><a href="Grind_Rail.html">Grind Rail</a><a href="Glide.html">Glide</a><a href="Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Powers.html" class="cur">Powers</a><a href="Shield.html">Shield</a><a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../Recipes/index.html">Overview</a><a href="../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../Abilities_and_Actions.html">Abilities and Actions</a><a href="../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../BOSS_BODY.html">Build your own boss body</a><a href="../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="powers">Powers</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-what-it-does">1. What it does</a></li><li><a href="#2-turn-on-off">2. Turn on / off</a></li><li><a href="#3-level-actor-to-place">3. Level actor to place</a></li><li><a href="#4-details-fields">4. Details fields</a></li><li><a href="#5-blueprint-functions-and-events">5. Blueprint functions and events</a></li><li><a href="#6-use-your-own-animation">6. Use your own animation</a></li><li><a href="#7-see-it-in-the-demo">7. See it in the demo</a></li><li><a href="#8-pitfalls">8. Pitfalls</a></li></ul></div>
+<h2 id="1-what-it-does">1. What it does</h2>
+<p>One power is worn at a time; the power button (Q / Y) switches it on and off. Give a power with a <strong>Corridor Power Shrine</strong>, take it with a <strong>Corridor Power Remover</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Power</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase</strong></td>
+<td>Swaps which objects are solid: actors with a Corridor Phase component (or <strong>Corridor Phase Block</strong>) are solid in their default phase and a see-through ghost in the other.</td>
+</tr>
+<tr>
+<td><strong>Cyclone</strong></td>
+<td>Endless spin, light gravity, its own two jumps, breaks strong crates, sets off fuse boxes on touch.</td>
+</tr>
+<tr>
+<td><strong>Time Slow</strong></td>
+<td>Slows the world, not the hero (3 s, world scale 0.35).</td>
+</tr>
+<tr>
+<td><strong>Gravity</strong></td>
+<td>Flips gravity: walk on the ceiling.</td>
+</tr>
+<tr>
+<td><strong>Glide</strong></td>
+<td>Hold Jump on the way down to glide. See <a href="Glide.html">Glide</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-turn-on-off">2. Turn on / off</h2>
+<ul>
+<li><strong>Details:</strong> <strong>Corridor | Abilities &gt; Can Use Powers</strong>.</li>
+<li><strong>Blueprint:</strong> <code>Set Ability Enabled</code> (Ability = <strong>Powers</strong>) / <code>Is Ability Enabled</code>.</li>
+<li><strong>Routes:</strong> <strong>B only</strong> (Corridor Character). Powers need the Corridor Character: on Option A they do not work (the power component logs a warning in the Output Log). Option C: no.</li>
+<li><strong>Off:</strong> shrines stay hidden, <strong>Equip</strong> does nothing, the power button does nothing. <strong>Switched off while a power is on:</strong> the power is taken away and speed and gravity go back to normal.</li>
+<li>Individual powers have no switch of their own except Glide. To limit which powers exist, place only those shrines or call <code>Equip</code> yourself.</li>
+</ul>
+<h2 id="3-level-actor-to-place">3. Level actor to place</h2>
+<p><strong>Corridor Power Shrine</strong> (set <strong>Power</strong>), <strong>Corridor Power Remover</strong>, <strong>Corridor Phase Block</strong> (or any actor plus a Corridor Phase component). A checkpoint crate can hand the power back after a death.</p>
+<h2 id="4-details-fields">4. Details fields</h2>
+<p>Shrine:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Power</strong> (<code>Power</code>)</td>
+<td>TimeSlow</td>
+<td>Which power this station hands out. <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Appear Radius</strong> (<code>AppearRadius</code>)</td>
+<td>1157</td>
+<td>The power appears when the hero comes this close (cm), unless the hero already wears it; it leaves again when the hero moves away. <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Acquire Radius</strong> (<code>AcquireRadius</code>)</td>
+<td>193</td>
+<td>The hero this close (cm) takes the power: it flies onto the hero's back and is put on. <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Fly Speed</strong> (<code>FlySpeed</code>)</td>
+<td>1157</td>
+<td>The power flies onto the hero's back at this speed (cm/s). <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Equip Hint</strong> (<code>EquipHint</code>)</td>
+<td>-</td>
+<td>Shown once the first time this station's power is put on. Empty = a line about the power button and this power's power. <em>(Details: Corridor | Power)</em></td>
+</tr>
+</tbody>
+</table>
+<p>Power component (cooldowns and durations):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Time Slow Duration</strong> (<code>TimeSlowDuration</code>)</td>
+<td>3</td>
+<td>Seconds of slow time per use; it refills in full after the cooldown. <em>(Details: Corridor | Power | TimeSlow)</em></td>
+</tr>
+<tr>
+<td><strong>Time Slow World Scale</strong> (<code>TimeSlowWorldScale</code>)</td>
+<td>0.35</td>
+<td>World speed while slowed (1 = normal, lower = slower). The hero keeps its normal speed. <em>(Details: Corridor | Power | TimeSlow)</em></td>
+</tr>
+<tr>
+<td><strong>Time Slow Explosive Scale</strong> (<code>TimeSlowExplosiveScale</code>)</td>
+<td>0.1</td>
+<td>fuse box and volatile crates run at this fraction of speed on top of the slowed world (lower = slower). <em>(Details: Corridor | Power | TimeSlow)</em></td>
+</tr>
+<tr>
+<td><strong>Time Slow Blend</strong> (<code>TimeSlowBlend</code>)</td>
+<td>0.2</td>
+<td>Time to ease into and out of slow time (s). <em>(Details: Corridor | Power | TimeSlow)</em></td>
+</tr>
+<tr>
+<td><strong>Time Slow Cooldown</strong> (<code>TimeSlowCooldown</code>)</td>
+<td>0.5</td>
+<td>Wait after switching time slow off before it can be switched on again (s). <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Cooldown</strong> (<code>CycloneCooldown</code>)</td>
+<td>0.5</td>
+<td>Wait after switching cyclone off before it can be switched on again (s). <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Glide Cooldown</strong> (<code>GlideCooldown</code>)</td>
+<td>0.5</td>
+<td>Wait after switching glide off before it can be switched on again (s). <em>(Details: Corridor | Power)</em></td>
+</tr>
+<tr>
+<td><strong>Glide Duration</strong> (<code>GlideDuration</code>)</td>
+<td>6</td>
+<td>Seconds the glide power stays on per use (0 = until switched off); it refills in full after GlideCooldown. The fall itself (speed cap, gravity) is set on the hero: Corridor|Power|Glide. <em>(Details: Corridor | Power | Glide)</em></td>
+</tr>
+<tr>
+<td><strong>Max Gravity Flips In Air</strong> (<code>MaxGravityFlipsInAir</code>)</td>
+<td>0</td>
+<td>Gravity flips allowed in the air before the hero must land again. 0 = no limit. <em>(Details: Corridor | Power | Gravity)</em></td>
+</tr>
+<tr>
+<td><strong>Time Slow Vignette</strong> (<code>TimeSlowVignette</code>)</td>
+<td>0.6</td>
+<td>Slowed time darkens the screen edge by this much on top of the camera's own vignette. <em>(Details: Corridor | Power | TimeSlow)</em></td>
+</tr>
+<tr>
+<td><strong>Time Slow Saturation</strong> (<code>TimeSlowSaturation</code>)</td>
+<td>0.75</td>
+<td>Colour saturation while time is slowed (1 = unchanged). <em>(Details: Corridor | Power | TimeSlow)</em></td>
+</tr>
+</tbody>
+</table>
+<p>Hero (<strong>Corridor | Power</strong>):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gravity Flip Speed Scale</strong> (<code>GravityFlipSpeedScale</code>)</td>
+<td>0.5</td>
+<td>Vertical speed kept when gravity flips. <em>(Details: Corridor | Power | Gravity)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Gravity Scale</strong> (<code>CycloneGravityScale</code>)</td>
+<td>0.3</td>
+<td>Gravity multiplier while cyclone is on (lower = floatier). <em>(Details: Corridor | Power | Cyclone)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Speed</strong> (<code>CycloneSpeed</code>)</td>
+<td>514</td>
+<td>Run speed while cyclone is on (cm/s). <em>(Details: Corridor | Power | Cyclone)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Acceleration</strong> (<code>CycloneAcceleration</code>)</td>
+<td>1028</td>
+<td>Ground acceleration while cyclone is on (cm/s^2). <em>(Details: Corridor | Power | Cyclone)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Friction</strong> (<code>CycloneFriction</code>)</td>
+<td>0.2</td>
+<td>Ground friction while cyclone is on (lower = slides more). <em>(Details: Corridor | Power | Cyclone)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Jump Velocity</strong> (<code>CycloneJumpVelocity</code>)</td>
+<td>643</td>
+<td>Its own jump: fixed height, two of them before landing. Upward speed in cm/s. <em>(Details: Corridor | Power | Cyclone)</em></td>
+</tr>
+<tr>
+<td><strong>Cyclone Idle Drift</strong> (<code>CycloneIdleDrift</code>)</td>
+<td>0.5</td>
+<td>With no stick the spin drifts forward at this share of its speed. <em>(Details: Corridor | Power | Cyclone)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-blueprint-functions-and-events">5. Blueprint functions and events</h2>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Ability Enabled</strong> / <strong>Is Ability Enabled</strong></td>
+<td>Function / Getter</td>
+<td>The switch above (Ability = Powers).</td>
+</tr>
+<tr>
+<td><strong>Get Powers</strong> (hero)</td>
+<td>Getter</td>
+<td>The power component. Then:</td>
+</tr>
+<tr>
+<td><strong>Equip</strong>, <strong>Unequip</strong>, <strong>Toggle</strong>, <strong>Power Off</strong></td>
+<td>Functions</td>
+<td>Wear, remove, switch on / off.</td>
+</tr>
+<tr>
+<td><strong>Get Equipped</strong>, <strong>Is Power On</strong>, <strong>Is Power Active</strong></td>
+<td>Getters</td>
+<td>The state.</td>
+</tr>
+<tr>
+<td><strong>Get Time Slow Left</strong>, <strong>Get Cooldown Left</strong>, <strong>Get Glide Left</strong>, <strong>Get Power Duration</strong>, <strong>Get Cooldown Duration</strong>, <strong>Get Air Flips</strong></td>
+<td>Getters</td>
+<td>Timers for your own HUD.</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter</td>
+<td><strong>Cyclone</strong> or <strong>Glide</strong> while those are on. Phase, Time Slow and Gravity have no action value (they change the world, not the pose); read <strong>Is Power Active</strong>.</td>
+</tr>
+<tr>
+<td><strong>On Power Pressed</strong></td>
+<td>Function</td>
+<td>Call it from your own input.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-use-your-own-animation">6. Use your own animation</h2>
+<p>Leave <strong>Anim Set</strong> empty; <code>Get Corridor Action</code> = <strong>Cyclone</strong> / <strong>Glide</strong>; for the other three read <code>Is Power Active</code>.</p>
+<h2 id="7-see-it-in-the-demo">7. See it in the demo</h2>
+<p><code>Course3_Powers</code>: one shrine per power with a short test area each. <code>System_Gallery</code> shows the five side by side.</p>
+<h2 id="8-pitfalls">8. Pitfalls</h2>
+<ul>
+<li><strong>Only power-ups</strong> (everything else off, Powers on): the hero still runs, ground-jumps and bounces off crates; Cyclone still spins and double-hops because those are its own. See <a href="../Recipes/2_Only_Power_Ups.html">Recipe: only power-ups</a>.</li>
+<li>Sound and effect keys for powers never play when the ability is off.</li>
+<li>To clear a power from Blueprint use <strong>Unequip</strong>; do not reset flags yourself.</li>
+</ul>
+<h3 id="power-details-from-the-guide">Power details from the guide</h3>
+<p><code>ECorridorPower</code>: one is worn at a time, the power button (Q / Y) switches its power on and off.</p>
+<table>
+<thead>
+<tr>
+<th>Power</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Phase</code></td>
+<td>Swaps which objects are solid: actors with a <code>UCorridorPhaseComponent</code> (or <code>ACorridorPhaseBlock</code>) are solid in their <code>DefaultPhase</code> and a see-through ghost in the other.</td>
+</tr>
+<tr>
+<td><code>Cyclone</code></td>
+<td>Endless spin, light gravity, own jump, breaks strong crates, sets off fuse box on touch.</td>
+</tr>
+<tr>
+<td><code>TimeSlow</code></td>
+<td>Slows the world, not the hero (<code>TimeSlowDuration</code> 3 s, <code>TimeSlowWorldScale</code> 0.35).</td>
+</tr>
+<tr>
+<td><code>Gravity</code></td>
+<td>Flips gravity: walk on the ceiling (<code>MaxGravityFlipsInAir</code> limits flips in the air).</td>
+</tr>
+<tr>
+<td><code>Glide</code></td>
+<td>While it is on, holding Jump on the way down glides: the fall is held at <code>GlideMaxFallSpeed</code> (220 cm/s; a faster fall brakes down at <code>GlideBrake</code>), gravity x <code>GlideGravityScale</code> (0.35), air control unchanged; letting go of Jump falls normally. On for <code>GlideDuration</code> (6 s, 0 = until switched off), then <code>GlideCooldown</code>. Sound / effect keys <code>PowerOn_Glide</code>, <code>PowerOff_Glide</code>, <code>PowerEquip_Glide</code>, ... as the other powers, plus <code>GlideLoop</code> while gliding; the anim set's <code>GlideLoop</code> (empty = <code>FallLoop</code>). <code>IsGliding</code>, <code>GetGlideLeft</code> read the state.</td>
+</tr>
+</tbody>
+</table>
+<p>Give a power with an <code>ACorridorPowerShrine</code> (<code>Power</code>, <code>AppearRadius</code>, <code>AcquireRadius</code>), take it with an <code>ACorridorPowerRemover</code>. A checkpoint can hand the power back after a death (<code>ForcedPower</code> / <code>CheckpointPower</code>). From Blueprint: hero <code>GetPowers</code> then <code>Equip</code>, <code>Unequip</code>, <code>Toggle</code>, <code>PowerOff</code>, <code>GetEquipped</code>, <code>IsPowerOn</code>. Tuning values live on <code>UCorridorPowerComponent</code> and <code>ACorridorCharacter</code> (<code>Cyclone...</code>, <code>Glide...</code>, <code>GravityFlipSpeedScale</code>).</p><div class="pn"><a href="Mounts_and_Jetboard.html">&larr; Mounts and Jetboard</a><a href="Shield.html">Shield &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

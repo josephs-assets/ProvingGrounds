@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build your own boss body - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="index.html">Documentation home</a><a href="BUYER_QUICKSTART.html">Quickstart</a><a href="README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="Mechanics/index.html">Overview</a><a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Mechanics/Double_Jump.html">Double Jump</a><a href="Mechanics/Spin.html">Spin</a><a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="Mechanics/Slam.html">Slam</a><a href="Mechanics/Wall_Run.html">Wall Run</a><a href="Mechanics/Rope_Swing.html">Rope Swing</a><a href="Mechanics/Grind_Rail.html">Grind Rail</a><a href="Mechanics/Glide.html">Glide</a><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Mechanics/Powers.html">Powers</a><a href="Mechanics/Shield.html">Shield</a><a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="Recipes/index.html">Overview</a><a href="Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="Abilities_and_Actions.html">Abilities and Actions</a><a href="API.html">Blueprint API reference</a><h4>Guides</h4><a href="BOSS_BODY.html" class="cur">Build your own boss body</a><a href="SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="Integration/ALS/README.html">ALS-Refactored sample</a><a href="THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="build-your-own-boss-body">Build your own boss body</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-make-a-body">1. Make a body</a></li><li><a href="#2-parts">2. Parts</a></li><li><a href="#3-moves">3. Moves</a></li><li><a href="#4-signals-lights-and-glow">4. Signals - lights and glow</a></li><li><a href="#5-hazard-while-moving">5. Hazard While Moving</a></li><li><a href="#6-put-the-body-in-a-phase">6. Put the body in a phase</a></li><li><a href="#7-telegraphs-with-on-step-started">7. Telegraphs with On Step Started</a></li><li><a href="#8-sound-per-move">8. Sound per move</a></li><li><a href="#9-check-your-boss">9. Check your boss</a></li><li><a href="#common-problems">Common problems</a></li></ul></div>
+<p>A boss in this kit has two halves:</p>
+<ul>
+<li><strong>The fight logic</strong> - the director, phases, attack loops, tile grid and boss target (README section 8). It decides what attacks happen and when the boss is hurt.</li>
+<li><strong>The boss body</strong> - <code>ACorridorBossBody</code>. It is the visible boss: a set of static-mesh parts that move, light up and hurt the hero. It only <em>listens</em> to the fight; it never changes it.</li>
+</ul>
+<p>The body is data only. You build it in the Details panel (or as a Blueprint child) and no code is needed. The two shipped bosses are examples to copy from:</p>
+<table>
+<thead>
+<tr>
+<th>Blueprint</th>
+<th>Where</th>
+<th>Parts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BP_Boss_Machinist</code></td>
+<td><code>/PlatformerKit/Blueprints/Boss</code></td>
+<td>11 parts (Boss 1)</td>
+</tr>
+<tr>
+<td><code>BP_Boss_Engine</code></td>
+<td><code>/PlatformerKit/Blueprints/Boss</code></td>
+<td>20 parts (Boss 2)</td>
+</tr>
+</tbody>
+</table>
+<p>Open <code>Corridor_Boss1</code> or <code>Corridor_Boss2</code>, select the boss in the level and press <strong>Ctrl+B</strong> to open its Blueprint. Everything below is visible there.</p>
+<h2 id="1-make-a-body">1. Make a body</h2>
+<ol>
+<li>In the Content Browser, right-click <strong>Add &gt; Blueprint Class</strong>, search <strong>Corridor Boss Body</strong>, create <code>BP_MyBoss</code>.</li>
+<li>Drag it into your boss map where the boss should stand.</li>
+<li>Select it and fill the <strong>Parts</strong> array (section 2) in Details. Parts are built when you change the array, so you see the boss in the viewport as you work.</li>
+<li>Leave <strong>Director</strong> and <strong>Attack Loops</strong> empty: the body finds the level's boss director and its attack loops itself. Fill them only if the level has more than one director.</li>
+<li>Add the body to the director's phases (section 6).</li>
+</ol>
+<h2 id="2-parts">2. Parts</h2>
+<p>Each entry of <strong>Parts</strong> is one static mesh.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>Unique name. Moves refer to a part by its position in the array; the name is for you and for the log.</td>
+</tr>
+<tr>
+<td><strong>Mesh</strong></td>
+<td>Any Static Mesh. Collision on the mesh is ignored: the body never blocks the hero; use a hazard box (section 5) to hurt.</td>
+</tr>
+<tr>
+<td><strong>Parent</strong></td>
+<td>Name of another part to attach to (empty = attached to the body actor). A child follows every move of its parent, so a turret on a rotating turntable turns with it.</td>
+</tr>
+<tr>
+<td><strong>Transform</strong></td>
+<td>Location, rotation and scale <strong>relative to the parent</strong>.</td>
+</tr>
+<tr>
+<td><strong>Signals</strong></td>
+<td>Optional light-up slots (section 4).</td>
+</tr>
+<tr>
+<td><strong>Launch Points</strong></td>
+<td>Optional named points on the part that missiles can fly from (section 7).</td>
+</tr>
+<tr>
+<td><strong>Moves</strong></td>
+<td>What the part does (section 3).</td>
+</tr>
+<tr>
+<td><strong>Hazard</strong> fields</td>
+<td>Optional hurt zone while the part moves (section 5).</td>
+</tr>
+</tbody>
+</table>
+<p>Tips: build the boss around the body actor's origin, facing +X, with the feet at Z 0. Use your own meshes; keep each part a separate static mesh so it can move.</p>
+<h2 id="3-moves">3. Moves</h2>
+<p>A <strong>Move</strong> is one reaction: <em>when this happens, this part does that</em>. A part can have any number of moves.</p>
+<p><strong>Trigger</strong> - when the move starts:</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Starts when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Idle</strong></td>
+<td>Always, looping (breathing, slow spin, glow pulse).</td>
+</tr>
+<tr>
+<td><strong>Phase Begin</strong></td>
+<td>The listed phase of the director begins.</td>
+</tr>
+<tr>
+<td><strong>Step Started</strong></td>
+<td>An attack loop starts a step of the listed <strong>Attack Kinds</strong> (for example <code>LaneShot</code>, <code>MissileAtHero</code>). Use this for telegraphs: the move starts <em>before</em> the shot lands (section 7).</td>
+</tr>
+<tr>
+<td><strong>Hit</strong></td>
+<td>The boss is hit and has the listed <strong>Health Index</strong> left. Typically used with <strong>Hide</strong> to knock a plate off.</td>
+</tr>
+<tr>
+<td><strong>Defeat</strong></td>
+<td>The last phase of the director begins (or the phase you set in <strong>Defeat Phase</strong>).</td>
+</tr>
+<tr>
+<td><strong>Retry</strong></td>
+<td>The hero died and the fight restarts at a checkpoint. Every part is put back for that checkpoint's health first, and Hit/Hide parts are shown again as they should be.</td>
+</tr>
+<tr>
+<td><strong>Track Hero</strong></td>
+<td>Continuous: the part turns to face the hero.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Motion</strong> - what the part does:</p>
+<table>
+<thead>
+<tr>
+<th>Motion</th>
+<th>Fields used</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spin</strong></td>
+<td>Axis, Speed</td>
+<td>Turns round the axis at Speed degrees per second.</td>
+</tr>
+<tr>
+<td><strong>Hinge</strong></td>
+<td>Axis, Range, Time, Hold Time</td>
+<td>Swings Range degrees about the axis in Time seconds, holds, swings back.</td>
+</tr>
+<tr>
+<td><strong>Slide</strong></td>
+<td>Axis, Range, Time, Hold Time</td>
+<td>Same as Hinge, as a straight move.</td>
+</tr>
+<tr>
+<td><strong>Pulse</strong></td>
+<td>Range, Speed</td>
+<td>Scales up and down.</td>
+</tr>
+<tr>
+<td><strong>Hide</strong></td>
+<td>Time</td>
+<td>Moves the part away and hides it (it comes back on Retry).</td>
+</tr>
+<tr>
+<td><strong>Signal</strong></td>
+<td>Signal Index, Colour, Intensity</td>
+<td>Sets a light-up slot (section 4).</td>
+</tr>
+</tbody>
+</table>
+<p>Common fields: <strong>Delay</strong> (seconds after the trigger before the move starts), <strong>Time</strong>, <strong>Hold Time</strong>, <strong>Sfx</strong> (section 8).</p>
+<h2 id="4-signals-lights-and-glow">4. Signals - lights and glow</h2>
+<p>A <strong>Signal</strong> slot on a part lets a move change a material colour and glow.</p>
+<ol>
+<li>Give the part a material with a vector parameter for colour and a scalar parameter for glow. The shipped <code>M_Boss_Signal</code> has <code>Color</code> and <code>Intensity</code>; <code>MI_Boss_Signal</code> is an instance of it.</li>
+<li>In the part's <strong>Signals</strong>, add a slot: <strong>Slot</strong> (the material slot on the mesh), <strong>Color Param</strong> and <strong>Intensity Param</strong> (the parameter names), and the idle colour and idle intensity.</li>
+<li>In a move, choose <strong>Motion = Signal</strong>, set <strong>Signal Index</strong> (the slot), <strong>Colour</strong> and <strong>Intensity</strong>. Tick <strong>Shot Color</strong> to take the colour of the attack that is being telegraphed.</li>
+</ol>
+<h2 id="5-hazard-while-moving">5. Hazard While Moving</h2>
+<p>A part can hurt the hero while one of its moves plays, for example a swinging boom.</p>
+<ul>
+<li><strong>Hazard</strong>: on.</li>
+<li><strong>Hazard Center</strong> and <strong>Hazard Extent</strong>: a box in the part's own space, in centimetres before the part's scale.</li>
+<li><strong>Hazard Moves</strong>: which moves hurt (indices into <strong>Moves</strong>). Empty = every move except Idle and Track Hero.</li>
+<li><strong>Hazard Death</strong>: the hero dies (off = a normal hit, which the shield absorbs).</li>
+<li><strong>Hazard Ignores Shield</strong>: the shield does not help.</li>
+</ul>
+<p>The hero is hit only while the move is actually running, through the same path as every other hazard (shield, death, respawn). Always give the player a telegraph first: make the hazardous move start from a <strong>Step Started</strong> trigger with a <strong>Delay</strong>, and add a <strong>Signal</strong> move that lights the part up earlier. In the shipped Boss 2 the boom lights up and swings 0.25 s after it starts; leave more time in your own boss if the arena is small.</p>
+<h2 id="6-put-the-body-in-a-phase">6. Put the body in a phase</h2>
+<p>The director only runs actors listed in a phase's <strong>Enable Actors</strong>. A body that is not listed does nothing in that phase.</p>
+<ol>
+<li>Select the boss director in the level.</li>
+<li>In <strong>Phases</strong>, open each phase where the body should react.</li>
+<li>In <strong>Enable Actors</strong>, add your <code>BP_MyBoss</code> next to the attack loop of that phase.</li>
+</ol>
+<p>The shipped fights list the body in every phase; a body that is left out of a phase simply freezes there. Moves with <strong>Phase Begin</strong> use the phase's position, so check them after you reorder phases.</p>
+<h2 id="7-telegraphs-with-on-step-started">7. Telegraphs with On Step Started</h2>
+<p>Every attack loop announces a step just before it runs: <strong>On Step Started</strong> with <code>Kind</code>, <code>Shot</code>, <code>Lane</code> and <code>Lead Time</code> (how many seconds until the attack lands: a lane shot's warning time, a missile's flight delay, a salvo's fall time, a drop's shake plus hold). The body listens to it for <strong>Step Started</strong> moves; you can listen yourself:</p>
+<ol>
+<li>Select a boss attack loop in the level.</li>
+<li>Details &gt; Events &gt; <strong>+</strong> next to <strong>On Step Started</strong> (or in the Level Blueprint, drag the loop and choose <em>Assign On Step Started</em>).</li>
+<li>Use <code>Lead Time</code> for your own flash, sound or camera shake.</li>
+</ol>
+<p><strong>Missile launch points:</strong> give a part <strong>Launch Points</strong>, then set the <code>MissileRain</code> step's <strong>Launch Point Tag</strong> to the point's tag. Missiles fly out of these points in turn, with <strong>Launch Delay</strong> between them.</p>
+<p><strong>Boss target:</strong> <code>ACorridorBossTarget</code> has <strong>Arrival Radius</strong>: a spun enemy ends its flight at that distance from the point, so it lands on the boss's shell instead of inside it.</p>
+<h2 id="8-sound-per-move">8. Sound per move</h2>
+<p>Each move has an <strong>Sfx</strong> field: the theme sound key played when the move starts (after <strong>Delay</strong>). The shipped bosses use <code>BossServo</code>, <code>BossServoFast</code>, <code>BossTelegraph</code>, <code>BossSpinUp</code>, <code>BossPartEject</code> and <code>BossDefeat</code>. Idle and Track Hero moves have none. Keys, volume and replacing a sound: see <a href="SOUND.html">SOUND.md</a>.</p>
+<h2 id="9-check-your-boss">9. Check your boss</h2>
+<ul>
+<li>Turn on <strong>Log Hooks</strong> on the body and play: the Output Log (category <code>LogCorridor</code>) prints <code>BossBody &lt;name&gt; t=... &lt;trigger&gt; -&gt; part=.. move=..</code> for every move. Use it to see which move fired and when.</li>
+<li>Die on purpose in a late phase: after the respawn every part must be in the state of that checkpoint.</li>
+<li>Check the camera: the boss and the hero should both be in frame (README section 4, Cameras; the shipped boss maps use one camera view that slides and looks between boss and hero).</li>
+</ul>
+<h2 id="common-problems">Common problems</h2>
+<ul>
+<li><strong>A part does not move:</strong> its move's trigger never fires. Check the phase, the attack kind and <strong>Enable Actors</strong>; read the hook log.</li>
+<li><strong>A child part floats:</strong> <strong>Parent</strong> has a typo (it must equal the other part's <strong>Name</strong>).</li>
+<li><strong>A part is in the wrong place after editing in Blueprint:</strong> edit the array again or recompile; parts are rebuilt by the construction script.</li>
+<li><strong>The boss does not come back after a death:</strong> the body must be in <strong>Enable Actors</strong> of the phase you restart in.</li>
+</ul><div class="pn"><a href="API.html">&larr; Blueprint API reference</a><a href="SOUND.html">Sound: volume, sound keys and swapping sounds &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mechanics at a glance - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../index.html">Documentation home</a><a href="../BUYER_QUICKSTART.html">Quickstart</a><a href="../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="index.html">Overview</a><a href="Mechanics_at_a_Glance.html" class="cur">Mechanics at a glance</a><a href="Double_Jump.html">Double Jump</a><a href="Spin.html">Spin</a><a href="Slide_and_Crouch.html">Slide and Crouch</a><a href="Slam.html">Slam</a><a href="Wall_Run.html">Wall Run</a><a href="Rope_Swing.html">Rope Swing</a><a href="Grind_Rail.html">Grind Rail</a><a href="Glide.html">Glide</a><a href="Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Powers.html">Powers</a><a href="Shield.html">Shield</a><a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../Recipes/index.html">Overview</a><a href="../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../Abilities_and_Actions.html">Abilities and Actions</a><a href="../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../BOSS_BODY.html">Build your own boss body</a><a href="../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="mechanics-at-a-glance">Mechanics at a glance</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#the-11-abilities">The 11 abilities</a></li><li><a href="#which-route-supports-what">Which route supports what</a></li><li><a href="#what-the-hero-is-doing-the-action-list">What the hero is doing: the action list</a></li><li><a href="#controls-default-keys">Controls (default keys)</a></li><li><a href="#the-pages">The pages</a></li></ul></div>
+<p>One printable page: every switch, the action it reports and which route supports it.</p>
+<h2 id="the-11-abilities">The 11 abilities</h2>
+<table>
+<thead>
+<tr>
+<th>Ability (Details box under <strong>Corridor | Abilities</strong>)</th>
+<th>Action value(s)</th>
+<th>Switch off, and what ends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Can Double Jump</strong></td>
+<td>Double Jump</td>
+<td>the second jump only</td>
+</tr>
+<tr>
+<td><strong>Can Spin</strong></td>
+<td>Spin, Cyclone (own)</td>
+<td>spin attack, mash chain, triple spin</td>
+</tr>
+<tr>
+<td><strong>Can Slide</strong></td>
+<td>Slide, Crouch</td>
+<td>slide, crouch / crawl, slide-spin burst, slide high jump</td>
+</tr>
+<tr>
+<td><strong>Can Slam</strong></td>
+<td>Slam</td>
+<td>the slide button in the air</td>
+</tr>
+<tr>
+<td><strong>Can Wall Run</strong></td>
+<td>Wall Run</td>
+<td>catching a Corridor Wall Run</td>
+</tr>
+<tr>
+<td><strong>Can Rope Swing</strong></td>
+<td>Rope Swing</td>
+<td>grabbing a Corridor Rope Swing</td>
+</tr>
+<tr>
+<td><strong>Can Grind Rail</strong></td>
+<td>Grind Rail, Rail Hang</td>
+<td>landing on and riding a Corridor Grind Rail</td>
+</tr>
+<tr>
+<td><strong>Can Glide</strong></td>
+<td>Glide</td>
+<td>the Glide power's effect</td>
+</tr>
+<tr>
+<td><strong>Can Use Mounts</strong></td>
+<td>Mount</td>
+<td>boarding Corridor Mount / Jetboard</td>
+</tr>
+<tr>
+<td><strong>Can Use Powers</strong></td>
+<td>Cyclone, Glide</td>
+<td>wearing and switching on any power</td>
+</tr>
+<tr>
+<td><strong>Can Use Shield</strong></td>
+<td>-</td>
+<td>the shield companion</td>
+</tr>
+</tbody>
+</table>
+<p>All eleven are on by default.</p>
+<h2 id="which-route-supports-what">Which route supports what</h2>
+<table>
+<thead>
+<tr>
+<th>Ability</th>
+<th>A on a stock Third Person character</th>
+<th>A with the kit movement component or the ALS sample</th>
+<th>B (reparent to Corridor Character)</th>
+<th>C (ALS sample)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Double Jump</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Spin</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Slide</td>
+<td>yes, no extra speed</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Slam</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Wall Run, Rope Swing, Grind Rail</td>
+<td><strong>scenery</strong></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Glide, Mounts, Shield</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Powers</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>The table is the measured/intended support; Wall Run and Rope Swing were not played on ALS.</p>
+<h2 id="what-the-hero-is-doing-the-action-list">What the hero is doing: the action list</h2>
+<p><code>Get Corridor Action</code> returns one value per frame. When several are true the highest wins:</p>
+<p><strong>Dead &gt; Mount &gt; Rail Hang &gt; Grind Rail &gt; Wall Run &gt; Rope Swing &gt; Cyclone &gt; Spin &gt; Slide &gt; Slam &gt; Crouch &gt; Glide &gt; Double Jump &gt; None</strong></p>
+<p><code>On Action Started</code> and <code>On Action Ended</code> fire when the value changes: the old action ends first, then the new one starts. None is not reported.</p>
+<h2 id="controls-default-keys">Controls (default keys)</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Keyboard / mouse</th>
+<th>Gamepad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jump (hold = higher, again in the air = double jump)</td>
+<td>Space</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Spin</td>
+<td>J, Left mouse button</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Slide / crouch / slam</td>
+<td>K, Left Shift</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Power on / off</td>
+<td>Q, Right mouse button</td>
+<td>Y, Right trigger</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-pages">The pages</h2>
+<p><a href="Double_Jump.html">Double Jump</a> · <a href="Spin.html">Spin</a> · <a href="Slide_and_Crouch.html">Slide and Crouch</a> · <a href="Slam.html">Slam</a> · <a href="Wall_Run.html">Wall Run</a> · <a href="Rope_Swing.html">Rope Swing</a> · <a href="Grind_Rail.html">Grind Rail</a> · <a href="Glide.html">Glide</a> · <a href="Mounts_and_Jetboard.html">Mounts and Jetboard</a> · <a href="Powers.html">Powers</a> · <a href="Shield.html">Shield</a> · <a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a></p><div class="pn"><a href="index.html">&larr; Mechanics Reference</a><a href="Double_Jump.html">Double Jump &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

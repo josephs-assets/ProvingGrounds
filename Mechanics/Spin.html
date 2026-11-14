@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spin - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../index.html">Documentation home</a><a href="../BUYER_QUICKSTART.html">Quickstart</a><a href="../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="index.html">Overview</a><a href="Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Double_Jump.html">Double Jump</a><a href="Spin.html" class="cur">Spin</a><a href="Slide_and_Crouch.html">Slide and Crouch</a><a href="Slam.html">Slam</a><a href="Wall_Run.html">Wall Run</a><a href="Rope_Swing.html">Rope Swing</a><a href="Grind_Rail.html">Grind Rail</a><a href="Glide.html">Glide</a><a href="Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Powers.html">Powers</a><a href="Shield.html">Shield</a><a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../Recipes/index.html">Overview</a><a href="../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../Abilities_and_Actions.html">Abilities and Actions</a><a href="../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../BOSS_BODY.html">Build your own boss body</a><a href="../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="spin">Spin</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-what-it-does">1. What it does</a></li><li><a href="#2-turn-on-off">2. Turn on / off</a></li><li><a href="#3-level-actor-to-place">3. Level actor to place</a></li><li><a href="#4-details-fields">4. Details fields</a></li><li><a href="#5-blueprint-functions-and-events">5. Blueprint functions and events</a></li><li><a href="#6-use-your-own-animation">6. Use your own animation</a></li><li><a href="#7-see-it-in-the-demo">7. See it in the demo</a></li><li><a href="#8-pitfalls">8. Pitfalls</a></li></ul></div>
+<h2 id="1-what-it-does">1. What it does</h2>
+<p>A short spin attack (0.3 s) that breaks crates and defeats enemies around the hero, on the ground and in the air. Mash the button and spins chain. The triple spin is a late unlock you switch on from Blueprint.</p>
+<h2 id="2-turn-on-off">2. Turn on / off</h2>
+<ul>
+<li><strong>Details:</strong> <strong>Corridor | Abilities &gt; Can Spin</strong>.</li>
+<li><strong>Blueprint:</strong> <code>Set Ability Enabled</code> (Ability = <strong>Spin</strong>) / <code>Is Ability Enabled</code>.</li>
+<li><strong>Routes:</strong> A yes (Corridor Hero component <strong>5. Abilities &gt; Can Spin</strong>, honoured by <code>Move Spin</code>) - B yes - C yes.</li>
+<li><strong>Switched off while spinning:</strong> the spin ends at once. While you ride a mount the spin button is the boost, and that stays on with Spin off. The <strong>Cyclone</strong> power spins without this switch (it is a power).</li>
+</ul>
+<h2 id="3-level-actor-to-place">3. Level actor to place</h2>
+<p>None. Crates and enemies are the targets.</p>
+<h2 id="4-details-fields">4. Details fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spin Duration</strong> (<code>SpinDuration</code>)</td>
+<td>0.3</td>
+<td>How long one spin lasts. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Radius</strong> (<code>SpinRadius</code>)</td>
+<td>116</td>
+<td>Horizontal hit reach around the character (cm). <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Half Height</strong> (<code>SpinHalfHeight</code>)</td>
+<td>36</td>
+<td>Vertical half-height of the hit band, starting at the feet. Kept under one crate so a stack breaks one crate per spin. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Hit Interval</strong> (<code>SpinHitInterval</code>)</td>
+<td>0.1</td>
+<td>Re-hit interval while spinning. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Cooldown</strong> (<code>SpinCooldown</code>)</td>
+<td>0</td>
+<td>Lockout after a spin ends before another can start. 0 = none. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Buffer Window</strong> (<code>SpinBufferWindow</code>)</td>
+<td>0.3</td>
+<td>Mash to keep spinning: a spin press this long or less before the running spin ends is kept, and the next spin starts the moment this one ends (new hit window, no SpinOut in between). 0.3 = the whole spin; 0 = presses during a spin are ignored. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Visual Turns</strong> (<code>SpinVisualTurns</code>)</td>
+<td>2</td>
+<td>Visual turns of the mesh during one spin. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Move Mode</strong> (<code>SpinMoveMode</code>)</td>
+<td>KeepMomentum</td>
+<td>How a spin started on the ground moves the hero: InPlace (stops, ~30 cm of skid from a run), KeepMomentum (runs on at SpinSpeedScale x the run speed) or ForwardPush (KeepMomentum plus a fading push in the stick direction). <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Speed Scale</strong> (<code>SpinSpeedScale</code>)</td>
+<td>1</td>
+<td>KeepMomentum / ForwardPush: top ground speed while spinning, as a share of the run speed (1 = full run speed). <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Forward Impulse</strong> (<code>SpinForwardImpulse</code>)</td>
+<td>250</td>
+<td>ForwardPush: speed added in the stick direction when the spin starts (cm/s). No push with the stick released. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Spin Push Fade Time</strong> (<code>SpinPushFadeTime</code>)</td>
+<td>0.3</td>
+<td>ForwardPush: the push fades linearly to nothing over this time (0.3 = one spin). <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Triple Spin</strong> (<code>bTripleSpin</code>)</td>
+<td>false</td>
+<td>Triple spin (a late unlock: set it from Blueprint, e.g. after the final boss): pressing spin again during a spin with the stick pushed well over (&gt; 0.87) chains a medium, then a strong spin; each runs faster and hits wider. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Triple Spin Speed Boost</strong> (<code>TripleSpinSpeedBoost</code>)</td>
+<td>(386, 643)</td>
+<td>Triple spin: extra run speed while the medium (X) and the strong (Y) spin last (cm/s). <em>(Details: Corridor | Spin)</em></td>
+</tr>
+<tr>
+<td><strong>Triple Spin Reach</strong> (<code>TripleSpinReach</code>)</td>
+<td>(1.11, 1.22)</td>
+<td>Triple spin: the hit box (SpinRadius) times this for the medium (X) and the strong (Y) spin. <em>(Details: Corridor | Spin)</em></td>
+</tr>
+</tbody>
+</table>
+<p>Option A (Corridor Hero component): <code>Spin Duration</code> and <code>Attack Radius</code> under <strong>2. Attack</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spin Duration</strong> (<code>SpinDuration</code>)</td>
+<td>0.3</td>
+<td>Seconds a Move Spin attacks (crates break, enemies fall). <em>(Details: 4. Moves)</em></td>
+</tr>
+<tr>
+<td><strong>Attack Radius</strong> (<code>AttackRadius</code>)</td>
+<td>110</td>
+<td>Radius around the character that an attack (Start Attack, or Is Hero Attacking true) reaches: crates break, enemies fall. <em>(Details: 2. Attack)</em></td>
+</tr>
+</tbody>
+</table>
+<p>The three <strong>Spin Move Mode</strong> choices: <strong>In Place</strong> (the hero stops and spins on the spot, the stick only turns them), <strong>Keep Momentum</strong> (default: keeps running at Spin Speed Scale x run speed, steered by the stick), <strong>Forward Push</strong> (Keep Momentum plus a push of Spin Forward Impulse that fades over Spin Push Fade Time).</p>
+<h2 id="5-blueprint-functions-and-events">5. Blueprint functions and events</h2>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Ability Enabled</strong> / <strong>Is Ability Enabled</strong></td>
+<td>Function / Getter</td>
+<td>The switch above (Ability = Spin).</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter</td>
+<td><strong>Spin</strong> during a spin, <strong>Cyclone</strong> while the Cyclone power is on.</td>
+</tr>
+<tr>
+<td><strong>On Action Started / Ended</strong></td>
+<td>Event dispatchers</td>
+<td>One pair per spin.</td>
+</tr>
+<tr>
+<td><strong>On Spin Started</strong></td>
+<td>Event</td>
+<td>Implement it in a Blueprint child for your own sound or effect.</td>
+</tr>
+<tr>
+<td><strong>On Spin Pressed / Released</strong></td>
+<td>Function</td>
+<td>Call them from your own input (touch UI, your own key).</td>
+</tr>
+<tr>
+<td><strong>Is Spinning</strong>, <strong>Get Spin Stage</strong>, <strong>Get Spin Chain Count</strong></td>
+<td>Getters</td>
+<td>The state. Stage tells a normal from a triple spin.</td>
+</tr>
+<tr>
+<td><strong>Start Attack</strong> (Corridor Hero component)</td>
+<td>Function</td>
+<td>Option A: call it from your attack input; Duration in seconds.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-use-your-own-animation">6. Use your own animation</h2>
+<p>Leave <strong>Anim Set</strong> empty and play your attack from <code>Get Corridor Action</code> = <strong>Spin</strong> (and <strong>Cyclone</strong> for the long spin). Use <code>Get Spin Stage</code> to pick a medium or strong variant for the triple spin.</p>
+<h2 id="7-see-it-in-the-demo">7. See it in the demo</h2>
+<p><code>Course1_RunAndJump</code> (crate stacks), <code>Course2_EnemiesHazards</code> (spin an enemy and it flies off as a projectile), <code>System_Gallery</code>.</p>
+<h2 id="8-pitfalls">8. Pitfalls</h2>
+<ul>
+<li><strong>What breaks a crate</strong> when Spin is off: landing on it, a slide, a slam, riding a rail, a mount, and the Cyclone power. See <a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a>. A game with Spin off is not "no smashing".</li>
+<li>With Spin off the hero attacks only through Cyclone, slide, slam and mount. Slide-spin bursts need both Slide and Spin on.</li>
+<li>Triple spin (<code>Triple Spin</code>, off by default) is a late unlock: set it from Blueprint, for example after a boss.</li>
+<li>Sound and effect keys <code>Spin</code> never play while the ability is off.</li>
+</ul><div class="pn"><a href="Double_Jump.html">&larr; Double Jump</a><a href="Slide_and_Crouch.html">Slide and Crouch &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

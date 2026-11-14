@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Double Jump - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../index.html">Documentation home</a><a href="../BUYER_QUICKSTART.html">Quickstart</a><a href="../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="index.html">Overview</a><a href="Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Double_Jump.html" class="cur">Double Jump</a><a href="Spin.html">Spin</a><a href="Slide_and_Crouch.html">Slide and Crouch</a><a href="Slam.html">Slam</a><a href="Wall_Run.html">Wall Run</a><a href="Rope_Swing.html">Rope Swing</a><a href="Grind_Rail.html">Grind Rail</a><a href="Glide.html">Glide</a><a href="Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Powers.html">Powers</a><a href="Shield.html">Shield</a><a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../Recipes/index.html">Overview</a><a href="../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../Abilities_and_Actions.html">Abilities and Actions</a><a href="../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../BOSS_BODY.html">Build your own boss body</a><a href="../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="double-jump">Double Jump</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-what-it-does">1. What it does</a></li><li><a href="#2-turn-on-off">2. Turn on / off</a></li><li><a href="#3-level-actor-to-place">3. Level actor to place</a></li><li><a href="#4-details-fields">4. Details fields</a></li><li><a href="#5-blueprint-functions-and-events">5. Blueprint functions and events</a></li><li><a href="#6-use-your-own-animation">6. Use your own animation</a></li><li><a href="#7-see-it-in-the-demo">7. See it in the demo</a></li><li><a href="#8-pitfalls">8. Pitfalls</a></li></ul></div>
+<h2 id="1-what-it-does">1. What it does</h2>
+<p>Press Jump again in mid-air for a second, higher jump (+211 cm on the kit hero). The ground jump, coyote time, the jump buffer and the crate bounce are not part of this switch: they always work, because the character has to be able to move.</p>
+<h2 id="2-turn-on-off">2. Turn on / off</h2>
+<ul>
+<li><strong>Details:</strong> select your character Blueprint, open <strong>Class Defaults</strong>, find <strong>Corridor | Abilities &gt; Can Double Jump</strong> (on by default).</li>
+<li><strong>Blueprint:</strong> <code>Set Ability Enabled</code> (Ability = <strong>Double Jump</strong>, Enabled) and <code>Is Ability Enabled</code>.</li>
+<li><strong>Routes:</strong> A yes (on the Corridor Hero component: <strong>5. Abilities &gt; Can Double Jump</strong>, honoured by <code>Move Jump</code>) - B yes - C yes.</li>
+<li><strong>Switched off in mid-air:</strong> the next press does nothing (the press is still buffered, so it becomes a normal ground jump on landing). The Cyclone power keeps its own two-jump even with Double Jump off, so "only power-ups" setups still feel right.</li>
+</ul>
+<h2 id="3-level-actor-to-place">3. Level actor to place</h2>
+<p>None. It is pure movement.</p>
+<h2 id="4-details-fields">4. Details fields</h2>
+<p>Jump feel on the Corridor Character (<strong>Corridor | Jump</strong>):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jump Velocity</strong> (<code>JumpVelocity</code>)</td>
+<td>1157</td>
+<td>Initial jump speed (cm/s); kept constant while the button is held (up to JumpMaxHold). <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Jump Max Hold</strong> (<code>JumpMaxHold</code>)</td>
+<td>0.12</td>
+<td>How long holding jump keeps the upward speed constant. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Double Jump Velocity</strong> (<code>DoubleJumpVelocity</code>)</td>
+<td>1872</td>
+<td>Second jump speed (cm/s); not affected by holding. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Double Jump Horizontal Keep</strong> (<code>DoubleJumpHorizontalKeep</code>)</td>
+<td>0</td>
+<td>Share of horizontal speed kept by the double jump (0 = the double jump stops sideways movement). <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Double Jump Air Accel Scale</strong> (<code>DoubleJumpAirAccelScale</code>)</td>
+<td>0.5</td>
+<td>Air acceleration multiplier after a double jump until landing. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Near Ground Share</strong> (<code>NearGroundShare</code>)</td>
+<td>0.1</td>
+<td>A press with walkable ground this close below (share of the probe) is kept for landing, not spent on the double jump. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Coyote Time</strong> (<code>CoyoteTime</code>)</td>
+<td>0.1</td>
+<td>Grace period after walking off a ledge in which a ground jump is still allowed. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Jump Buffer Time</strong> (<code>JumpBufferTime</code>)</td>
+<td>0.1</td>
+<td>A jump pressed this long before landing still fires on landing. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Near Miss</strong> (<code>bNearMiss</code>)</td>
+<td>true</td>
+<td>The near miss: falling against a ledge whose top is just out of reach stops the hero at its face, turns them to it and plays the NearMiss event (sound, rumble) and the anim set's NearMiss clip; then the fall goes on. Off = they slide down the face. <em>(Details: Corridor | Jump)</em></td>
+</tr>
+</tbody>
+</table>
+<p>On your own character (Corridor Hero component, <strong>4. Moves</strong>):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Double Jump Height</strong> (<code>DoubleJumpHeight</code>)</td>
+<td>211</td>
+<td>Height the double jump climbs above the press point (the kit hero's: 211 cm), at your character's own gravity. <em>(Details: 4. Moves)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-blueprint-functions-and-events">5. Blueprint functions and events</h2>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Ability Enabled</strong> / <strong>Is Ability Enabled</strong></td>
+<td>Function / Getter</td>
+<td>The switch above (Ability = Double Jump).</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter</td>
+<td>Returns <strong>Double Jump</strong> while the hero rises from the second jump, until the apex.</td>
+</tr>
+<tr>
+<td><strong>On Action Started / On Action Ended</strong></td>
+<td>Event dispatchers</td>
+<td>Fire with <strong>Double Jump</strong> at the start and at the apex or landing.</td>
+</tr>
+<tr>
+<td><strong>On Corridor Jump</strong></td>
+<td>Event</td>
+<td>Fires on every jump with a "double jump" flag. It also fires for wall and rope leaps.</td>
+</tr>
+<tr>
+<td><strong>Get Double Jump Count</strong></td>
+<td>Getter</td>
+<td>How many double jumps since the last landing.</td>
+</tr>
+<tr>
+<td><strong>Move Jump</strong></td>
+<td>Function</td>
+<td>Option A: call it from your Jump input before your own jump; it returns false in the air when Double Jump is off.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-use-your-own-animation">6. Use your own animation</h2>
+<p>Leave <strong>Anim Set</strong> empty so the kit plays no montage. In your Anim Blueprint read <code>Get Corridor Action</code> and switch on <strong>Double Jump</strong>; use <code>On Action Started</code> for the sound. Locomotion comes back by itself when the action ends.</p>
+<h2 id="7-see-it-in-the-demo">7. See it in the demo</h2>
+<p><code>Course1_RunAndJump</code>: stand at the first wide gap and press Jump twice. <code>System_Gallery</code> has the same gap rows.</p>
+<h2 id="8-pitfalls">8. Pitfalls</h2>
+<ul>
+<li>A crate bounce counts as the double jump already used; an enemy bounce keeps it, so you can chain a stomp into a double jump.</li>
+<li>A wall, rope or rail resets it, so the hero can double jump after every leap. That is intended.</li>
+<li>With Double Jump on, a press in the air double-jumps first and only then can hold into a glide.</li>
+</ul><div class="pn"><a href="Mechanics_at_a_Glance.html">&larr; Mechanics at a glance</a><a href="Spin.html">Spin &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

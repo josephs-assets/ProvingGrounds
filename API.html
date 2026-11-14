@@ -1,0 +1,3525 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blueprint API reference - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="index.html">Documentation home</a><a href="BUYER_QUICKSTART.html">Quickstart</a><a href="README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="Mechanics/index.html">Overview</a><a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Mechanics/Double_Jump.html">Double Jump</a><a href="Mechanics/Spin.html">Spin</a><a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="Mechanics/Slam.html">Slam</a><a href="Mechanics/Wall_Run.html">Wall Run</a><a href="Mechanics/Rope_Swing.html">Rope Swing</a><a href="Mechanics/Grind_Rail.html">Grind Rail</a><a href="Mechanics/Glide.html">Glide</a><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Mechanics/Powers.html">Powers</a><a href="Mechanics/Shield.html">Shield</a><a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="Recipes/index.html">Overview</a><a href="Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="Abilities_and_Actions.html">Abilities and Actions</a><a href="API.html" class="cur">Blueprint API reference</a><h4>Guides</h4><a href="BOSS_BODY.html">Build your own boss body</a><a href="SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="Integration/ALS/README.html">ALS-Refactored sample</a><a href="THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="blueprint-api-reference">Blueprint API reference</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-hero-jump-spin-slide-slam-crouch-abilities">1. Hero: jump, spin, slide, slam, crouch, abilities</a></li><li><a href="#2-your-own-character-the-corridor-hero-component-and-interface">2. Your own character: the Corridor Hero component and interface</a></li><li><a href="#3-traversal-state-rail-wall-run-rope">3. Traversal state: rail, wall run, rope</a></li><li><a href="#4-powers-phase-blocks-power-shrine">4. Powers, phase blocks, power shrine</a></li><li><a href="#5-shield">5. Shield</a></li><li><a href="#6-mounts-jetboard-water">6. Mounts, jetboard, water</a></li><li><a href="#7-crates-enemies-hazards-platforms-fans-triggers">7. Crates, enemies, hazards, platforms, fans, triggers</a></li><li><a href="#8-camera">8. Camera</a></li><li><a href="#9-level-control-game-mode-progress-time-trial-ghost">9. Level control, game mode, progress, time trial, ghost</a></li><li><a href="#10-hud-pause-level-select-level-end-ui-style">10. HUD, pause, level select, level end, UI style</a></li><li><a href="#11-boss-framework-and-boss-attacks">11. Boss framework and boss attacks</a></li><li><a href="#12-animation-theme-sound-effects">12. Animation, theme, sound, effects</a></li></ul></div>
+<p>Every Blueprint node the kit adds, grouped by what you are doing. Node names are the names you type in the Blueprint search box; the text is the same as the Details and node tooltips. You do not need any code: <em>Function</em> nodes have white execution pins, <em>Getter</em> nodes are green pure nodes, <em>Event / override</em> entries are events you add in a Blueprint child (Event Graph &gt; right-click, or Functions &gt; Override), and <em>Event dispatchers</em> are bound with <strong>Bind Event</strong> or the green box in the Details panel.</p>
+<p><strong>363 Blueprint nodes</strong> (functions and events). Developer tooling and internal helpers are not listed. Console commands (<code>JumpScale</code>, <code>RunSpeed</code>, <code>CamDist</code>, <code>CamPitch</code>, <code>CamFov</code>, <code>Tuning</code>) are described in the <a href="README.html">README</a>, section 2.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Hero: jump, spin, slide, slam, crouch, abilities</td>
+<td>57</td>
+</tr>
+<tr>
+<td>2. Your own character: the Corridor Hero component and interface</td>
+<td>23</td>
+</tr>
+<tr>
+<td>3. Traversal state: rail, wall run, rope</td>
+<td>13</td>
+</tr>
+<tr>
+<td>4. Powers, phase blocks, power shrine</td>
+<td>16</td>
+</tr>
+<tr>
+<td>5. Shield</td>
+<td>4</td>
+</tr>
+<tr>
+<td>6. Mounts, jetboard, water</td>
+<td>18</td>
+</tr>
+<tr>
+<td>7. Crates, enemies, hazards, platforms, fans, triggers</td>
+<td>49</td>
+</tr>
+<tr>
+<td>8. Camera</td>
+<td>13</td>
+</tr>
+<tr>
+<td>9. Level control, game mode, progress, time trial, ghost</td>
+<td>47</td>
+</tr>
+<tr>
+<td>10. HUD, pause, level select, level end, UI style</td>
+<td>33</td>
+</tr>
+<tr>
+<td>11. Boss framework and boss attacks</td>
+<td>86</td>
+</tr>
+<tr>
+<td>12. Animation, theme, sound, effects</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-hero-jump-spin-slide-slam-crouch-abilities">1. Hero: jump, spin, slide, slam, crouch, abilities</h2>
+<h3 id="corridor-character">Corridor Character</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Spin Chain Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Counts the spins started from a mash press (SpinBufferWindow) since the level started; the animation restarts the spin clip when it changes.</td>
+</tr>
+<tr>
+<td><strong>Set Default Camera</strong></td>
+<td>Function</td>
+<td>Distance (Float), Pitch (Float), Field Of View (Float)</td>
+<td>-</td>
+<td>The default camera: distance (cm), pitch (deg) and field of view (deg; also every camera view whose own is 0). ACorridorControl calls it.</td>
+</tr>
+<tr>
+<td><strong>Get Anim Set</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Anim Set (object))</td>
+<td>The anim set (mesh and clips) the hero uses; none = the mesh's own anim class.</td>
+</tr>
+<tr>
+<td><strong>Rumble</strong></td>
+<td>Function</td>
+<td>Event (Name), Location (Vector)</td>
+<td>Return Value (Float)</td>
+<td>Rumbles the pad for Event (its Rumbles row) as if it happened at Location (zero: here). ACorridorBurst::PlaySfx calls it for every sound event. Returns the strength played (0: none).</td>
+</tr>
+<tr>
+<td><strong>Get Last Rumble</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name), Strength (Float)</td>
+<td>The last event that rumbled and how strong (after distance and RumbleScale).</td>
+</tr>
+<tr>
+<td><strong>Bounce</strong></td>
+<td>Function</td>
+<td>Velocity (Float), Held Velocity (Float), Crate Bounce (Boolean)</td>
+<td>-</td>
+<td>Launches the character up off a crate: HeldVelocity when jump is held, was pressed just before landing on the crate, or is pressed within LateHighBounceWindow after. A crate bounce rises at plain gravity (not RiseGravityScale);</td>
+</tr>
+<tr>
+<td><strong>Start Celebrate</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The level end's celebration: the anim set's Celebrate plays once (on the ground), then the idle. ACorridorLevelEnd calls it.</td>
+</tr>
+<tr>
+<td><strong>Is Celebrating</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>StartCelebrate was called (until the level is loaded again).</td>
+</tr>
+<tr>
+<td><strong>Start Leaving</strong></td>
+<td>Function</td>
+<td>Direction (Vector), Replay (Boolean)</td>
+<td>-</td>
+<td>The level end screen's run out: the hero runs along Direction (flat; zero stops it) until the next level loads, and the level end's view stops following it. UCorridorLevelEndWidget::Leave calls it on Replay / Continue.</td>
+</tr>
+<tr>
+<td><strong>Is Leaving To Replay</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>StartLeaving was called for Replay (the anim set's LeaveReplay), not Continue.</td>
+</tr>
+<tr>
+<td><strong>Is Leaving</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>StartLeaving was called with a direction.</td>
+</tr>
+<tr>
+<td><strong>Mark Chased</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>A chaser has the hero in reach: ACorridorChaser calls it every frame (a Blueprint chaser can too); the anim set's RunScared plays.</td>
+</tr>
+<tr>
+<td><strong>Is Chased</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>MarkChased was called within the last quarter second.</td>
+</tr>
+<tr>
+<td><strong>Is Over Ledge</strong></td>
+<td>Getter (pure)</td>
+<td>Drop (Float)</td>
+<td>Return Value (Boolean)</td>
+<td>On the ground with nothing under the middle of the capsule within Drop (cm): the hero stands on an edge (the anim set's Teeter).</td>
+</tr>
+<tr>
+<td><strong>Get Foot Surface</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name)</td>
+<td>The physical material under the feet by name, a leading "PM_" dropped (PM_Grass -&gt; Grass); None in the air or on a floor with none. Clip notifies (Corridor Sfx) try their sound / effect name + "_" + this first (Footstep_Grass), then the plain name.</td>
+</tr>
+<tr>
+<td><strong>Apply Skin</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Puts on the saved skin (the game mode's SkinTable and ProgressSlot), or takes the last one off. Called when play starts.</td>
+</tr>
+<tr>
+<td><strong>Get Skin</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name)</td>
+<td>The skin worn (a row of the skin table; None: the hero's own look).</td>
+</tr>
+<tr>
+<td><strong>Bounce Off Enemy</strong></td>
+<td>Function</td>
+<td>Velocity (Float), Held Velocity (Float)</td>
+<td>-</td>
+<td>Landing on an enemy (BounceComponent): like a crate bounce, but the double jump stays (no BlockDoubleJumpEffect).</td>
+</tr>
+<tr>
+<td><strong>Take Hit</strong></td>
+<td>Function</td>
+<td>How (Corridor Death), Ignore Shield (Boolean)</td>
+<td>-</td>
+<td>A lethal hit: the shield companion takes it if it can (not the kinds that pierce it, nor any with bIgnoreShield), else the hero dies. Use this for hazards and enemies.</td>
+</tr>
+<tr>
+<td><strong>Die</strong></td>
+<td>Function</td>
+<td>How (Corridor Death)</td>
+<td>-</td>
+<td>Kills the hero, shield or not. A death that needs the ground (squash, poison, knockback) in the air is the angel (Touch).</td>
+</tr>
+<tr>
+<td><strong>Get Death Type</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Death)</td>
+<td>The last death's kind (the anim instance plays its clips while the hero is dead).</td>
+</tr>
+<tr>
+<td><strong>Get Shield</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Shield Component (object))</td>
+<td>The shield companion component on the hero (takes one lethal hit per level; level 3 = invulnerable).</td>
+</tr>
+<tr>
+<td><strong>Get Powers</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Power Component (object))</td>
+<td>The power component on the hero (worn power, power on / off, cooldowns).</td>
+</tr>
+<tr>
+<td><strong>Get Camera Director</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Camera Director (object))</td>
+<td>The camera director component: picks the active camera view and drives the camera.</td>
+</tr>
+<tr>
+<td><strong>On Power Pressed</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The power button.</td>
+</tr>
+<tr>
+<td><strong>On Pause Pressed</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The pause key: the HUD's pause menu opens (ACorridorHUD::TogglePause).</td>
+</tr>
+<tr>
+<td><strong>Is Cyclone</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the cyclone power is on.</td>
+</tr>
+<tr>
+<td><strong>Set Ability Enabled</strong></td>
+<td>Function</td>
+<td>Ability (Corridor Ability), Enabled (Boolean)</td>
+<td>-</td>
+<td>Switches one ability on or off (the same bool as its Details box under Corridor | Abilities).</td>
+</tr>
+<tr>
+<td><strong>Is Ability Enabled</strong></td>
+<td>Getter (pure)</td>
+<td>Ability (Corridor Ability)</td>
+<td>Return Value (Boolean)</td>
+<td>True if this ability is switched on (its Details box under Corridor | Abilities).</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Action)</td>
+<td>What the hero is doing now (one value, updated once per frame at the end of the hero's Tick). Drive your own Anim Blueprint states from it; it needs no Anim Set.</td>
+</tr>
+<tr>
+<td><strong>On Action Started</strong></td>
+<td>Event dispatcher</td>
+<td>Action (Corridor Action)</td>
+<td>-</td>
+<td>An action began (Get Corridor Action changed to it). Fires after the previous action's On Action Ended, at most one frame late. The hero's Corridor Hero component fires the same events.</td>
+</tr>
+<tr>
+<td><strong>On Action Ended</strong></td>
+<td>Event dispatcher</td>
+<td>Action (Corridor Action)</td>
+<td>-</td>
+<td>An action finished (Get Corridor Action changed away from it). Every On Action Started gets exactly one of these.</td>
+</tr>
+<tr>
+<td><strong>Get Hero Component</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Hero Component (object))</td>
+<td>The hero component the kit's actors talk to (also what you add to a character that is not this class).</td>
+</tr>
+<tr>
+<td><strong>Is On Ice</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the hero is inside an ice (slippery) volume.</td>
+</tr>
+<tr>
+<td><strong>Is Gliding</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while gliding: the glide power on, Jump held, in the air on the way down (not on a mount).</td>
+</tr>
+<tr>
+<td><strong>Add Bullet Time</strong></td>
+<td>Function</td>
+<td>Real Seconds (Float), Scale (Float)</td>
+<td>-</td>
+<td>Slows the whole world, the hero too, for RealSeconds of real time (e.g. a boss hit: 1 s at x0.25). Does nothing while the time power slows the world.</td>
+</tr>
+<tr>
+<td><strong>Is Bullet Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while a bullet-time slow-down (AddBulletTime) is running.</td>
+</tr>
+<tr>
+<td><strong>Is Spinning</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the spin attack is active (always true while cyclone is on).</td>
+</tr>
+<tr>
+<td><strong>Get Spin Stage</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Which spin is running: 0 = a plain one (or none), 1 = medium, 2 = strong (bTripleSpin).</td>
+</tr>
+<tr>
+<td><strong>Is Jump Held</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the jump button is held.</td>
+</tr>
+<tr>
+<td><strong>Is Dead</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True from the hero's death until it respawns.</td>
+</tr>
+<tr>
+<td><strong>Add Stick Input</strong></td>
+<td>Function</td>
+<td>Right (Float), Forward (Float)</td>
+<td>-</td>
+<td>Stick input in screen terms (Right, Forward), as the gamepad gives it: along the camera, X flipped in the mirrored mode.</td>
+</tr>
+<tr>
+<td><strong>Respawn</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Back at the last checkpoint (a death calls it after the death's wait; not after a Classic game over).</td>
+</tr>
+<tr>
+<td><strong>Get Mount</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Mount (object))</td>
+<td>The mount being ridden (ACorridorMount sets it); while riding, the stick, jump and spin are the mount's.</td>
+</tr>
+<tr>
+<td><strong>On Corridor Jump</strong></td>
+<td>Event / override</td>
+<td>Double Jump (Boolean)</td>
+<td>-</td>
+<td>Event: the hero jumped. bDoubleJump is true for the mid-air double jump.</td>
+</tr>
+<tr>
+<td><strong>On Spin Started</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>Event: a spin attack just started.</td>
+</tr>
+<tr>
+<td><strong>On Jump Pressed</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Input entry points, also used by touch UI and the automated tests.</td>
+</tr>
+<tr>
+<td><strong>On Jump Released</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Call when the jump button is released: the held-jump rise ends there.</td>
+</tr>
+<tr>
+<td><strong>On Spin Pressed</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Call when the spin button is pressed: starts a spin (a boost while riding a mount).</td>
+</tr>
+<tr>
+<td><strong>On Spin Released</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Call when the spin button is released: a held boost (a jetboard's) ends there.</td>
+</tr>
+<tr>
+<td><strong>On Slide Pressed</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Slide on the ground (stick pushed), crouch on the ground (stick released), belly flop in the air.</td>
+</tr>
+<tr>
+<td><strong>On Slide Released</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Call when the slide button is released: a crouch ends once its minimum time has passed.</td>
+</tr>
+<tr>
+<td><strong>Is Sliding</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the hero is sliding.</td>
+</tr>
+<tr>
+<td><strong>Is Belly Flopping</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True during the belly flop (slide button pressed in mid-air).</td>
+</tr>
+<tr>
+<td><strong>Get Double Jump Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Counts real double jumps (not crate bounces); the anim instance watches it for changes.</td>
+</tr>
+<tr>
+<td><strong>Get Near Miss Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Counts near misses (bNearMiss); the anim instance watches it for changes.</td>
+</tr>
+<tr>
+<td><strong>Add Camera Shake</strong></td>
+<td>Function</td>
+<td>Amplitude (Vector), Duration (Float), Frequency (Float), Yaw Degrees (Float), Perlin (Boolean), Blend Out (Float)</td>
+<td>-</td>
+<td>Shakes the camera: per-axis amplitude (cm; X along the view), a sine or Perlin oscillator at Frequency Hz, a yaw wobble, blended out over BlendOut at the end. A stronger shake replaces a running one.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-your-own-character-the-corridor-hero-component-and-interface">2. Your own character: the Corridor Hero component and interface</h2>
+<h3 id="corridor-hero">Corridor Hero</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Hero Attacking</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the character attacks (your punch / spin): crates it touches break and enemies it touches are defeated.</td>
+</tr>
+<tr>
+<td><strong>On Hero Bounce</strong></td>
+<td>Event / override</td>
+<td>Velocity (Float)</td>
+<td>Return Value (Boolean)</td>
+<td>A crate or enemy bounced the character up (cm/s). Return true if you moved it yourself; false = the component launches it.</td>
+</tr>
+<tr>
+<td><strong>On Hero Hit</strong></td>
+<td>Event / override</td>
+<td>How (Corridor Death)</td>
+<td>Return Value (Boolean)</td>
+<td>A lethal hit (enemy, hazard, kill volume, fall). Return true if you handled it (your own health); false = the component's death and respawn at the last checkpoint.</td>
+</tr>
+<tr>
+<td><strong>On Hero Respawned</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>Where (Transform)</td>
+<td>The character came back at a checkpoint after a death.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-hero-component">Corridor Hero Component</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Hero</strong></td>
+<td>Getter (pure)</td>
+<td>Actor (Actor (object))</td>
+<td>Return Value (Corridor Hero Component (object))</td>
+<td>The hero component of an actor (ACorridorCharacter's own, or the one you added); null if it has none.</td>
+</tr>
+<tr>
+<td><strong>Start Attack</strong></td>
+<td>Function</td>
+<td>Duration (Float)</td>
+<td>-</td>
+<td>Call from your attack input (or your attack montage): for Duration seconds the character breaks crates and defeats enemies it touches.</td>
+</tr>
+<tr>
+<td><strong>On Died</strong></td>
+<td>Event dispatcher</td>
+<td>How (Corridor Death)</td>
+<td>-</td>
+<td>The character died (before the respawn).</td>
+</tr>
+<tr>
+<td><strong>On Respawned</strong></td>
+<td>Event dispatcher</td>
+<td>Where (Transform)</td>
+<td>-</td>
+<td>The character came back at a checkpoint.</td>
+</tr>
+<tr>
+<td><strong>Kill Hero</strong></td>
+<td>Function</td>
+<td>How (Corridor Death)</td>
+<td>-</td>
+<td>Kill the character now (respawns at the last checkpoint after Respawn Delay).</td>
+</tr>
+<tr>
+<td><strong>Get Checkpoint</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Transform)</td>
+<td>The checkpoint a death returns to (the game mode's when it is ours).</td>
+</tr>
+<tr>
+<td><strong>Set Ability Enabled</strong></td>
+<td>Function</td>
+<td>Ability (Corridor Ability), Enabled (Boolean)</td>
+<td>-</td>
+<td>Switches one ability on or off. On a Corridor Character this sets the character's own box. Switching a running move off ends it (drops off a wall / rope / rail, stops a slide or slam). Glide, Mounts, Powers and Shield exist only on a Corridor Character.</td>
+</tr>
+<tr>
+<td><strong>Is Ability Enabled</strong></td>
+<td>Getter (pure)</td>
+<td>Ability (Corridor Ability)</td>
+<td>Return Value (Boolean)</td>
+<td>True if the ability is on. On your own character Glide, Mounts, Powers and Shield report false (Corridor Character only).</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Action)</td>
+<td>What the hero is doing now (updated once per frame). Drive your own Anim Blueprint from it.</td>
+</tr>
+<tr>
+<td><strong>On Action Started</strong></td>
+<td>Event dispatcher</td>
+<td>Action (Corridor Action)</td>
+<td>-</td>
+<td>An action began. Bind here on any route: on a Corridor Character the character fires it through this component too.</td>
+</tr>
+<tr>
+<td><strong>On Action Ended</strong></td>
+<td>Event dispatcher</td>
+<td>Action (Corridor Action)</td>
+<td>-</td>
+<td>An action finished. Every On Action Started gets exactly one of these.</td>
+</tr>
+<tr>
+<td><strong>Move Jump</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Call from your jump input before your own jump: a rail hop / wall or rope leap, or the double jump in the air. Returns false on the ground (do your own jump then).</td>
+</tr>
+<tr>
+<td><strong>Move Slide</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Call from a slide input: hang under / climb onto a rail, slam in the air, slide on the ground.</td>
+</tr>
+<tr>
+<td><strong>Move Spin</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Call from a spin / attack input: Start Attack for Spin Duration + Spin Clip.</td>
+</tr>
+<tr>
+<td><strong>Is Slamming</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Get Hero Traversal</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Traversal)</td>
+<td>On a rail / wall / rope (the kit's traversal; None without one or without the kit's movement component).</td>
+</tr>
+<tr>
+<td><strong>Is Dead</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>---------- the hero API the kit's actors call (forwards to ACorridorCharacter, or the defaults above) ----------</td>
+</tr>
+<tr>
+<td><strong>Is Spinning</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Is Sliding</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-traversal-state-rail-wall-run-rope">3. Traversal state: rail, wall run, rope</h2>
+<h3 id="corridor-movement-component">Corridor Movement Component</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Traversal</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Traversal)</td>
+<td>What the hero is doing on a path: None, Grind (rail), WallRun or Rope.</td>
+</tr>
+<tr>
+<td><strong>Get Rail State</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Rail State)</td>
+<td>Current rail state: Ride, RideJump, RideTransfer, RideToHang, HangToRide or Hang.</td>
+</tr>
+<tr>
+<td><strong>Get Rail Ride Lean</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Riding a rail: the pose's lean, -1 (left) .. 1 (right) - the stick's plus the curve's (drives RailLeanLeft / RailLeanRight).</td>
+</tr>
+<tr>
+<td><strong>Get Rail Curve Lean</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Riding a rail: the lean the curve alone asks for, -1..1 (+ = into a right-hand curve).</td>
+</tr>
+<tr>
+<td><strong>Get Rail Bank</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Riding a rail: degrees the body banks into the curve now (+ = right).</td>
+</tr>
+<tr>
+<td><strong>Get Rail Lean</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Riding a rail: the stick's lean alone, -1 (left) .. 1 (right).</td>
+</tr>
+<tr>
+<td><strong>Get Hang Blend</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>On a rail: 0 riding on top .. 1 hanging under it (blend your ride and hang poses with it).</td>
+</tr>
+<tr>
+<td><strong>Get Rail Swing</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Hanging under a rail: degrees the body swings about the rail.</td>
+</tr>
+<tr>
+<td><strong>Get Rope Climb</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>On a rope: how far the hero has climbed (cm along the rope from the grab point; drives a climb blend).</td>
+</tr>
+<tr>
+<td><strong>Get Rope Sway</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>On a rope: the swing now, for a sway blend.</td>
+</tr>
+<tr>
+<td><strong>Is Wall On Right</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Wall running: true if the wall is on the hero's right (mirror your wall-run pose otherwise).</td>
+</tr>
+<tr>
+<td><strong>Is Wall Run Ending</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Wall running: true near the end of the wall, while the hero falls off it.</td>
+</tr>
+<tr>
+<td><strong>Get Traversal Age</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds since the current rail / wall / rope traversal started.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-powers-phase-blocks-power-shrine">4. Powers, phase blocks, power shrine</h2>
+<h3 id="corridor-power-component">Corridor Power Component</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Equip</strong></td>
+<td>Function</td>
+<td>Power (Corridor Power)</td>
+<td>-</td>
+<td>Wears this power, taking off the worn one. The power stays off until the power button is pressed.</td>
+</tr>
+<tr>
+<td><strong>Unequip</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Takes the worn power off, switching its power off first.</td>
+</tr>
+<tr>
+<td><strong>Toggle</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The power button: switches the power on if it is off, off if it is on.</td>
+</tr>
+<tr>
+<td><strong>Power Off</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Switches the worn power's power off; the power stays on. Time slow and cyclone then wait out their cooldown.</td>
+</tr>
+<tr>
+<td><strong>Get Equipped</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Power)</td>
+<td>The power being worn (None = no power).</td>
+</tr>
+<tr>
+<td><strong>Is Power On</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the worn power's power is switched on.</td>
+</tr>
+<tr>
+<td><strong>Is Power Active</strong></td>
+<td>Getter (pure)</td>
+<td>Power (Corridor Power)</td>
+<td>Return Value (Boolean)</td>
+<td>True when this power is worn and its power is on.</td>
+</tr>
+<tr>
+<td><strong>Get Time Slow Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Time slow energy left (seconds).</td>
+</tr>
+<tr>
+<td><strong>Get Cooldown Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds until this power can be activated again, for presentation.</td>
+</tr>
+<tr>
+<td><strong>Get Power Duration</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Full seconds of the worn timed power (time slow; glide with a GlideDuration); 0 for toggle powers. For presentation.</td>
+</tr>
+<tr>
+<td><strong>Get Cooldown Duration</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Cooldown length of the worn power (seconds), for presentation.</td>
+</tr>
+<tr>
+<td><strong>Get Glide Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Glide time left (seconds; 0 when glide is not worn or GlideDuration is 0).</td>
+</tr>
+<tr>
+<td><strong>Get Air Flips</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Power flips since the hero last stood on the ground (gravity power).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-phase-component">Corridor Phase Component</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Solid</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the actor is solid in the current world phase (false = a see-through ghost without collision).</td>
+</tr>
+<tr>
+<td><strong>Is Solid Pending</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Waiting for the hero to step out before turning solid.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-power-shrine">Corridor Power Shrine</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Showing</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the power is visible at the station: waiting, flying to the hero or leaving.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-shield">5. Shield</h2>
+<h3 id="corridor-shield-component">Corridor Shield Component</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Level</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Shield level: 0 = none, 1 and 2 = protective (each takes one lethal hit), 3 = invulnerable.</td>
+</tr>
+<tr>
+<td><strong>Is Invulnerable</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True at level 3 while the invulnerability timer (InvulnerableTime) is running.</td>
+</tr>
+<tr>
+<td><strong>Get Invulnerable Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Remaining third-level protection time, for the HUD.</td>
+</tr>
+<tr>
+<td><strong>Add Shield Level</strong></td>
+<td>Function</td>
+<td>Fly From (Vector)</td>
+<td>-</td>
+<td>One more shield level (shield crate): the third one starts the invulnerability. FlyFrom = where the shield comes from (it flies to the hero).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-mounts-jetboard-water">6. Mounts, jetboard, water</h2>
+<h3 id="corridor-jetboard">Corridor Jetboard</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Yaw</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The way it faces (world yaw, deg).</td>
+</tr>
+<tr>
+<td><strong>Is On Water</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while it floats on water (not in the air off a ramp or a jump).</td>
+</tr>
+<tr>
+<td><strong>Get Turn</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How hard it turns right now: -1 full left .. +1 full right (this tick's turn over RotationRate). The riders lean by it.</td>
+</tr>
+<tr>
+<td><strong>Get Drive Level</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How hard it runs, for the riders' blend: 0 standing, 1 at CoastSpeed, 2 at Speed, 3 at BoostSpeed (linear between).</td>
+</tr>
+<tr>
+<td><strong>Get Vertical Speed</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Up (+) or down (-) speed in the air, cm/s; 0 on the water.</td>
+</tr>
+<tr>
+<td><strong>Get Rider</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Character (object))</td>
+<td>The hero riding it, or null (also while he is being carried on).</td>
+</tr>
+<tr>
+<td><strong>Set Board Look</strong></td>
+<td>Function</td>
+<td>Mesh (Skeletal Mesh (object)), Anims (Corridor Anim Set (object))</td>
+<td>Offset (Transform)</td>
+<td>Dresses the board: Mesh on BoardMesh with Anims, at Offset from the board while nobody rides it; Body hides.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-water">Corridor Water</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Surface At</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean), Location (Vector), Surface Z (Float)</td>
+<td>The surface height above Location (world Z), or false if Location is outside the water's outline or below it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-whirlpool">Corridor Whirlpool</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pull At</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Vector), Location (Vector)</td>
+<td>The pull at a point (cm/s, flat), before the ease-in.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-mount">Corridor Mount</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Start Ride</strong></td>
+<td>Function</td>
+<td>Hero (Corridor Character (object))</td>
+<td>-</td>
+<td>Puts the hero on now, wherever it is.</td>
+</tr>
+<tr>
+<td><strong>Launch</strong></td>
+<td>Function</td>
+<td>Up Speed (Float), Forward Scale (Float), Air Gravity Scale (Float)</td>
+<td>-</td>
+<td>Thrown up (a ramp): UpSpeed, the run x ForwardScale and gravity x AirGravityScale until it lands.</td>
+</tr>
+<tr>
+<td><strong>End Ride</strong></td>
+<td>Function</td>
+<td>Launch (Boolean)</td>
+<td>-</td>
+<td>Lets the hero off here (bLaunch: thrown up as at the end of Path).</td>
+</tr>
+<tr>
+<td><strong>Get State</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Mount State)</td>
+<td>Current state: Waiting, Mounting, Riding or Done.</td>
+</tr>
+<tr>
+<td><strong>Get Speed</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Current running speed (cm/s).</td>
+</tr>
+<tr>
+<td><strong>Get Heading</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Turn away from the path's way (deg, + = right).</td>
+</tr>
+<tr>
+<td><strong>Is Boosting</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while a speed boost is running.</td>
+</tr>
+<tr>
+<td><strong>On State Changed</strong></td>
+<td>Event / override</td>
+<td>New State (Corridor Mount State)</td>
+<td>-</td>
+<td>Event: the mount changed state (Waiting, Mounting, Riding or Done).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-mount-stat-gate">Corridor Mount Stat Gate</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apply To</strong></td>
+<td>Function</td>
+<td>Mount (Corridor Mount (object))</td>
+<td>-</td>
+<td>Puts the ticked values on a mount.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-crates-enemies-hazards-platforms-fans-triggers">7. Crates, enemies, hazards, platforms, fans, triggers</h2>
+<h3 id="corridor-bonus-platform">Corridor Bonus Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Riding</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the platform is carrying the hero.</td>
+</tr>
+<tr>
+<td><strong>Is Done</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Rode to the end (it stays there until the hero respawns).</td>
+</tr>
+<tr>
+<td><strong>Is Available</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Its gem is owned (or it needs none): solid and rideable.</td>
+</tr>
+<tr>
+<td><strong>Arrive</strong></td>
+<td>Function</td>
+<td>Hero (Corridor Character (object))</td>
+<td>-</td>
+<td>Puts the hero on it where it waits and carries them along its path, as if stood on (what another platform's TeleportTo does).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-chaser">Corridor Chaser</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Start Chase</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Sets the wall running along Path (the start box calls this). No effect while it runs; after StopChase it resumes.</td>
+</tr>
+<tr>
+<td><strong>Stop Chase</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Halts the wall where it is; StartChase sets it running again.</td>
+</tr>
+<tr>
+<td><strong>Is Running</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the wall is running (false before the start, after StopChase and once it reaches the end of Path).</td>
+</tr>
+<tr>
+<td><strong>Get Rate</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The wall's current speed multiplier (1 = Speed); follows the gap to the hero and is cut by KillSlowdown after a kill.</td>
+</tr>
+<tr>
+<td><strong>Get Wall Distance</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How far along Path the wall is (cm).</td>
+</tr>
+<tr>
+<td><strong>Get Gap</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The hero's way along Path minus the wall's (cm).</td>
+</tr>
+<tr>
+<td><strong>Get Steps</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Steps taken so far.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-crate">Corridor Crate</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Counts Toward Total</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True if breaking this crate counts toward the crate gem (not Metal, MetalArrow, Switch or Detonator crates).</td>
+</tr>
+<tr>
+<td><strong>Is Broken</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True once the crate has been broken or has exploded.</td>
+</tr>
+<tr>
+<td><strong>Set Type</strong></td>
+<td>Function</td>
+<td>New Type (Corridor Crate Type)</td>
+<td>-</td>
+<td>Another type at runtime (a rule layer's crate swap), with its look.</td>
+</tr>
+<tr>
+<td><strong>Get Bounces Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>N-bounce crate: bounces left before it turns into a volatile box; -1 for other types.</td>
+</tr>
+<tr>
+<td><strong>Get Fuse Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds left on a lit fuse fuse (in the crate's own time), -1 if not lit.</td>
+</tr>
+<tr>
+<td><strong>Is Falling</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the crate is falling because the crate or floor under it went away.</td>
+</tr>
+<tr>
+<td><strong>Is Outline Crate</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Still a see-through outline (no collision) - a "!" crate has not made it real yet.</td>
+</tr>
+<tr>
+<td><strong>Get Countdown Left</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds before a "!"-made countdown crate turns back into an outline, -1 if none is running.</td>
+</tr>
+<tr>
+<td><strong>On Broken</strong></td>
+<td>Event / override</td>
+<td>By Explosion (Boolean)</td>
+<td>-</td>
+<td>Blueprint event: the crate just broke; bByExplosion = an explosion broke it rather than a hit.</td>
+</tr>
+<tr>
+<td><strong>On Exploded</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>Blueprint event: the crate (fuse box or volatile box) just exploded.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-enemy">Corridor Enemy</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Size</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The size it plays at: SizeMultiplier x its theme look's NormalSize (just SizeMultiplier without a look).</td>
+</tr>
+<tr>
+<td><strong>Is Dead</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True once the enemy is no longer alive (launched, flattened, falling or gone).</td>
+</tr>
+<tr>
+<td><strong>Get Home Location</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Vector)</td>
+<td>Where it stands at the start (and comes back to on a respawn).</td>
+</tr>
+<tr>
+<td><strong>Get Phase Name</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (String)</td>
+<td>Spitter hidden, armored shield up, kamikaze lit... for tests and the anim look.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-hazard">Corridor Hazard</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trigger Drop</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Drop: sets it off now.</td>
+</tr>
+<tr>
+<td><strong>Reset Hazard</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Back to its start (a dropped one hangs again); the hero's respawn calls it.</td>
+</tr>
+<tr>
+<td><strong>Get Phase</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Hazard Phase)</td>
+<td>Where a timed hazard is in its cycle now (Off, Tell or Active). A hazard that is not timed is always Active.</td>
+</tr>
+<tr>
+<td><strong>Is Deadly</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>The kill zone works right now (timed: Active; crusher: on the way down).</td>
+</tr>
+<tr>
+<td><strong>On Phase Changed</strong></td>
+<td>Event / override</td>
+<td>New Phase (Corridor Hazard Phase)</td>
+<td>-</td>
+<td>Called when a timed hazard enters a new phase. Use it for your own effects.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-bounce-pad">Corridor Bounce Pad</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Bounces</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Bounces so far (a test / Blueprint hook).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-platform">Corridor Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Hero On</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the hero is standing on the platform.</td>
+</tr>
+<tr>
+<td><strong>Reset Platform</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Start state (called on respawn when bResetOnRespawn).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-moving-platform">Corridor Moving Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Starts it (OnTrigger), or sends it back from the end (StepToReturn).</td>
+</tr>
+<tr>
+<td><strong>Break</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Shakes for BreakDelay, then falls apart until the next respawn (with or without bBreakOnAttack).</td>
+</tr>
+<tr>
+<td><strong>Is Broken</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while it is broken (Break, or a hit with bBreakOnAttack) until the next respawn.</td>
+</tr>
+<tr>
+<td><strong>Is Moving</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while it is travelling along the path (not idle, warning or waiting at an end).</td>
+</tr>
+<tr>
+<td><strong>Get Travelled</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How far along the path it is (cm).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-sinking-platform">Corridor Sinking Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Sunk Depth</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How far the platform is sunk right now (cm); 0 = fully up.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-breakable-platform">Corridor Breakable Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Broken</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while it is broken, until it comes back after RespawnTime.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-rotating-platform">Corridor Rotating Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Starts its cycle (StartOn = OnTrigger).</td>
+</tr>
+<tr>
+<td><strong>Get Angle</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How far it has turned about Axis right now (deg).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-push-fan">Corridor Push Fan</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set On</strong></td>
+<td>Function</td>
+<td>New On (Boolean)</td>
+<td>-</td>
+<td>Turns the fan on or off at run time, wind effect included.</td>
+</tr>
+<tr>
+<td><strong>Is Hero In</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the hero is inside the updraft column and the fan is on.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-level-end">Corridor Level End</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Show Crate Gem</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>Where (Vector)</td>
+<td>The crate gem scene (every crate broken): over Where the gem waits 0.37 s, pops to 1.75x in 0.53 s, settles to 1.09x in 0.75 s, bounces 39 / 22 / 9 cm and is taken at 2 s. Runs by itself on reaching the end; callable alone.</td>
+</tr>
+<tr>
+<td><strong>Get Crate Gem Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds into the crate gem scene, -1 when it is not running.</td>
+</tr>
+<tr>
+<td><strong>Get End View</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Camera Actor (object))</td>
+<td>The end scene's camera while it runs (null before the level end, or with bEndScene off).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-deathless-pickup">Corridor Deathless Pickup</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Ghost</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>See-through: the hero died in this run, or it was owned before.</td>
+</tr>
+<tr>
+<td><strong>Is Taken</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Taken in this run.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-camera">8. Camera</h2>
+<h3 id="corridor-camera-view">Corridor Camera View</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apply Preset</strong></td>
+<td>Function</td>
+<td>New Preset (Corridor Camera Preset)</td>
+<td>-</td>
+<td>Fills the camera fields with the values of that preset and selects it (Custom: keeps them).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-camera-crossfader">Corridor Camera Crossfader</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Mix</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float), Hero Location (Vector)</td>
+<td>0 at the spline's start, 1 at its end.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-camera-director">Corridor Camera Director</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Activate View</strong></td>
+<td>Function</td>
+<td>View (Corridor Camera View (object)), Snap (Boolean)</td>
+<td>-</td>
+<td>Switch to a view (null = default camera). Snap = no blend, no lag.</td>
+</tr>
+<tr>
+<td><strong>Get Active View</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Camera View (object))</td>
+<td>The view currently controlling the camera (none = the default camera behind the hero).</td>
+</tr>
+<tr>
+<td><strong>Set Look Input</strong></td>
+<td>Function</td>
+<td>X (Float), Y (Float)</td>
+<td>-</td>
+<td>Right stick, -1..1 (X right, Y up).</td>
+</tr>
+<tr>
+<td><strong>Freeze</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Stop following (death); the camera component can be placed by hand meanwhile.</td>
+</tr>
+<tr>
+<td><strong>Push In</strong></td>
+<td>Function</td>
+<td>Look At (Vector)</td>
+<td>-</td>
+<td>A caught death (ECorridorDeath::Bite): stop following, then move CaughtPushIn closer along the line to LookAt over CaughtPushTime while the view turns to LookAt. Resume / the respawn end it.</td>
+</tr>
+<tr>
+<td><strong>Resume</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Follow again, snapping to the current view.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-camera-fade-component">Corridor Camera Fade Component</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Fade Request</strong></td>
+<td>Function</td>
+<td>Asker (Object (object)), Fade (Boolean)</td>
+<td>-</td>
+<td>Asks for the fade (true) or lets it go (false). Each asker counts once; fade volumes use this.</td>
+</tr>
+<tr>
+<td><strong>Reset Fade</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Back to fully seen at once, every request dropped.</td>
+</tr>
+<tr>
+<td><strong>Get Alpha</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Current alpha: 1 = fully seen, FadedAlpha = faded.</td>
+</tr>
+<tr>
+<td><strong>Is Fade Wanted</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while a volume asks for the fade or the camera is within CameraDistance.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-camera-fade-volume">Corridor Camera Fade Volume</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Hero Inside</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the hero is inside the box.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-level-control-game-mode-progress-time-trial-ghost">9. Level control, game mode, progress, time trial, ghost</h2>
+<h3 id="corridor-control">Corridor Control</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apply</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Hands the values to the game mode, the hero and the HUD now. Play does it by itself; call it after changing them at runtime. A rule change mid-level starts a fresh count of StartLives.</td>
+</tr>
+<tr>
+<td><strong>Get</strong></td>
+<td>Getter (pure)</td>
+<td>World Context (Object (object))</td>
+<td>Return Value (Corridor Control (object))</td>
+<td>The level's control (the first one placed); none = the level uses the game mode's, hero's and HUD's own settings.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-game-mode">Corridor Game Mode</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Classic</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True when Difficulty is Classic.</td>
+</tr>
+<tr>
+<td><strong>Get Life Orb</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Classic: orbs toward the next life.</td>
+</tr>
+<tr>
+<td><strong>Add Life</strong></td>
+<td>Function</td>
+<td>Count (Integer)</td>
+<td>-</td>
+<td>Classic: +Count lives (up to MaxLives).</td>
+</tr>
+<tr>
+<td><strong>Restart After Game Over</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>After a game over: lives back to StartLives, the level from the start (the checkpoints reset).</td>
+</tr>
+<tr>
+<td><strong>Return To Menu</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Lives back to StartLives if it was a game over, then MenuMap (none: this level again).</td>
+</tr>
+<tr>
+<td><strong>Start Time Trial</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The clock was taken (ACorridorTimeTrialClock): the time runs from now; deaths cost no lives, the finish keeps only time and medal.</td>
+</tr>
+<tr>
+<td><strong>Pause Time Trial</strong></td>
+<td>Function</td>
+<td>Seconds (Float)</td>
+<td>-</td>
+<td>A time crate: the clock stands still Seconds (crates broken while it stands add up).</td>
+</tr>
+<tr>
+<td><strong>Is Time Trial</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True once the time trial clock has been taken (stays true after the finish).</td>
+</tr>
+<tr>
+<td><strong>Get Time Trial Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The run's time minus the time crates' stops (the real time - total stop); frozen at the finish.</td>
+</tr>
+<tr>
+<td><strong>Is Time Trial Paused</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while a time crate is holding the time trial clock still.</td>
+</tr>
+<tr>
+<td><strong>Get Medal For</strong></td>
+<td>Getter (pure)</td>
+<td>Seconds (Float)</td>
+<td>Return Value (Corridor Medal)</td>
+<td>The medal a time earns here (this level's row in LevelTable).</td>
+</tr>
+<tr>
+<td><strong>Get Medal Time</strong></td>
+<td>Getter (pure)</td>
+<td>For Medal (Corridor Medal)</td>
+<td>Return Value (Float)</td>
+<td>A medal's time here (0: the level has none).</td>
+</tr>
+<tr>
+<td><strong>Get Ghost</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Ghost (object))</td>
+<td>The ghost actor that records this run and replays the best saved one (none outside a time trial or with bTimeTrialGhost off).</td>
+</tr>
+<tr>
+<td><strong>Is Mirrored</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the mirrored mode is on.</td>
+</tr>
+<tr>
+<td><strong>Set Mirrored</strong></td>
+<td>Function</td>
+<td>On (Boolean)</td>
+<td>-</td>
+<td>Turns the mirrored mode on or off now (the picture's post process volume with it).</td>
+</tr>
+<tr>
+<td><strong>Get Mirror Volume</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Post Process Volume (object))</td>
+<td>The post process volume that flips the picture in the mirrored mode (none when the mode is off or MirrorMaterial is empty).</td>
+</tr>
+<tr>
+<td><strong>Get Result Id</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name)</td>
+<td>Where this run's results go: the level id, or its mirrored key.</td>
+</tr>
+<tr>
+<td><strong>Is Perfect Run</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>The run so far meets the perfect run rule: no deaths (a bonus path death does not count), every crate that counts, orbs at the third orb gem's percent. The hidden gems are not needed.</td>
+</tr>
+<tr>
+<td><strong>Add Deathless Pickup</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The hero took the deathless pickup: kept in this level's saved results at once (a later death does not take it back).</td>
+</tr>
+<tr>
+<td><strong>Has Gem Color</strong></td>
+<td>Getter (pure)</td>
+<td>Color (Corridor Shard Color)</td>
+<td>Return Value (Boolean)</td>
+<td>A coloured gem found in any level so far (Clear: always true).</td>
+</tr>
+<tr>
+<td><strong>Add Gem Color</strong></td>
+<td>Function</td>
+<td>Color (Corridor Shard Color)</td>
+<td>-</td>
+<td>Keeps a coloured gem for good (saved at once, bFlushCollectible).</td>
+</tr>
+<tr>
+<td><strong>Clear Gem Colors</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Forgets every coloured gem (a new game).</td>
+</tr>
+<tr>
+<td><strong>Finish Level</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The hero reached the level end: results and gems, merged into the saved best results; the level end screen follows.</td>
+</tr>
+<tr>
+<td><strong>Get Level Id</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name)</td>
+<td>This level's row name in LevelTable: LevelId, or the map's name when LevelId is empty.</td>
+</tr>
+<tr>
+<td><strong>Get Level Result</strong></td>
+<td>Getter (pure)</td>
+<td>Level (Name)</td>
+<td>Return Value (Corridor Level Result)</td>
+<td>Best results saved for a level in ProgressSlot (UCorridorProgress reads it anywhere else).</td>
+</tr>
+<tr>
+<td><strong>Is Level Unlocked</strong></td>
+<td>Getter (pure)</td>
+<td>Level (Name)</td>
+<td>Return Value (Boolean)</td>
+<td>Its UnlockAfter levels are finished (UnlockCount of them, 0 = all), or bUnlockAllLevels. A level not in LevelTable is always open.</td>
+</tr>
+<tr>
+<td><strong>Save Level Result</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Merges this run into the saved best results (FinishLevel does it): flags stay once earned, counts keep their best.</td>
+</tr>
+<tr>
+<td><strong>Get Next Level Map</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (T Soft Object Ptr<U World>)</td>
+<td>The next open level after this one in LevelTable's order, else MenuMap (none: Continue plays this level again).</td>
+</tr>
+<tr>
+<td><strong>Continue To Next</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Opens the level GetNextLevelMap returns; with none, this level is played again.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-ghost">Corridor Ghost</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Start Recording</strong></td>
+<td>Function</td>
+<td>Hero (Character (object))</td>
+<td>-</td>
+<td>Starts recording Hero every SnapInterval, until StopRecording.</td>
+</tr>
+<tr>
+<td><strong>Stop Recording</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Stops recording; the snapshots stay available for MakeSave.</td>
+</tr>
+<tr>
+<td><strong>Start Playback</strong></td>
+<td>Function</td>
+<td>Run (Corridor Ghost Save (object))</td>
+<td>-</td>
+<td>Plays a saved run from now (null: nothing to show).</td>
+</tr>
+<tr>
+<td><strong>Make Save</strong></td>
+<td>Function</td>
+<td>Trial Time (Float)</td>
+<td>Return Value (Corridor Ghost Save (object))</td>
+<td>The recording so far as a save object (TrialTime filled in).</td>
+</tr>
+<tr>
+<td><strong>Get Record Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds since the recording started (0 before it starts).</td>
+</tr>
+<tr>
+<td><strong>Get Playback Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>Seconds since the playback started (0 when no run is playing).</td>
+</tr>
+<tr>
+<td><strong>Is Playing</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while a saved run is being played back.</td>
+</tr>
+<tr>
+<td><strong>Get Recorded Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Number of snapshots recorded so far.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-progress">Corridor Progress</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Level Result</strong></td>
+<td>Getter (pure)</td>
+<td>Level (Name)</td>
+<td>Return Value (Corridor Level Result), Slot (String)</td>
+<td>Best results saved for a level (cleared, -1 deaths, if it was never finished).</td>
+</tr>
+<tr>
+<td><strong>Is Level Unlocked</strong></td>
+<td>Getter (pure)</td>
+<td>Table (Data Table (object)), Level (Name)</td>
+<td>Return Value (Boolean), Slot (String)</td>
+<td>Its UnlockAfter levels are finished (UnlockCount of them, 0 = all). A level not in Table is always open.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer), Result (Corridor Level Result)</td>
+<td>Gems in a result: crate + deaths + orbs (0-3) + hidden.</td>
+</tr>
+<tr>
+<td><strong>Is Skin Unlocked</strong></td>
+<td>Getter (pure)</td>
+<td>Skin Table (Data Table (object)), Skin (Name)</td>
+<td>Return Value (Boolean), Slot (String)</td>
+<td>The skin row's Unlock rule holds for the save in Slot. A row not in SkinTable is never open; None (the hero's own look) always is.</td>
+</tr>
+<tr>
+<td><strong>Get Skin Requirement</strong></td>
+<td>Getter (pure)</td>
+<td>Skin Table (Data Table (object)), Level Table (Data Table (object)), Skin (Name)</td>
+<td>Return Value (Text)</td>
+<td>What opens the skin, for a menu ("All 6 gems in Test Course"). LevelTable gives the level names (null: row names).</td>
+</tr>
+<tr>
+<td><strong>Get Skin</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name), Slot (String)</td>
+<td>The skin the player chose with SetSkin (None: the hero's own look; a skin written without SetSkin is ignored).</td>
+</tr>
+<tr>
+<td><strong>Set Skin</strong></td>
+<td>Function</td>
+<td>Skin Table (Data Table (object)), Skin (Name)</td>
+<td>Return Value (Boolean), Slot (String)</td>
+<td>Saves Skin as the chosen one if it is open (None always is). False: locked or not in SkinTable, nothing saved.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-time-trial-clock">Corridor Time Trial Clock</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apply Rules</strong></td>
+<td>Function</td>
+<td>World Context (Object (object))</td>
+<td>Layer (Corridor Rule Layer)</td>
+<td>Applies a rule layer to the level now (removals, crate swaps, time crates).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-hud-pause-level-select-level-end-ui-style">10. HUD, pause, level select, level end, UI style</h2>
+<h3 id="corridor-hud">Corridor HUD</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Gameplay Widget</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor HUD Widget (object))</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Show Hint</strong></td>
+<td>Function</td>
+<td>Duration (Float), Action (Input Action (object))</td>
+<td>Text (Text)</td>
+<td>A one-line hint at the bottom of the screen for Duration seconds. Action (optional) shows its bound key or pad button in the pill. A new hint replaces the current one.</td>
+</tr>
+<tr>
+<td><strong>Is Hint Showing</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Get Hint Action</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Input Action (object))</td>
+<td>The input action whose key the hint pill shows (none = no key).</td>
+</tr>
+<tr>
+<td><strong>Get Previous Best Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The level's best time from the save before this run started (&lt; 0 = none): the results screen's "previous best".</td>
+</tr>
+<tr>
+<td><strong>Get Game Over Widget</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Level End Widget (object))</td>
+<td>The game over screen widget (none until it has come up).</td>
+</tr>
+<tr>
+<td><strong>Get Level End Widget</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Level End Widget (object))</td>
+<td>The level end screen widget (none until it has come up).</td>
+</tr>
+<tr>
+<td><strong>Toggle Pause</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Opens the pause menu and stops the game, or closes it (the hero's pause key calls this). Not over the level end or game over screen.</td>
+</tr>
+<tr>
+<td><strong>Is Pause Menu Open</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the pause menu is up.</td>
+</tr>
+<tr>
+<td><strong>Get Loot Burst</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The loot icon's burst: 1 as an orbs lands, fading to 0 over LootBurstTime.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-icon-widget">Corridor Icon Widget</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Frame</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>The flipbook frame shown now (0 when the icon has no atlas).</td>
+</tr>
+<tr>
+<td><strong>Is Spinning</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True when the style has a spinning atlas for this icon and bSpin is on.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-hud-widget">Corridor HUD Widget</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On Flight Landed</strong></td>
+<td>Event dispatcher</td>
+<td>Counter (Corridor HUD Counter), Amount (Integer)</td>
+<td>-</td>
+<td>Called when a flight reaches its counter (after the count went up).</td>
+</tr>
+<tr>
+<td><strong>Refresh</strong></td>
+<td>Function</td>
+<td>HUD (Corridor HUD (object))</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Launch Flight From World</strong></td>
+<td>Function</td>
+<td>Counter (Corridor HUD Counter), World Location (Vector), World Size (Float), Amount (Integer)</td>
+<td>Return Value (Boolean)</td>
+<td>Sends a sprite from a world point to a counter; that counter counts Amount when it lands. False = counted at once (cap).</td>
+</tr>
+<tr>
+<td><strong>Launch Flight</strong></td>
+<td>Function</td>
+<td>Counter (Corridor HUD Counter), Viewport Pixel (Vector 2D), Size Pixels (Float), Amount (Integer)</td>
+<td>Return Value (Boolean)</td>
+<td>Same from a viewport pixel (Size in pixels).</td>
+</tr>
+<tr>
+<td><strong>Reveal Counters</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Shows every counter now (they hide again TimeBeforeHide after their last change). Level start, respawn and checkpoints call it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-level-end-widget">Corridor Level End Widget</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Gems Shown</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Gems come in so far (all of them once GemRevealTime is 0 or the reveal is over); from the time the screen opened.</td>
+</tr>
+<tr>
+<td><strong>Has Gem</strong></td>
+<td>Getter (pure)</td>
+<td>Index (Integer)</td>
+<td>Return Value (Boolean)</td>
+<td>Gem slot 0 crates, 1 deaths, 2-4 orbs (40 / 60 / 80 %), 5 hidden.</td>
+</tr>
+<tr>
+<td><strong>Replay</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The level again from the start (game over: with StartLives again).</td>
+</tr>
+<tr>
+<td><strong>Continue</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>On to the next level (ACorridorGameMode::ContinueToNext; game over: ReturnToMenu).</td>
+</tr>
+<tr>
+<td><strong>Leave</strong></td>
+<td>Function</td>
+<td>Continue (Boolean)</td>
+<td>-</td>
+<td>What the buttons call: the hero's run out (ExitRunTime), then Continue (bContinue) or Replay.</td>
+</tr>
+<tr>
+<td><strong>Is Leaving</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>Leave was called and the level is about to load.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-level-select-widget">Corridor Level Select Widget</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Open Level</strong></td>
+<td>Function</td>
+<td>Row (Name)</td>
+<td>-</td>
+<td>Opens the row's map if it is unlocked.</td>
+</tr>
+<tr>
+<td><strong>Refresh</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Builds the list again from the table and the save.</td>
+</tr>
+<tr>
+<td><strong>Toggle Mirror</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Switches between normal and mirrored picks (the MIRROR button does this).</td>
+</tr>
+<tr>
+<td><strong>Next Skin</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Puts the next open skin on (after the last one: the hero's own look) and saves it.</td>
+</tr>
+<tr>
+<td><strong>Show Card</strong></td>
+<td>Function</td>
+<td>Row (Name)</td>
+<td>-</td>
+<td>Fills the card with a level's saved results (the mirrored ones while MIRROR is on).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-level-select">Corridor Level Select</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Widget</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Level Select Widget (object))</td>
+<td>The level select widget this actor created (none before play begins).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-pause-widget">Corridor Pause Widget</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Resume</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Closes the menu and lets the game run on.</td>
+</tr>
+<tr>
+<td><strong>Restart Level</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>The level again from its start.</td>
+</tr>
+<tr>
+<td><strong>Return To Map</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>To the menu map (ACorridorGameMode::ReturnToMenu).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-ui-style">Corridor UI Style</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Is Gamepad Input</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>The last menu / HUD input came from a gamepad (pad glyphs); false = keyboard and mouse (keycaps), the start state on PC. Tracked while a Corridor HUD or menu widget is on screen.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-boss-framework-and-boss-attacks">11. Boss framework and boss attacks</h2>
+<h3 id="corridor-boss-listener">Corridor Boss Listener</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On Boss Phase Begin</strong></td>
+<td>Event / override</td>
+<td>Phase (Name), First Time (Boolean)</td>
+<td>-</td>
+<td>bFirstTime false = a retry after a death (shorter intro).</td>
+</tr>
+<tr>
+<td><strong>On Boss Phase End</strong></td>
+<td>Event / override</td>
+<td>Phase (Name)</td>
+<td>-</td>
+<td>The phase this actor is listed in (EnableActors) has ended.</td>
+</tr>
+<tr>
+<td><strong>On Boss Hero Died</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>Every listener of the running phase: stop and clear attacks.</td>
+</tr>
+<tr>
+<td><strong>On Boss Hit</strong></td>
+<td>Event / override</td>
+<td>Health Left (Integer)</td>
+<td>-</td>
+<td>The boss was hit; HealthLeft is the health it will have once the damage lands.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-boss-director">Corridor Boss Director</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Health Widget</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Boss Health Widget (object))</td>
+<td>The health bar widget, once the fight has started (null before).</td>
+</tr>
+<tr>
+<td><strong>Is Health Shown</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>The bar is up: a phase that shows it is running and the fight is not over.</td>
+</tr>
+<tr>
+<td><strong>Start Fight</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Starts the fight: resets health and counters, creates the health bar and begins the first phase.</td>
+</tr>
+<tr>
+<td><strong>Advance Phase</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Ends the running phase and begins the next one; after the last phase the fight is won.</td>
+</tr>
+<tr>
+<td><strong>Set Phase</strong></td>
+<td>Function</td>
+<td>Phase (Name)</td>
+<td>-</td>
+<td>Ends the running phase and jumps to the phase named Phase. Does nothing if no phase has that name or the fight is won.</td>
+</tr>
+<tr>
+<td><strong>Hit Boss</strong></td>
+<td>Function</td>
+<td>Damage (Integer), Damage Delay (Float)</td>
+<td>-</td>
+<td>The boss is hit (a launched enemy, a reflected shot...): what was pending stops at once (the token moves on, listeners hear OnBossHit), the health drops by Damage after DamageDelay seconds; a Hits phase ends at its count.</td>
+</tr>
+<tr>
+<td><strong>Get Scene Player</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Level Sequence Player (object))</td>
+<td>The running phase's scene (null: none).</td>
+</tr>
+<tr>
+<td><strong>Get Phase Name</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Name)</td>
+<td>Name of the running phase (None before the fight starts).</td>
+</tr>
+<tr>
+<td><strong>Get Phase Index</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Index of the running phase in Phases (-1 before the fight starts).</td>
+</tr>
+<tr>
+<td><strong>Is First Time</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>False when the running phase began again after a death.</td>
+</tr>
+<tr>
+<td><strong>Get Intro Delay</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The running phase's intro delay (first time / retry).</td>
+</tr>
+<tr>
+<td><strong>Get Health</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>The boss's current health.</td>
+</tr>
+<tr>
+<td><strong>Is Won</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True once the last phase has ended.</td>
+</tr>
+<tr>
+<td><strong>Get Phase Begin Count</strong></td>
+<td>Getter (pure)</td>
+<td>Phase (Name)</td>
+<td>Return Value (Integer)</td>
+<td>How often a phase began (StatsManager).</td>
+</tr>
+<tr>
+<td><strong>Get Deaths In Phase</strong></td>
+<td>Getter (pure)</td>
+<td>Phase (Name)</td>
+<td>Return Value (Integer)</td>
+<td>How often the hero has died in the phase with this name.</td>
+</tr>
+<tr>
+<td><strong>On Phase Begin</strong></td>
+<td>Event / override</td>
+<td>Phase (Name), First (Boolean)</td>
+<td>-</td>
+<td>A phase has begun. bFirst is false when it begins again after a death.</td>
+</tr>
+<tr>
+<td><strong>On Phase End</strong></td>
+<td>Event / override</td>
+<td>Phase (Name)</td>
+<td>-</td>
+<td>A phase has ended.</td>
+</tr>
+<tr>
+<td><strong>On Boss Damaged</strong></td>
+<td>Event / override</td>
+<td>Health Left (Integer)</td>
+<td>-</td>
+<td>The boss lost health; HealthLeft is what remains.</td>
+</tr>
+<tr>
+<td><strong>On Fight Won</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>The last phase has ended and the fight is won.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-boss-target">Corridor Boss Target</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Arrival Point</strong></td>
+<td>Getter (pure)</td>
+<td>From (Vector)</td>
+<td>Return Value (Vector)</td>
+<td>Where something launched from From ends its flight: ArrivalRadius short of the centre, toward From.</td>
+</tr>
+<tr>
+<td><strong>Take Launch Hit</strong></td>
+<td>Function</td>
+<td>By (Actor (object))</td>
+<td>-</td>
+<td>Something launched at it arrived.</td>
+</tr>
+<tr>
+<td><strong>On Hit</strong></td>
+<td>Event / override</td>
+<td>By (Actor (object))</td>
+<td>-</td>
+<td>Something launched at this target has arrived (By is the launched actor). Fires before the damage is applied.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-boss-health-widget">Corridor Boss Health Widget</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Full Pips</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Full pips now.</td>
+</tr>
+<tr>
+<td><strong>Refresh</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Pips, name and whether the bar is up, from the director now (it calls this on every phase and hit; the tick keeps it too).</td>
+</tr>
+<tr>
+<td><strong>Is Bar Shown</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>The bar's content is showing (the widget itself stays up so that it keeps ticking).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-tile-grid">Corridor Tile Grid</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Drop Tile</strong></td>
+<td>Function</td>
+<td>Tile (Int Point)</td>
+<td>-</td>
+<td>Drops one tile (X = column, Y = row): it shakes, holds, then falls. Ignored unless that tile is up.</td>
+</tr>
+<tr>
+<td><strong>Drop Pattern</strong></td>
+<td>Function</td>
+<td>Interval (Float)</td>
+<td>Tiles (Array of Int Point)</td>
+<td>The tiles in order, PatternInterval apart (Interval &lt; 0) or Interval apart.</td>
+</tr>
+<tr>
+<td><strong>Get Ring</strong></td>
+<td>Getter (pure)</td>
+<td>Ring (Integer)</td>
+<td>Return Value (Array of Int Point)</td>
+<td>Ring 0 = the outer edge, 1 = the next one in... (on the default 6 x 8 grid, rings 0 and 1 leave the middle 2 x 4).</td>
+</tr>
+<tr>
+<td><strong>Raise All</strong></td>
+<td>Function</td>
+<td>Instant (Boolean)</td>
+<td>-</td>
+<td>Brings every dropped or phased tile back up, rising over RiseTime (bInstant: they snap back at once).</td>
+</tr>
+<tr>
+<td><strong>Phase Wave</strong></td>
+<td>Function</td>
+<td>Width (Integer), Step Time (Float), Reverse (Boolean)</td>
+<td>-</td>
+<td>Phase floor wave: a gap Width columns wide sweeps across the grid, StepTime per column (column 0 first, or the last one with bReverse); the floor in it is gone, and the tiles just ahead of it flush WarnColor.</td>
+</tr>
+<tr>
+<td><strong>Is Tile Phased</strong></td>
+<td>Getter (pure)</td>
+<td>Tile (Int Point)</td>
+<td>Return Value (Boolean)</td>
+<td>Gone in a phase wave right now.</td>
+</tr>
+<tr>
+<td><strong>Get Tile Under Hero</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Int Point)</td>
+<td>The tile under the hero ((-1, -1): none).</td>
+</tr>
+<tr>
+<td><strong>Is Tile Up</strong></td>
+<td>Getter (pure)</td>
+<td>Tile (Int Point)</td>
+<td>Return Value (Boolean)</td>
+<td>Up and not dropping.</td>
+</tr>
+<tr>
+<td><strong>Get Tile Drop</strong></td>
+<td>Getter (pure)</td>
+<td>Tile (Int Point)</td>
+<td>Return Value (Float)</td>
+<td>How far the tile is below its place (0 = up).</td>
+</tr>
+<tr>
+<td><strong>Get Tile Top</strong></td>
+<td>Getter (pure)</td>
+<td>Tile (Int Point)</td>
+<td>Return Value (Vector)</td>
+<td>The tile's top centre in the world.</td>
+</tr>
+<tr>
+<td><strong>Get Neighbours</strong></td>
+<td>Getter (pure)</td>
+<td>Tile (Int Point)</td>
+<td>Return Value (Array of Int Point)</td>
+<td>The up tiles next to it (4 sides).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-lane-launcher">Corridor Lane Launcher</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fire</strong></td>
+<td>Function</td>
+<td>Lane (Integer), Kind (Corridor Lane Shot), Delay (Float)</td>
+<td>-</td>
+<td>One shot down a lane, after Delay (patterns: lanes 0..5 at 0.1 s apart = Delay 0, 0.1, ... 0.5).</td>
+</tr>
+<tr>
+<td><strong>Fire All</strong></td>
+<td>Function</td>
+<td>Kind (Corridor Lane Shot), Delay (Float)</td>
+<td>-</td>
+<td>The same shot down every lane at once.</td>
+</tr>
+<tr>
+<td><strong>Clear Shots</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Removes every shot at once (waiting, telegraphing or flying). Also happens on a boss hit, a phase end or the hero's death.</td>
+</tr>
+<tr>
+<td><strong>Get Shot Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Shots waiting, telegraphing or flying.</td>
+</tr>
+<tr>
+<td><strong>Get Lane At</strong></td>
+<td>Getter (pure)</td>
+<td>Location (Vector)</td>
+<td>Return Value (Integer)</td>
+<td>The lane nearest a point (the hero's lane).</td>
+</tr>
+<tr>
+<td><strong>Get Lane Start</strong></td>
+<td>Getter (pure)</td>
+<td>Lane (Integer)</td>
+<td>Return Value (Vector)</td>
+<td>Where a lane's shots start (on the floor, at the launcher).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-missile-rain">Corridor Missile Rain</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fire At</strong></td>
+<td>Function</td>
+<td>Target (Vector), Fall (Float), Delay (Float)</td>
+<td>-</td>
+<td>One missile onto Target (a floor point) after Delay; FallTime &lt; 0 = the default.</td>
+</tr>
+<tr>
+<td><strong>Fire At Hero</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Sends a cosmetic missile up from one of the Launchers (if any), then RealMissileDelay later drops a real one on the spot under the hero's feet at that moment. Nothing falls if the hero is dead by then.</td>
+</tr>
+<tr>
+<td><strong>Fire Arc</strong></td>
+<td>Function</td>
+<td>From (Vector), Target (Vector), Time (Float), Arc Height (Float)</td>
+<td>-</td>
+<td>A bomb lobbed from From onto Target along an arc ArcHeight high, landing in Time (1.0 s by default); the reticle grows under it all the way.</td>
+</tr>
+<tr>
+<td><strong>Fire Cross Salvo</strong></td>
+<td>Function</td>
+<td>Grid (Corridor Tile Grid (object))</td>
+<td>-</td>
+<td>Drops missiles on the up tiles next to the hero's tile, SalvoInterval apart. Grid: the tile grid to read the tiles from (empty: nothing happens).</td>
+</tr>
+<tr>
+<td><strong>Clear Missiles</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Removes every missile in flight and cancels an aim that FireAtHero is still waiting to make.</td>
+</tr>
+<tr>
+<td><strong>Get Missile Count</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Missiles on their way (cosmetic ones too).</td>
+</tr>
+<tr>
+<td><strong>Get Targets</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Array of Vector)</td>
+<td>Where the real missiles land.</td>
+</tr>
+<tr>
+<td><strong>Get Impacts</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Missiles landed so far.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-tile-chaser">Corridor Tile Chaser</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spawn</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Puts the tile runner on its start tile, replacing any current one. Needs Grid and EnemyClass.</td>
+</tr>
+<tr>
+<td><strong>Despawn</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Gone, unless it is already flying at the boss.</td>
+</tr>
+<tr>
+<td><strong>Get Enemy</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Enemy (object))</td>
+<td>The enemy it has spawned, or none when nothing is out.</td>
+</tr>
+<tr>
+<td><strong>Get Tile</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Int Point)</td>
+<td>The tile it stands on, or is walking to.</td>
+</tr>
+<tr>
+<td><strong>Is Moving</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while it is walking from one tile to the next, false while it pauses.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-boss-attack-loop">Corridor Boss Attack Loop</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On Step Started</strong></td>
+<td>Event dispatcher</td>
+<td>Kind (Corridor Attack), Shot (Corridor Lane Shot), Lane (Integer), Lead Time (Float)</td>
+<td>-</td>
+<td>Fires the moment a step starts, before its hazard is live (LeadTime says how long before): a boss body telegraphs the attack with it (ACorridorBossBody binds itself to the loops in its AttackLoops, or to every loop in the level).</td>
+</tr>
+<tr>
+<td><strong>Start</strong></td>
+<td>Function</td>
+<td>First Time (Boolean)</td>
+<td>-</td>
+<td>Starts at the first step. bFirstTime false uses IntroDelayRetry instead of IntroDelayFirst. Needs at least one step.</td>
+</tr>
+<tr>
+<td><strong>Stop</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Stops the loop, cancels a pending WorldSpeed change, restores the world speed it changed and removes the ping-pong ball.</td>
+</tr>
+<tr>
+<td><strong>Is Running</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the loop is running its steps.</td>
+</tr>
+<tr>
+<td><strong>Get Loop</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>The loop running now (1 = the first).</td>
+</tr>
+<tr>
+<td><strong>Get Steps Run</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>Steps run so far.</td>
+</tr>
+<tr>
+<td><strong>Get Ball</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Ping Pong Ball (object))</td>
+<td>The ping-pong ball a ServeBall step has in play, or none.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-boss-body">Corridor Boss Body</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Part</strong></td>
+<td>Getter (pure)</td>
+<td>Name (Name)</td>
+<td>Return Value (Static Mesh Component (object))</td>
+<td>The part's mesh component (null if no part has that name).</td>
+</tr>
+<tr>
+<td><strong>Restore Parts</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Puts every part back to rest and shows or hides the Hit parts for the current boss health.</td>
+</tr>
+<tr>
+<td><strong>Play Trigger</strong></td>
+<td>Function</td>
+<td>Trigger (Corridor Boss Trigger), Kind (Corridor Attack), Shot (Corridor Lane Shot)</td>
+<td>-</td>
+<td>Plays the moves with this trigger now (for a Blueprint or a level script; Shot colours a bShotColor signal).</td>
+</tr>
+<tr>
+<td><strong>Is Defeated</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True once the defeat moves have started.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-boss-turret">Corridor Boss Turret</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Activate</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Rises out of the floor and starts firing; does nothing unless it is down. A boss phase calls it when it begins.</td>
+</tr>
+<tr>
+<td><strong>Deactivate</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>Back under the floor; rings and bullets gone.</td>
+</tr>
+<tr>
+<td><strong>Is Up</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the turret is risen and firing (not rising, down or broken).</td>
+</tr>
+<tr>
+<td><strong>Is Broken</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True once the hero has broken it, until it rises again (see ReRiseDelay).</td>
+</tr>
+<tr>
+<td><strong>Get Rise</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>How far the mesh is out of the floor (0..RiseHeight).</td>
+</tr>
+<tr>
+<td><strong>Get Bounces Taken</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>How many times the hero has bounced on it since it last rose.</td>
+</tr>
+<tr>
+<td><strong>Get Ring Radii</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Array of Float)</td>
+<td>The rings' radii now.</td>
+</tr>
+<tr>
+<td><strong>Get Bullet Locations</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Array of Vector)</td>
+<td>The world locations of the bullets in flight.</td>
+</tr>
+<tr>
+<td><strong>On Broken</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>Called when the hero breaks the turret. Use it for your own effects or logic.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-ping-pong-ball">Corridor Ping Pong Ball</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Serve</strong></td>
+<td>Function</td>
+<td>-</td>
+<td>-</td>
+<td>From Target to the hero.</td>
+</tr>
+<tr>
+<td><strong>Get Returns</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Integer)</td>
+<td>The hero's returns so far.</td>
+</tr>
+<tr>
+<td><strong>Is Coming At Hero</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the ball flies towards the hero, false while it flies back to the boss.</td>
+</tr>
+<tr>
+<td><strong>On Scored</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>Called when the boss misses and the ball hits Target.</td>
+</tr>
+<tr>
+<td><strong>On Missed</strong></td>
+<td>Event / override</td>
+<td>-</td>
+<td>-</td>
+<td>Called when the hero fails to return the ball and it hits him.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-screen-flip">Corridor Screen Flip</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Flipped</strong></td>
+<td>Function</td>
+<td>Flip (Boolean)</td>
+<td>-</td>
+<td>Turns the upside-down picture on or off. Does nothing if it is already so, or if FlipMaterial can't be loaded.</td>
+</tr>
+<tr>
+<td><strong>Is Flipped</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Boolean)</td>
+<td>True while the picture is turned upside down.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-animation-theme-sound-effects">12. Animation, theme, sound, effects</h2>
+<h3 id="corridor-anim-instance">Corridor Anim Instance</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Run Lean</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Float)</td>
+<td>The run's lean into a turn: -1 (left) .. 1 (right), 0 when the anim set has no lean clips.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-anim-set">Corridor Anim Set</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Locomotion Play Rate</strong></td>
+<td>Getter (pure)</td>
+<td>Clip (Anim Sequence Base (object)), Speed (Float)</td>
+<td>Return Value (Float)</td>
+<td>Speed is the character's locomotion speed divided by MeshScale (the same units as AuthoredRootSpeeds).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-fx-player">Corridor Fx Player</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Effect Asset</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Fx (object))</td>
+<td>The effect asset currently playing, for Blueprint inspection and event verification.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corridor-ambient-fx">Corridor Ambient Fx</h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Inputs</th>
+<th>Outputs</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Player</strong></td>
+<td>Getter (pure)</td>
+<td>-</td>
+<td>Return Value (Corridor Fx Player (object))</td>
+<td>The running effect, or None before play / after a one-shot effect ended.</td>
+</tr>
+</tbody>
+</table><div class="pn"><a href="Abilities_and_Actions.html">&larr; Abilities and Actions</a><a href="BOSS_BODY.html">Build your own boss body &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

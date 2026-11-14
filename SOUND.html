@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sound: volume, sound keys and swapping sounds - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="index.html">Documentation home</a><a href="BUYER_QUICKSTART.html">Quickstart</a><a href="README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="Mechanics/index.html">Overview</a><a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Mechanics/Double_Jump.html">Double Jump</a><a href="Mechanics/Spin.html">Spin</a><a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="Mechanics/Slam.html">Slam</a><a href="Mechanics/Wall_Run.html">Wall Run</a><a href="Mechanics/Rope_Swing.html">Rope Swing</a><a href="Mechanics/Grind_Rail.html">Grind Rail</a><a href="Mechanics/Glide.html">Glide</a><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Mechanics/Powers.html">Powers</a><a href="Mechanics/Shield.html">Shield</a><a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="Recipes/index.html">Overview</a><a href="Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="Abilities_and_Actions.html">Abilities and Actions</a><a href="API.html">Blueprint API reference</a><h4>Guides</h4><a href="BOSS_BODY.html">Build your own boss body</a><a href="SOUND.html" class="cur">Sound: volume, sound keys and swapping sounds</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="Integration/ALS/README.html">ALS-Refactored sample</a><a href="THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="sound-volume-sound-keys-and-swapping-sounds">Sound: volume, sound keys and swapping sounds</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-volume-control-sound-classes-and-the-sound-mix">1. Volume control: Sound Classes and the Sound Mix</a></li><li><a href="#2-sound-keys">2. Sound keys</a></li><li><a href="#3-swap-a-sound-in-a-theme">3. Swap a sound in a theme</a></li><li><a href="#4-crate-sounds-per-type-with-a-fallback">4. Crate sounds: per type, with a fallback</a></li><li><a href="#5-boss-part-sounds">5. Boss part sounds</a></li><li><a href="#6-quick-answers">6. Quick answers</a></li></ul></div>
+<p>Everything in the kit that makes a noise asks for a <strong>sound key</strong> (<code>Jump</code>, <code>Break_Metal</code>, <code>BossServo</code> ...). The active <strong>theme</strong> turns each key into a sound. You never touch code: volume is a Sound Mix, sounds are a map in a theme asset.</p>
+<h2 id="1-volume-control-sound-classes-and-the-sound-mix">1. Volume control: Sound Classes and the Sound Mix</h2>
+<p>All sounds are classed, so one setting controls a whole group.</p>
+<pre><code>SC_Master
+  SC_SFX        hero, crates, enemies, bosses, hazards
+  SC_UI         menu focus / press, level end
+  SC_Ambience   ambience loops per map
+  SC_Music      music
+</code></pre>
+<p>They live in <code>/PlatformerKit/Audio/Mix</code>. The Sound Mix <strong><code>SCM_CorridorVolumes</code></strong> has one adjuster per class (volume and pitch), so it is the one place to turn a group up or down.</p>
+<p><strong>No project setting needed.</strong> When play starts, the game mode sets <code>SCM_CorridorVolumes</code> as the base Sound Mix (<code>BP_GameMode</code> &gt; Details &gt; <strong>Base Sound Mix</strong>). Point that field at your own Sound Mix to use yours, or clear it to keep your project's <strong>Default Base Sound Mix</strong> (Project Settings &gt; Engine &gt; Audio).</p>
+<p>Optional, for your own sounds: Project Settings &gt; Engine &gt; Audio &gt; <strong>Default Sound Class</strong> = <code>SC_SFX</code> puts sounds that have no class into the SFX group.</p>
+<p><strong>Change the mix</strong>
+- <em>In the editor:</em> open <code>SCM_CorridorVolumes</code>, change <strong>Volume Adjuster</strong> on a class.
+- <em>In your game (Blueprint):</em> <strong>Push Sound Mix Modifier</strong> (<code>SCM_CorridorVolumes</code>) at start, then <strong>Set Sound Mix Class Override</strong> (Sound Class <code>SC_Music</code>, Volume 0.5, Fade In Time 0.2) from an options menu slider.
+- <em>Per sound:</em> every key also has its own <strong>Volume</strong> in the theme (section 3).</p>
+<p><strong>Loudness:</strong> the shipped sounds are normalised per group (hero, crate, enemy, boss, UI, explosions, loops, ambience), so raise or lower the <strong>class</strong> and not single files.</p>
+<p><strong>Concurrency</strong> (how many copies of a sound may play at once). Assets in <code>/PlatformerKit/Audio/Mix</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Limit</th>
+<th>When the limit is reached</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SCON_CrateBurst</code></td>
+<td>6 voices</td>
+<td>stops the oldest, minimum 0.02 s between starts</td>
+<td>crate breaks and bounces (a stack of crates does not turn into noise)</td>
+</tr>
+<tr>
+<td><code>SCON_Loop</code></td>
+<td>2</td>
+<td>new one is not started</td>
+<td>rail grind, wall run and other loops</td>
+</tr>
+<tr>
+<td><code>SCON_UI</code></td>
+<td>2</td>
+<td>stops the oldest</td>
+<td>menu sounds</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attenuation:</strong> <code>ATT_BossSfx</code> (inner radius 1500 cm, falloff to 5000 cm) is used by boss part sounds so a boss is loud close by and quiet far away. Edit the radius there; open a sound wave and change <strong>Attenuation Settings</strong> to use another asset.</p>
+<h2 id="2-sound-keys">2. Sound keys</h2>
+<p>A key is a plain name. The kit plays it for the event:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Keys (examples)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hero</td>
+<td><code>Jump</code>, <code>Slide</code>, <code>SlamStart</code>, <code>Slam</code>, <code>Death</code>, <code>Death_&lt;kind&gt;</code> (for example <code>Death_Fall</code>), <code>Respawn</code>, <code>GlideLoop</code></td>
+</tr>
+<tr>
+<td>Footsteps</td>
+<td><code>Footstep</code>; a floor with the physical material <code>PM_Grass</code> plays <code>Footstep_Grass</code> where it exists, otherwise <code>Footstep</code> (also <code>_Wood</code>, <code>_Metal</code>, <code>_Felt</code>)</td>
+</tr>
+<tr>
+<td>Traversal</td>
+<td><code>WallRunIn / WallRunLoop / WallRunOut</code>, <code>RopeIn / RopeLoop / RopeOut</code>, <code>RailLand</code>, <code>RailGrind</code>, <code>RailHang</code>, <code>RailTransfer</code>, mounts <code>&lt;Prefix&gt;Start / End / Launch</code></td>
+</tr>
+<tr>
+<td>Powers</td>
+<td><code>PowerOn_&lt;Power&gt;</code>, <code>PowerLoop_&lt;Power&gt;</code>, ... with <code>&lt;Power&gt;</code> = <code>Phase</code>, <code>Cyclone</code>, <code>TimeSlow</code>, <code>Gravity</code>, <code>Glide</code>. A key without <code>_&lt;Power&gt;</code> is the fallback.</td>
+</tr>
+<tr>
+<td>Crates</td>
+<td>per type, section 4</td>
+</tr>
+<tr>
+<td>Enemies</td>
+<td><code>EnemyStomp</code>, <code>EnemySpun</code>, <code>EnemyShoot</code>, <code>EnemyChargerWindup</code>, <code>EnemyShieldUp</code> ...</td>
+</tr>
+<tr>
+<td>Pickups and level end</td>
+<td><code>Loot</code>, <code>Gem</code>, <code>ExtraLife</code>, <code>LevelEndAppear</code>, <code>LevelEndReward</code> ...</td>
+</tr>
+<tr>
+<td>Boss</td>
+<td><code>BossHit</code>, <code>LaneShot</code>, <code>MissileLaunch</code>, <code>MissileImpact</code>, <code>BossServo</code>, <code>BossServoFast</code>, <code>BossTelegraph</code>, <code>BossSpinUp</code>, <code>BossPartEject</code>, <code>BossDefeat</code></td>
+</tr>
+<tr>
+<td>UI</td>
+<td><code>FocusSound</code>, <code>PressSound</code> are set on the UI style asset, not in the theme</td>
+</tr>
+<tr>
+<td>Music and ambience</td>
+<td>theme <strong>Music</strong>; each level places an Ambient Sound for its ambience</td>
+</tr>
+</tbody>
+</table>
+<p>The complete list is the <strong>Sounds</strong> map of the shipped theme: open it and scroll. A key that the theme does not contain is silent (the Output Log prints <code>sfx: the theme has no sound for &lt;key&gt;</code> once).</p>
+<h2 id="3-swap-a-sound-in-a-theme">3. Swap a sound in a theme</h2>
+<p>Themes live in <code>/PlatformerKit/Themes</code> (<code>DA_Lab_Course</code> is the theme of the demo courses). <strong>Never edit the shipped theme: duplicate it first.</strong></p>
+<ol>
+<li>Import your <code>.wav</code> into your own folder (Content Browser &gt; drag the file in).</li>
+<li>Duplicate the theme into your folder and keep the original as a reset point.</li>
+<li>Open your theme &gt; <strong>Sounds</strong>. Find the key (for example <code>Jump</code>) or press <strong>+</strong> to add one.</li>
+<li>Open the entry: <strong>Variants</strong> = your Sound Wave or Sound Cue (several = picked at random), <strong>Volume</strong> = 1.0.</li>
+<li>In <code>BP_Control &gt; 3 Theme</code> of the level select your theme. <strong>Restart Play.</strong></li>
+</ol>
+<p>Sound Waves that you add should be assigned a <strong>Sound Class</strong> (<code>SC_SFX</code> for effects) so the volume control of section 1 reaches them. Optional: set <strong>Concurrency</strong> to <code>SCON_CrateBurst</code> for crate-like sounds.</p>
+<p>To change the music: <strong>Music</strong> and <strong>Music Volume</strong> in the same theme.</p>
+<h2 id="4-crate-sounds-per-type-with-a-fallback">4. Crate sounds: per type, with a fallback</h2>
+<p>Crates look for a key for their own type first and fall back to the generic one:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Looks for first</th>
+<th>Falls back to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Break</td>
+<td><code>Break_&lt;Type&gt;</code></td>
+<td><code>Break</code></td>
+</tr>
+<tr>
+<td>Bounce</td>
+<td><code>Bounce_&lt;Type&gt;</code></td>
+<td><code>Bounce</code></td>
+</tr>
+<tr>
+<td>Metal bounce</td>
+<td><code>BounceMetal_&lt;Type&gt;</code></td>
+<td><code>BounceMetal</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;Type&gt;</code> is the crate type name. The 16 types are <code>Basic</code>, <code>Surprise</code>, <code>Bounce</code>, <code>Arrow</code>, <code>Strong</code>, <code>Metal</code>, <code>NBounce</code>, <code>Switch</code>, <code>Outline</code>, <code>Detonator</code>, <code>Fuse</code>, <code>BigOrb</code>, <code>Volatile</code>, <code>Time</code>, <code>Checkpoint</code> and <code>Shield</code>.</p>
+<p>The Lab theme has a different <code>Break_&lt;Type&gt;</code> for nine types and <code>Bounce_&lt;Type&gt;</code> / <code>BounceMetal_&lt;Type&gt;</code> for the bouncing ones. Fuse, detonator and volatile crates use <code>FuseBeep</code>, <code>Explosion</code>, <code>Detonator</code>, <code>CrateSwitch</code> and <code>VolatileHop</code>.</p>
+<p><strong>Give one crate type its own sound:</strong> add <code>Break_Metal</code> (for example) to your theme and fill it. Delete the key and the crate plays the generic <code>Break</code> again, so you never have to fill all 16.</p>
+<h2 id="5-boss-part-sounds">5. Boss part sounds</h2>
+<p>Every boss body move has an <strong>Sfx</strong> field: a sound key, played when the move starts. Set it in the boss Blueprint (<code>BP_Boss_Machinist</code>, <code>BP_Boss_Engine</code> or your own): <strong>Parts &gt; (part) &gt; Moves &gt; (move) &gt; Sfx</strong>. The key must exist in the theme's <strong>Sounds</strong> map. To change what a move sounds like, either change the key in the move, or change the sound behind the key in a theme. Boss sounds use the <code>ATT_BossSfx</code> attenuation, so they follow the boss's position. See <a href="BOSS_BODY.html">BOSS_BODY.md</a>.</p>
+<h2 id="6-quick-answers">6. Quick answers</h2>
+<ul>
+<li><strong>Nothing plays:</strong> the theme has no entry for that key (read the Output Log), or the Sound Class volume is 0, or <code>SC_Master</code> is muted by your own mix.</li>
+<li><strong>My sound is far too loud or quiet:</strong> change <strong>Volume</strong> on that key, not the file; for the whole group change the class in <code>SCM_CorridorVolumes</code>.</li>
+<li><strong>My crate sound repeats a hundred times in a stack:</strong> assign <code>SCON_CrateBurst</code> as the wave's Concurrency.</li>
+<li><strong>Sound changes do not appear in Play:</strong> restart Play after changing a theme.</li>
+</ul><div class="pn"><a href="BOSS_BODY.html">&larr; Build your own boss body</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

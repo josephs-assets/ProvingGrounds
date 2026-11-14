@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slide and Crouch - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../index.html">Documentation home</a><a href="../BUYER_QUICKSTART.html">Quickstart</a><a href="../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="index.html">Overview</a><a href="Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Double_Jump.html">Double Jump</a><a href="Spin.html">Spin</a><a href="Slide_and_Crouch.html" class="cur">Slide and Crouch</a><a href="Slam.html">Slam</a><a href="Wall_Run.html">Wall Run</a><a href="Rope_Swing.html">Rope Swing</a><a href="Grind_Rail.html">Grind Rail</a><a href="Glide.html">Glide</a><a href="Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Powers.html">Powers</a><a href="Shield.html">Shield</a><a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../Recipes/index.html">Overview</a><a href="../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../Abilities_and_Actions.html">Abilities and Actions</a><a href="../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../BOSS_BODY.html">Build your own boss body</a><a href="../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="slide-and-crouch">Slide and Crouch</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-what-it-does">1. What it does</a></li><li><a href="#2-turn-on-off">2. Turn on / off</a></li><li><a href="#3-level-actor-to-place">3. Level actor to place</a></li><li><a href="#4-details-fields">4. Details fields</a></li><li><a href="#5-blueprint-functions-and-events">5. Blueprint functions and events</a></li><li><a href="#6-use-your-own-animation">6. Use your own animation</a></li><li><a href="#7-see-it-in-the-demo">7. See it in the demo</a></li><li><a href="#8-pitfalls">8. Pitfalls</a></li></ul></div>
+<h2 id="1-what-it-does">1. What it does</h2>
+<p>One button, three results: with the stick pushed the hero <strong>slides</strong> (1.6 times walking speed), with the stick released it <strong>crouches</strong> (hold to crawl), in the air it is the <strong>slam</strong> (see <a href="Slam.html">Slam</a>). Jump out of a slide or crouch for the higher slide jump. A spin out of a slide is the slide-spin burst.</p>
+<h2 id="2-turn-on-off">2. Turn on / off</h2>
+<ul>
+<li><strong>Details:</strong> <strong>Corridor | Abilities &gt; Can Slide</strong>.</li>
+<li><strong>Blueprint:</strong> <code>Set Ability Enabled</code> (Ability = <strong>Slide</strong>) / <code>Is Ability Enabled</code>.</li>
+<li><strong>Routes:</strong> A yes (<strong>5. Abilities &gt; Can Slide</strong>, honoured by <code>Move Slide</code>; no extra speed on a plain Character Movement - the speed multiple needs the kit's movement component or the ALS sample) - B yes - C yes.</li>
+<li><strong>Switched off while sliding or crouching:</strong> the slide ends and the hero stands up. Under a low ceiling the engine keeps the hero crouched until there is room; nothing gets stuck.</li>
+</ul>
+<h2 id="3-level-actor-to-place">3. Level actor to place</h2>
+<p>None. Low passages are your own geometry.</p>
+<h2 id="4-details-fields">4. Details fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Slide Duration</strong> (<code>SlideDuration</code>)</td>
+<td>0.3</td>
+<td>Slide length in time. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Speed Scale</strong> (<code>SlideSpeedScale</code>)</td>
+<td>1.6</td>
+<td>Slide speed as a multiple of MaxWalkSpeed. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Post Delay</strong> (<code>SlidePostDelay</code>)</td>
+<td>0.1</td>
+<td>Pause after a slide before another can start. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Stick Min</strong> (<code>SlideStickMin</code>)</td>
+<td>0.25</td>
+<td>Stick deflection (0-1) a slide needs; at or below CrouchStickMax the slide button crouches instead. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Crouch Stick Max</strong> (<code>CrouchStickMax</code>)</td>
+<td>0.2</td>
+<td>Stick deflection (0-1) at or below which the slide button crouches instead of sliding. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Spin Lock</strong> (<code>SlideSpinLock</code>)</td>
+<td>0.1</td>
+<td>No spin for this long right after a slide starts. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide End Lock</strong> (<code>SlideEndLock</code>)</td>
+<td>0.167</td>
+<td>No new slide for this long after one ends; the longer of this and SlidePostDelay applies. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Turn Lock</strong> (<code>SlideTurnLock</code>)</td>
+<td>0.4</td>
+<td>Turning is locked this long after a slide. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Hit Extent</strong> (<code>SlideHitExtent</code>)</td>
+<td>(77, 90, 39)</td>
+<td>Half extents of the slide hit box in front of the character (cm). <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>High Jump Air Accel Scale</strong> (<code>HighJumpAirAccelScale</code>)</td>
+<td>0.5</td>
+<td>Air acceleration multiplier during a slide/crouch high jump. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>High Jump Velocity Scale</strong> (<code>HighJumpVelocityScale</code>)</td>
+<td>1.25</td>
+<td>Slide high jump launch speed vs a normal jump. <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Slide Spin Keeps Speed</strong> (<code>bSlideSpinKeepsSpeed</code>)</td>
+<td>true</td>
+<td>A spin started during a slide keeps the slide speed for its duration (a speed burst). <em>(Details: Corridor | Slide)</em></td>
+</tr>
+<tr>
+<td><strong>Crouch Height Scale</strong> (<code>CrouchHeightScale</code>)</td>
+<td>0.45</td>
+<td>Crouching: capsule half height x this (lower = a lower crouch). <em>(Details: Corridor | Crouch)</em></td>
+</tr>
+<tr>
+<td><strong>Crawl Speed</strong> (<code>CrawlSpeed</code>)</td>
+<td>193</td>
+<td>Walk speed while crouched (cm/s). <em>(Details: Corridor | Crouch)</em></td>
+</tr>
+<tr>
+<td><strong>Crouch Min Hold</strong> (<code>CrouchMinHold</code>)</td>
+<td>0.2</td>
+<td>A crouch lasts at least this long, even if the slide button is released sooner. <em>(Details: Corridor | Crouch)</em></td>
+</tr>
+</tbody>
+</table>
+<p>Option A: <code>Slide Duration</code>, <code>Slide Speed Scale</code> on the Corridor Hero component (<strong>4. Moves</strong>).</p>
+<h2 id="5-blueprint-functions-and-events">5. Blueprint functions and events</h2>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Ability Enabled</strong> / <strong>Is Ability Enabled</strong></td>
+<td>Function / Getter</td>
+<td>The switch above (Ability = Slide).</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter</td>
+<td><strong>Slide</strong> while sliding, <strong>Crouch</strong> while crouching or crawling.</td>
+</tr>
+<tr>
+<td><strong>On Action Started / Ended</strong></td>
+<td>Event dispatchers</td>
+<td>One pair per slide or crouch.</td>
+</tr>
+<tr>
+<td><strong>Is Sliding</strong></td>
+<td>Getter</td>
+<td>True during a slide.</td>
+</tr>
+<tr>
+<td><strong>Is Crouched</strong></td>
+<td>Getter</td>
+<td>The engine's own node (the kit adds none).</td>
+</tr>
+<tr>
+<td><strong>On Slide Pressed / Released</strong></td>
+<td>Function</td>
+<td>Call them from your own input. Option A: <strong>Move Slide</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-use-your-own-animation">6. Use your own animation</h2>
+<p>Leave <strong>Anim Set</strong> empty; switch on <code>Get Corridor Action</code>: <strong>Slide</strong> and <strong>Crouch</strong>. Locomotion returns on <code>On Action Ended</code>.</p>
+<h2 id="7-see-it-in-the-demo">7. See it in the demo</h2>
+<p><code>Course1_RunAndJump</code>: the low passages. Push the stick and press Slide (K / Left Shift).</p>
+<h2 id="8-pitfalls">8. Pitfalls</h2>
+<ul>
+<li>Stick thresholds: pushed past <code>Slide Stick Min</code> (0.25) the hero slides; with the stick at or under <code>Crouch Stick Max</code> (0.2) it crouches.</li>
+<li>Calling the engine's <strong>Crouch</strong> yourself still gives the slide/crouch high jump even with Slide off.</li>
+<li>A slide is what the kit's high speed multiple is built on: on a plain Character Movement (Option A) there is no extra slide speed.</li>
+</ul><div class="pn"><a href="Spin.html">&larr; Spin</a><a href="Slam.html">Slam &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

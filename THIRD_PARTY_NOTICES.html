@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Asset sources and third-party notices - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="index.html">Documentation home</a><a href="BUYER_QUICKSTART.html">Quickstart</a><a href="README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="Mechanics/index.html">Overview</a><a href="Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Mechanics/Double_Jump.html">Double Jump</a><a href="Mechanics/Spin.html">Spin</a><a href="Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="Mechanics/Slam.html">Slam</a><a href="Mechanics/Wall_Run.html">Wall Run</a><a href="Mechanics/Rope_Swing.html">Rope Swing</a><a href="Mechanics/Grind_Rail.html">Grind Rail</a><a href="Mechanics/Glide.html">Glide</a><a href="Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="Mechanics/Powers.html">Powers</a><a href="Mechanics/Shield.html">Shield</a><a href="Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="Recipes/index.html">Overview</a><a href="Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="Abilities_and_Actions.html">Abilities and Actions</a><a href="API.html">Blueprint API reference</a><h4>Guides</h4><a href="BOSS_BODY.html">Build your own boss body</a><a href="SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="Integration/ALS/README.html">ALS-Refactored sample</a><a href="THIRD_PARTY_NOTICES.html" class="cur">Asset sources and third-party notices</a></nav><main><h1 id="asset-sources-and-third-party-notices">Asset sources and third-party notices</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#original-production">Original production</a></li><li><a href="#ui-fonts">UI fonts</a></li><li><a href="#soundfont-instruments">SoundFont instruments</a></li><li><a href="#recorded-depot-sources">Recorded depot sources</a></li><li><a href="#epic-template-content">Epic template content</a></li><li><a href="#scope-of-the-notice">Scope of the notice</a></li></ul></div>
+<p>This inventory records the current internal build. It is not a final distribution clearance.</p>
+<h2 id="original-production">Original production</h2>
+<ul>
+<li>The sound effects (Workshop set and Lab set) and the Workshop music loop are locally synthesized, sample-free work documented in the production sound manifest. The three Lab music loops (<code>MUS_Lab_Course</code>, <code>MUS_Lab_Boss</code>, <code>MUS_Lab_Menu</code>) are original compositions rendered with the instruments of the FluidR3_GM SoundFont (see "SoundFont instruments"). No external sound pack or voice recording is included.</li>
+<li>Workshop box, pickup, enemy and modular-kit geometry is generated by the original production builders. The 75 enemy clips use the original rig and animation builders.</li>
+<li>
+<p>The Meadow terrain layout, turf shelves and path stones are original; its scanned rocks, foliage and material sources are listed below.</p>
+</li>
+<li>
+<p>The 44 Workshop hero action clips were authored for the project. Runtime feedback includes 24 original effects and three analytic sprite materials.</p>
+</li>
+</ul>
+<h2 id="ui-fonts">UI fonts</h2>
+<p>The UI embeds Geist 600 for labels, Geist Mono 500 for menu numbers and Instrument Serif Italic for signatures. The in-play HUD (v3) adds static instances of Geist Black 900 (counter numerals), Geist ExtraBold 800 (the lives sign and keycap letters) and Geist Mono Bold 700 (secondary numbers and the time-trial clock), cut from the variable Geist and Geist Mono fonts with fontTools; the instances keep the SIL Open Font License 1.1. The supplied license texts are <a href="Licenses/OFL-Geist.txt">Geist and Geist Mono</a> and <a href="Licenses/OFL-InstrumentSerif.txt">Instrument Serif</a>.</p>
+<h2 id="soundfont-instruments">SoundFont instruments</h2>
+<p>The three Lab music loops were rendered with the FluidR3_GM SoundFont, Copyright 2000-2002, 2008 Frank Wen, released under the MIT licence. Only the rendered audio ships; the SoundFont itself is not included. Licence text: <a href="Licenses/MIT-FluidR3_GM.txt">Licenses/MIT-FluidR3_GM.txt</a>.</p>
+<h2 id="recorded-depot-sources">Recorded depot sources</h2>
+<p>The installed depot records these sources as CC0. The table preserves their provider and identifier. Texture adaptations include tinting, packing and wear; Meadow model adaptations include topology/shape edits and reconstructed foliage coverage. Current online terms have not been rechecked in this local pass.</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Source ID</th>
+<th>Kind</th>
+<th>Local recorded classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ambientcg</td>
+<td>Marble001</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Metal009</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Metal047B</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Metal048C</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Metal050C</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Metal055A</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>PaintedMetal004</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>PaintedWood007B</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Plastic010</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>ambientcg</td>
+<td>Rope001</td>
+<td>texture</td>
+<td>CC0 (ambientcg.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>bark_brown_02</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>brown_mud_dry</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>caban</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>flower_gazania</td>
+<td>model</td>
+<td>CC0 according to local FloatingMeadow/SOURCES.md</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>grass_ground</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>grass_medium_01</td>
+<td>model</td>
+<td>CC0 according to local FloatingMeadow/SOURCES.md</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>island_tree_02</td>
+<td>model</td>
+<td>CC0 according to local FloatingMeadow/SOURCES.md</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>mossy_rock</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>namaqualand_boulder_03</td>
+<td>model</td>
+<td>CC0 according to local FloatingMeadow/SOURCES.md</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>plywood</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+<tr>
+<td>polyhaven</td>
+<td>white_oak_veneer</td>
+<td>texture</td>
+<td>CC0 (polyhaven.com)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="epic-template-content">Epic template content</h2>
+<p>The mannequin meshes, skeleton, animation assets and default animation blueprint correspond to 45 paths in the installed Unreal Engine 5.7 High Characters template resources. They were relocated/resaved and are not byte-identical to the template files. Prototyping content and Engine-provided lighting/sky resources are also used. These assets are Epic Games content, not original product art or CC0.</p>
+<p>Epic content is included for use in Unreal Engine projects under the Unreal Engine EULA, as Epic permits for content distributed on Fab.</p>
+<h2 id="scope-of-the-notice">Scope of the notice</h2>
+<p>Development fixtures and reference-inspection tools are excluded from the delivery copy. The source inventory is retained with the authoring records. Final licence verification, unused-content review and human visual acceptance remain open; no release-ready claim follows from this notice.</p><div class="pn"><a href="Integration/ALS/README.html">&larr; Corridor Platformer kit + ALS-Refactored (sample source)</a><span></span></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mounts and Jetboard - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../index.html">Documentation home</a><a href="../BUYER_QUICKSTART.html">Quickstart</a><a href="../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="index.html">Overview</a><a href="Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="Double_Jump.html">Double Jump</a><a href="Spin.html">Spin</a><a href="Slide_and_Crouch.html">Slide and Crouch</a><a href="Slam.html">Slam</a><a href="Wall_Run.html">Wall Run</a><a href="Rope_Swing.html">Rope Swing</a><a href="Grind_Rail.html">Grind Rail</a><a href="Glide.html">Glide</a><a href="Mounts_and_Jetboard.html" class="cur">Mounts and Jetboard</a><a href="Powers.html">Powers</a><a href="Shield.html">Shield</a><a href="Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../Recipes/index.html">Overview</a><a href="../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../Abilities_and_Actions.html">Abilities and Actions</a><a href="../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../BOSS_BODY.html">Build your own boss body</a><a href="../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a></nav><main><h1 id="mounts-and-jetboard">Mounts and Jetboard</h1>
+<div class="toc"><b>On this page</b><ul><li><a href="#1-what-it-does">1. What it does</a></li><li><a href="#2-turn-on-off">2. Turn on / off</a></li><li><a href="#3-level-actor-to-place">3. Level actor to place</a></li><li><a href="#4-details-fields">4. Details fields</a></li><li><a href="#5-blueprint-functions-and-events">5. Blueprint functions and events</a></li><li><a href="#6-use-your-own-animation">6. Use your own animation</a></li><li><a href="#7-see-it-in-the-demo">7. See it in the demo</a></li><li><a href="#8-pitfalls">8. Pitfalls</a></li><li><a href="#more-about-mounts-and-the-jetboard">More about mounts and the jetboard</a></li></ul></div>
+<h2 id="1-what-it-does">1. What it does</h2>
+<p>Walk near a <strong>Corridor Mount</strong> and the hero rides it along its path: the stick steers, Jump is the mount's jump, Spin is the boost. A <strong>Corridor Jetboard</strong> is a board ridden freely on <strong>Corridor Water</strong>. Ramps throw the mount into the air; stat gates change its speed mid-run.</p>
+<h2 id="2-turn-on-off">2. Turn on / off</h2>
+<ul>
+<li><strong>Details:</strong> <strong>Corridor | Abilities &gt; Can Use Mounts</strong>.</li>
+<li><strong>Blueprint:</strong> <code>Set Ability Enabled</code> (Ability = <strong>Mounts</strong>) / <code>Is Ability Enabled</code>.</li>
+<li><strong>Routes:</strong> B only (Corridor Character).</li>
+<li><strong>Off:</strong> mounts wait and never take the hero (and a hero is not put back on a mount after a respawn). <strong>Switched off while riding:</strong> the hero lets go and can move.</li>
+</ul>
+<h2 id="3-level-actor-to-place">3. Level actor to place</h2>
+<p><strong>Corridor Mount</strong>, <strong>Corridor Jetboard</strong> (with <strong>Corridor Water</strong> and <strong>Corridor Whirlpool</strong>), <strong>Corridor Mount Ramp</strong>, <strong>Corridor Mount Stat Gate</strong>. Draw the mount's <strong>Path</strong>; for the jetboard put the end of the Path (the finish line) <code>Dismount Distance</code> before the dock.</p>
+<h2 id="4-details-fields">4. Details fields</h2>
+<p>Mount (<code>ACorridorMount</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mount Distance</strong> (<code>MountDistance</code>)</td>
+<td>514</td>
+<td>The hero closer than this to the root gets on. <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>Transfer Time</strong> (<code>TransferTime</code>)</td>
+<td>0.467</td>
+<td>Getting on takes this long. <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>Speed</strong> (<code>Speed</code>)</td>
+<td>964</td>
+<td>Running speed. <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>Acceleration</strong> (<code>Acceleration</code>)</td>
+<td>2571</td>
+<td>How fast the mount's speed changes toward its target (cm/s^2); a boost may use a faster rate. <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>Gravity Scale</strong> (<code>GravityScale</code>)</td>
+<td>1</td>
+<td>Gravity on the rider while riding, x the hero's own (below 1 = floatier). <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>End Launch Velocity</strong> (<code>EndLaunchVelocity</code>)</td>
+<td>1543</td>
+<td>At the end of Path the hero is thrown up at this speed, keeping the run. <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>Respawn Delay</strong> (<code>RespawnDelay</code>)</td>
+<td>2</td>
+<td>Respawned on it (a checkpoint taken while riding): it stands this long, then runs. <em>(Details: Corridor | Mount)</em></td>
+</tr>
+<tr>
+<td><strong>Rotation Rate</strong> (<code>RotationRate</code>)</td>
+<td>200</td>
+<td>How fast the stick turns it. <em>(Details: Corridor | Mount | Steer)</em></td>
+</tr>
+<tr>
+<td><strong>Max Steer Angle</strong> (<code>MaxSteerAngle</code>)</td>
+<td>45</td>
+<td>The furthest it turns away from the path's way. <em>(Details: Corridor | Mount | Steer)</em></td>
+</tr>
+<tr>
+<td><strong>Lane Half Width</strong> (<code>LaneHalfWidth</code>)</td>
+<td>400</td>
+<td>How far either side of the path it may go. <em>(Details: Corridor | Mount | Steer)</em></td>
+</tr>
+<tr>
+<td><strong>Can Jump</strong> (<code>bCanJump</code>)</td>
+<td>true</td>
+<td>Whether the rider can jump: a tap jumps JumpHeight, a held press HeldJumpHeight; letting go on the way up cuts the rise short. <em>(Details: Corridor | Mount | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Jump Height</strong> (<code>JumpHeight</code>)</td>
+<td>129</td>
+<td>Jump height on a tap (cm); letting go of jump on the way up cuts the rise down to this. <em>(Details: Corridor | Mount | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Held Jump Height</strong> (<code>HeldJumpHeight</code>)</td>
+<td>257</td>
+<td>Jump height while the button is held (cm). <em>(Details: Corridor | Mount | Jump)</em></td>
+</tr>
+<tr>
+<td><strong>Can Boost</strong> (<code>bCanBoost</code>)</td>
+<td>true</td>
+<td>Whether the spin button gives a speed boost while riding. <em>(Details: Corridor | Mount | Boost)</em></td>
+</tr>
+<tr>
+<td><strong>Boost Peak</strong> (<code>BoostPeak</code>)</td>
+<td>1.84</td>
+<td>Boost (spin button): speed x BoostPeak at BoostRise, back to normal at BoostTime. <em>(Details: Corridor | Mount | Boost)</em></td>
+</tr>
+<tr>
+<td><strong>Boost Time</strong> (<code>BoostTime</code>)</td>
+<td>1</td>
+<td>Total length of a boost (s): the speed is back to normal when it ends. <em>(Details: Corridor | Mount | Boost)</em></td>
+</tr>
+<tr>
+<td><strong>Boost Cooldown</strong> (<code>BoostCooldown</code>)</td>
+<td>1</td>
+<td>Wait after a boost ends before the next. <em>(Details: Corridor | Mount | Boost)</em></td>
+</tr>
+</tbody>
+</table>
+<p>Jetboard (<code>ACorridorJetboard</code>): <code>Coast Speed</code>, <code>Boost Speed</code>, <code>Dismount Distance</code>, <code>Ride Height</code>, <code>Rotation Rate</code> - see the tooltips in Details.</p>
+<h2 id="5-blueprint-functions-and-events">5. Blueprint functions and events</h2>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set Ability Enabled</strong> / <strong>Is Ability Enabled</strong></td>
+<td>Function / Getter</td>
+<td>The switch above (Ability = Mounts).</td>
+</tr>
+<tr>
+<td><strong>Get Corridor Action</strong></td>
+<td>Getter</td>
+<td><strong>Mount</strong> from boarding until the hero is released.</td>
+</tr>
+<tr>
+<td><strong>On Action Started / Ended</strong></td>
+<td>Event dispatchers</td>
+<td>One pair per ride.</td>
+</tr>
+<tr>
+<td><strong>Get Mount</strong></td>
+<td>Getter</td>
+<td>The mount being ridden.</td>
+</tr>
+<tr>
+<td><strong>Start Ride</strong>, <strong>Launch</strong>, <strong>End Ride</strong>, <strong>Get State</strong>, <strong>Get Speed</strong>, <strong>Is Boosting</strong>, <strong>On State Changed</strong> (on the mount)</td>
+<td>Function / Getter / Event</td>
+<td>Boarding and state; see the <a href="../API.html">API reference</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-use-your-own-animation">6. Use your own animation</h2>
+<p>Leave <strong>Anim Set</strong> empty; <code>Get Corridor Action</code> = <strong>Mount</strong>; the mount's own getters (<code>Get Speed</code>, <code>Is Boosting</code>; jetboard <code>Get Turn</code>, <code>Get Drive Level</code>) drive the blend.</p>
+<h2 id="7-see-it-in-the-demo">7. See it in the demo</h2>
+<p><code>Course4_RideChase</code>: the ride sections. Walk up to the mount.</p>
+<h2 id="8-pitfalls">8. Pitfalls</h2>
+<ul>
+<li><strong>Turn Mounts on before the level starts</strong> (or after a respawn): a mount that has ended is not re-armed when you switch the ability on later in the same run.</li>
+<li>Option B only: mounts need the Corridor Character.</li>
+<li>While riding, the spin button is the boost and Jump is the mount's jump. That is still true with Spin and Double Jump off.</li>
+<li>A mount must be ended with <strong>End Ride</strong>; do not just clear flags.</li>
+</ul>
+<h2 id="more-about-mounts-and-the-jetboard">More about mounts and the jetboard</h2>
+<table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ACorridorMount</code></td>
+<td>Walk within <code>MountDistance</code> and the hero rides it along <code>Path</code>: stick steers, jump and spin (boost) are the mount's. The hero sits on it with the anim set's <code>Vehicle\|Mount</code> clips: <code>MountRide</code> (loop; empty = <code>Idle</code>, never the run cycle) blending into <code>MountRideFast</code> (empty = <code>MountRide</code>) as a boost takes the mount from its <code>Speed</code> to <code>Speed x BoostPeak</code>.</td>
+</tr>
+<tr>
+<td><code>ACorridorJetboard</code></td>
+<td>A board ridden freely on <code>ACorridorWater</code>: the stick is where it goes (<code>RotationRate</code>; <code>Speed</code> at full stick, <code>CoastSpeed</code> with none), holding spin boosts (<code>BoostSpeed</code>, at least <code>BoostMinTime</code>), jump only if <code>bCanJump</code>. Past the end of <code>Path</code> (the finish line) the hero hops <code>DismountDistance</code> ahead onto the dock: put <code>Path</code>'s end that far before it. Mount ramps and checkpoints work as with <code>ACorridorMount</code>; walls stop it (<code>BlockedTime</code> 0). Put a camera view with the <code>Vehicle</code> preset over the water. A skeletal board: set <code>BoardMesh</code> + <code>BoardAnims</code> (or the theme's <code>JetboardLook</code>); it rides under the hero's feet and plays the same blend; nobody on it, it plays its set's <code>Idle</code>. Placed over water, it waits at <code>RideHeight</code> above the surface. The hero's anim set fills <code>Vehicle\|Jetboard</code>: a 3 x 3 blend (<code>BoardSlow</code> / <code>BoardRide</code> / <code>BoardBoost</code> rows by speed, centre / left / right by turn, <code>BoardLeanSample</code>, <code>BoardSmoothTime</code>), the air clips <code>BoardJumpStart</code>, <code>BoardApex</code>, <code>BoardFall</code>, <code>BoardLand</code> and deaths on the board <code>BoardDeaths</code>. Empty slots are skipped.</td>
+</tr>
+</tbody>
+</table><div class="pn"><a href="Glide.html">&larr; Glide</a><a href="Powers.html">Powers &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>
