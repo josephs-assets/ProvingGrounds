@@ -70,11 +70,11 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <ol>
 <li>Open the product page in <strong>Fab</strong> (or the Epic Games Launcher &gt; Library &gt; Fab Library) and press <strong>Add to Project</strong>. Choose your Unreal Engine 5.7 project. (To install by hand, copy the plugin folder into your project's <code>Plugins</code> folder.)</li>
 <li>Open the project. If Unreal asks to enable the plugin or rebuild, accept. Otherwise open <strong>Edit &gt; Plugins</strong>, search for <strong>PlatformerKit</strong>, tick <strong>Enabled</strong> and <strong>Restart Now</strong>. The plugin enables the engine plugins it needs (Enhanced Input, ACL, Control Rig, RigVM, Full Body IK, Animation Data).</li>
-<li>In the Content Browser open <strong>Settings &gt; Show Plugin Content</strong>. The kit's assets are in <strong>PlatformerKit Content</strong>.</li>
-<li>Open <strong>PlatformerKit Content &gt; Maps &gt; <code>Corridor_Menu</code></strong> and press <strong>Play</strong>. Every map sets its own game mode, so you do <strong>not</strong> change Maps &amp; Modes, and the demo does not touch your project's game mode or input settings. Pick a level with the mouse or the gamepad stick; all of them are open.</li>
+<li>In the Content Browser open <strong>Settings</strong> and tick <strong>Plugin Content</strong> (5.3–5.5: <strong>Show Plugin Content</strong>). The kit's assets are in the plugin folder <strong>Proving Grounds: 3D Platformer Mechanics</strong> (folder <code>PlatformerKit</code>).</li>
+<li>Open <strong>Proving Grounds: 3D Platformer Mechanics &gt; Maps &gt; <code>Corridor_Menu</code></strong> and press <strong>Play</strong>. Every map sets its own game mode, so you do <strong>not</strong> change Maps &amp; Modes, and the demo does not touch your project's game mode or input settings. Pick a level with the mouse or the gamepad stick; all of them are open.</li>
 <li>Optional: set <strong>Project Settings &gt; Maps &amp; Modes &gt; Game Default Map</strong> to <code>Corridor_Menu</code> so a packaged game starts at the menu.</li>
 </ol>
-<p>Put your own assets in your own Content folder, never inside <strong>PlatformerKit Content</strong>, so updating the plugin never overwrites your work.</p>
+<p>Put your own assets in your own Content folder, never inside the plugin folder, so updating the plugin never overwrites your work.</p>
 <h3 id="project-render-settings">Project render settings</h3>
 <p>The demo maps are lit for Lumen. A project made from the UE 5.7 Third Person, Blank or another template at the default <strong>Maximum</strong> quality already has all of these. A project upgraded from UE4, or made with the <strong>Scalable</strong> preset, may not. Check <strong>Project Settings &gt; Engine &gt; Rendering</strong>:</p>
 <table>
@@ -115,7 +115,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 </table>
 <p>Without them the maps still load and play with no errors, but Unreal then lights them without Lumen (no dynamic global illumination, screen-space reflections), so the look differs from the listing images. Nothing else is needed: no input mappings, no collision channels or profiles, no console variables.</p>
 <h3 id="find-and-customize-the-blueprint-actors">Find and customize the Blueprint actors</h3>
-<p>Open <strong>PlatformerKit Content &gt; Blueprints</strong>. Gameplay actors in the original demos are Blueprint children; select one in the level and press <strong>Ctrl+B</strong> to locate its asset. Place one <code>Core/BP_Control</code> for difficulty, camera, theme, HUD and testing settings. The plugin's assets appear under <strong>PlatformerKit Content</strong> (Content Browser &gt; Settings &gt; Show Plugin Content).</p>
+<p>Open <strong>Proving Grounds: 3D Platformer Mechanics &gt; Blueprints</strong>. Gameplay actors in the original demos are Blueprint children; select one in the level and press <strong>Ctrl+B</strong> to locate its asset. Place one <code>Core/BP_Control</code> for difficulty, camera, theme, HUD and testing settings. The plugin's assets appear under <strong>Proving Grounds: 3D Platformer Mechanics</strong> (Content Browser &gt; Settings &gt; Plugin Content).</p>
 <p><strong>Change the hero:</strong> duplicate the active theme, create or duplicate a <code>CorridorAnimSet</code>, set its Mesh and compatible clips, assign it to the new theme, then select that theme in <code>BP_Control &gt; 3 Theme</code> and restart Play. Follow <a href="BUYER_QUICKSTART.html">BUYER_QUICKSTART.md</a> for the complete path and a compatible-mesh example.</p>
 <h3 id="maps-platformerkitmaps">Maps (<code>/PlatformerKit/Maps</code>)</h3>
 <p>All eight maps are open from the menu.</p>
@@ -290,7 +290,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <h3 id="minimum-level">Minimum level</h3>
 <ol>
 <li>New level from any template. Floor, a <code>PlayerStart</code>. The hero spawns there and that spot is the first respawn point.</li>
-<li>Leave <strong>World Settings &gt; GameMode Override</strong> at None: the project default is <code>ACorridorGameMode</code> with the hero and HUD set. (To change HUD or hero defaults make Blueprint children of <code>ACorridorGameMode</code>, <code>ACorridorCharacter</code>, <code>ACorridorHUD</code> and use the game mode child as override.)</li>
+<li>Set <strong>World Settings &gt; GameMode Override</strong> to <code>BP_GameMode</code> (<strong>Proving Grounds: 3D Platformer Mechanics &gt; Blueprints &gt; Core</strong>). The kit never changes your project's default game mode, so without the override a new level spawns your project's own character. (To change HUD or hero defaults make Blueprint children of <code>ACorridorGameMode</code>, <code>ACorridorCharacter</code>, <code>ACorridorHUD</code> and use the game mode child as override.)</li>
 <li>Place crates, enemies and so on from the table below. Add checkpoints, then an <code>ACorridorLevelEnd</code>.</li>
 <li>Add a row for the map in the level table if it should appear in the menu (section 5).</li>
 </ol>

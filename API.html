@@ -613,14 +613,14 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <td>Function</td>
 <td>Ability (Corridor Ability), Enabled (Boolean)</td>
 <td>-</td>
-<td>Switches one ability on or off. On a Corridor Character this sets the character's own box. Switching a running move off ends it (drops off a wall / rope / rail, stops a slide or slam). Glide, Mounts, Powers and Shield exist only on a Corridor Character.</td>
+<td>Switches one ability on or off. On a Corridor Character this sets both boxes (here and the character's own), so switching it on always works. Switching a running move off ends it (drops off a wall / rope / rail, stops a slide or slam).</td>
 </tr>
 <tr>
 <td><strong>Is Ability Enabled</strong></td>
 <td>Getter (pure)</td>
 <td>Ability (Corridor Ability)</td>
 <td>Return Value (Boolean)</td>
-<td>True if the ability is on. On your own character Glide, Mounts, Powers and Shield report false (Corridor Character only).</td>
+<td>True if the ability is on. On a Corridor Character that means on here AND in its own box. On your own character Glide, Mounts, Powers and Shield report false (Corridor Character only).</td>
 </tr>
 <tr>
 <td><strong>Get Corridor Action</strong></td>
