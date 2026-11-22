@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7. Drive your own Anim Blueprint - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../../index.html">Documentation home</a><a href="../../BUYER_QUICKSTART.html">Quickstart</a><a href="../../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="../../Mechanics/index.html">Overview</a><a href="../../Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="../../Mechanics/Double_Jump.html">Double Jump</a><a href="../../Mechanics/Spin.html">Spin</a><a href="../../Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="../../Mechanics/Slam.html">Slam</a><a href="../../Mechanics/Wall_Run.html">Wall Run</a><a href="../../Mechanics/Rope_Swing.html">Rope Swing</a><a href="../../Mechanics/Grind_Rail.html">Grind Rail</a><a href="../../Mechanics/Glide.html">Glide</a><a href="../../Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="../../Mechanics/Powers.html">Powers</a><a href="../../Mechanics/Shield.html">Shield</a><a href="../../Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../../Recipes/index.html">Overview</a><a href="../../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../../Abilities_and_Actions.html">Abilities and Actions</a><a href="../../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../../BOSS_BODY.html">Build your own boss body</a><a href="../../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a><h4>Visual guide</h4><a href="index.html">Overview</a><a href="03_find_the_controls.html">3. Find the controls</a><a href="05_ability_subsets.html">5. Mechanic subsets and Set Ability Enabled</a><a href="06_swap_the_hero.html">6. Swap the hero&#x27;s mesh and animations</a><a href="07_own_anim_blueprint.html" class="cur">7. Drive your own Anim Blueprint</a><a href="10_rails_and_camera_views.html">10. Rails and camera views</a><a href="11_swap_enemy_model.html">11. Swap an enemy&#x27;s model</a><a href="12_themes.html">12. Themes</a><a href="13_boss_bodies.html">13. Boss bodies</a><a href="14_sound_and_music.html">14. Sound and music</a><a href="15_blueprint_api.html">15. Call the kit from Blueprint</a><a href="16_package_your_game.html">16. Package and ship your game</a></nav><main><h1 id="7-drive-your-own-anim-blueprint">7. Drive your own Anim Blueprint</h1>
+<p><strong>Goal:</strong> keep your own mesh and Anim Blueprint on a kit character and let your Anim Blueprint read what the hero is doing (slide, wall run, grind ...), so your own states can play your own clips.</p>
+<p><strong>You need:</strong> Unreal Engine 5.3–5.8 with the plugin enabled (pictures: 5.7) and your character Blueprint on <strong>Corridor Character</strong> (the Quickstart's Option B: <strong>Class Settings &gt; Parent Class &gt; CorridorCharacter</strong>, then <strong>Compile</strong>). Here that is the Third Person template's <strong>BP_ThirdPersonCharacter</strong> with its Anim Blueprint <strong>ABP_Unarmed</strong>, in the template level <strong>Lvl_ThirdPerson</strong>. Stop Play before you edit.</p>
+<h2 id="part-1-your-mesh-and-anim-blueprint-stay">Part 1: your mesh and Anim Blueprint stay</h2>
+<ol>
+<li>Open your character Blueprint, click <strong>Class Defaults</strong> and type <strong>Animation Mode</strong> in the Details search box.</li>
+</ol>
+<p><img alt="BP_ThirdPersonCharacter: Class Defaults, the Details search for Animation Mode" src="../img/07_01_search.png" /></p>
+<ol start="2">
+<li>Two rows match: <strong>Animation &gt; Animation Mode</strong> belongs to the mesh; the kit's row is the one under <strong>Corridor &gt; Integration</strong>. Open that <strong>Animation Mode</strong> list and pick <strong>External</strong>. Your mesh and Anim Blueprint now stay; <strong>Action Slot</strong> (default <strong>DefaultSlot</strong>) is the Slot node in your Anim Blueprint that the kit's action clips play on.</li>
+</ol>
+<p><img alt="Corridor &gt; Integration &gt; Animation Mode list open with External" src="../img/07_02_external.png" /></p>
+<ol start="3">
+<li>Click <strong>Compile</strong>.</li>
+</ol>
+<p><img alt="Compile in the character Blueprint" src="../img/07_03_compile.png" /></p>
+<h2 id="part-2-read-the-heros-action-in-your-anim-blueprint">Part 2: read the hero's action in your Anim Blueprint</h2>
+<ol start="4">
+<li>Open your Anim Blueprint and click its <strong>EventGraph</strong> tab. <strong>Event Blueprint Update Animation</strong> runs every frame; in ABP_Unarmed it leads into a <strong>Sequence</strong> node. Click <strong>Add pin</strong> on the <strong>Sequence</strong> node.</li>
+</ol>
+<p><img alt="ABP_Unarmed: the EventGraph tab and Add pin on the Sequence node" src="../img/07_04_add_pin.png" /></p>
+<ol start="5">
+<li>Drag from the new <strong>Then 3</strong> pin, type <strong>Cast To CorridorCharacter</strong> and pick it.</li>
+</ol>
+<p><img alt="Drag from Then 3, search Cast To CorridorCharacter" src="../img/07_05_cast.png" /></p>
+<ol start="6">
+<li>Drag from the cast's <strong>Object</strong> pin, type <strong>Try Get Pawn Owner</strong> and pick it: the pawn your Anim Blueprint animates.</li>
+</ol>
+<p><img alt="Drag from Object, search Try Get Pawn Owner" src="../img/07_06_pawn_owner.png" /></p>
+<ol start="7">
+<li>Drag from <strong>As Corridor Character</strong>, type <strong>Get Corridor Action</strong> and pick the first entry (the one marked <strong>(CorridorHero)</strong> is the hero component's copy).</li>
+</ol>
+<p><img alt="Drag from As Corridor Character, search Get Corridor Action" src="../img/07_07_get_action.png" /></p>
+<ol start="8">
+<li>Drag from the <strong>Return Value</strong> pin of <strong>Get Corridor Action</strong>, type <strong>Promote to variable</strong> and pick it. A <strong>Set</strong> node appears and the new variable's name is selected in <strong>My Blueprint</strong>: type <strong>CorridorAction</strong> and press Enter. It holds what the hero does this frame.</li>
+</ol>
+<p><img alt="Drag from Return Value, Promote to variable; the variable named CorridorAction in My Blueprint" src="../img/07_08_promote.png" /></p>
+<ol start="9">
+<li>Drag from the cast's top execution output (top right) to the execution input of the new <strong>Set</strong> node.</li>
+</ol>
+<p><img alt="The cast's execution output wired to Set CorridorAction" src="../img/07_09_wire.png" /></p>
+<ol start="10">
+<li>
+<p>Click <strong>Compile</strong>, then save both Blueprints.</p>
+<p><img alt="Compile in the Anim Blueprint" src="../img/07_10_compile.png" /></p>
+</li>
+</ol>
+<p>Use <strong>CorridorAction</strong> in your AnimGraph like any variable: for example a state <strong>Wall Run</strong> in your state machine, entered when <strong>CorridorAction</strong> equals <strong>Wall Run</strong> and left when it does not. Values: None, Dead, Mount, Grind Rail, Rail Hang, Wall Run, Rope Swing, Cyclone, Spin, Slide, Slam, Crouch, Glide, Double Jump. For sounds or effects, bind <strong>On Action Started</strong> and <strong>On Action Ended</strong> in your character's Event Graph: they fire once per action.</p>
+<h3 id="result">Result</h3>
+<p>Click <strong>Play</strong>, run and press <strong>K</strong> (or <strong>Left Shift</strong>, gamepad <strong>B</strong>) to slide. ABP_Unarmed's <strong>CorridorAction</strong> reads <strong>Slide</strong>, the mesh and Anim Blueprint stay <strong>SKM_Quinn_Simple</strong> and <strong>ABP_Unarmed</strong>, and the kit's slide clip (<strong>A_Hero_SlideLoop</strong>) plays as a montage on <strong>DefaultSlot</strong>: the character's own <strong>Anim Set</strong> is empty, so the hero uses the active theme's <strong>DA_HeroActions</strong> (measured in the frozen frame below).</p>
+<p><img alt="Play: the hero slides, CorridorAction reads Slide" src="../img/07_11_result.jpg" /></p>
+<blockquote>
+<p><strong>If it doesn't work</strong>
+- <strong>CorridorAction</strong> stays <strong>None</strong>: the cast fails because the character is not a <strong>Corridor Character</strong>, or the new pin is not wired from <strong>Event Blueprint Update Animation</strong>.
+- The kit's clips still play over yours: with an empty <strong>Anim Set</strong> on the character the hero uses the active theme's <strong>Anim Set</strong> (both shipped themes use <strong>DA_HeroActions</strong>), and its clips play on <strong>Action Slot</strong>. For none of the kit's clips, duplicate your theme, clear the copy's <strong>Hero &gt; Anim Set</strong> and select the copy on the level's <strong>BP_Control &gt; 3 Theme</strong> (a level without BP_Control uses the project's <strong>Default Theme</strong>, <a href="12_themes.html">topic 12</a>); leave the character's own <strong>Anim Set</strong> (Class Defaults &gt; <strong>Corridor &gt; Animation</strong>) empty.
+- You want the kit's clips but none shows during a slide or spin: your Anim Blueprint needs a Slot node named like <strong>Action Slot</strong> before the output pose (ABP_Unarmed has <strong>Slot 'DefaultSlot'</strong>).</p>
+</blockquote>
+<p>See also: <a href="../../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4</a> · <a href="../../BUYER_QUICKSTART.html">Quickstart, Option B</a> · <a href="12_themes.html">topic 12, Themes</a> · <a href="15_blueprint_api.html">topic 15, Call the kit from Blueprint</a></p><div class="pn"><a href="06_swap_the_hero.html">&larr; 6. Swap the hero&#x27;s mesh and animations</a><a href="10_rails_and_camera_views.html">10. Rails and camera views &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>

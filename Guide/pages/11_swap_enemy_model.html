@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11. Swap an enemy&#x27;s model for your own - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../../index.html">Documentation home</a><a href="../../BUYER_QUICKSTART.html">Quickstart</a><a href="../../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="../../Mechanics/index.html">Overview</a><a href="../../Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="../../Mechanics/Double_Jump.html">Double Jump</a><a href="../../Mechanics/Spin.html">Spin</a><a href="../../Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="../../Mechanics/Slam.html">Slam</a><a href="../../Mechanics/Wall_Run.html">Wall Run</a><a href="../../Mechanics/Rope_Swing.html">Rope Swing</a><a href="../../Mechanics/Grind_Rail.html">Grind Rail</a><a href="../../Mechanics/Glide.html">Glide</a><a href="../../Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="../../Mechanics/Powers.html">Powers</a><a href="../../Mechanics/Shield.html">Shield</a><a href="../../Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../../Recipes/index.html">Overview</a><a href="../../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../../Abilities_and_Actions.html">Abilities and Actions</a><a href="../../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../../BOSS_BODY.html">Build your own boss body</a><a href="../../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a><h4>Visual guide</h4><a href="index.html">Overview</a><a href="03_find_the_controls.html">3. Find the controls</a><a href="05_ability_subsets.html">5. Mechanic subsets and Set Ability Enabled</a><a href="06_swap_the_hero.html">6. Swap the hero&#x27;s mesh and animations</a><a href="07_own_anim_blueprint.html">7. Drive your own Anim Blueprint</a><a href="10_rails_and_camera_views.html">10. Rails and camera views</a><a href="11_swap_enemy_model.html" class="cur">11. Swap an enemy&#x27;s model</a><a href="12_themes.html">12. Themes</a><a href="13_boss_bodies.html">13. Boss bodies</a><a href="14_sound_and_music.html">14. Sound and music</a><a href="15_blueprint_api.html">15. Call the kit from Blueprint</a><a href="16_package_your_game.html">16. Package and ship your game</a></nav><main><h1 id="11-swap-an-enemys-model-for-your-own">11. Swap an enemy's model for your own</h1>
+<p><strong>Goal:</strong> dress any enemy in a creature of your own. Your mesh needs its own skeleton and animations; nothing needs the UE mannequin or our rig, and no code is involved.</p>
+<p><strong>You need:</strong> Unreal Engine 5.3–5.8 with the plugin enabled (pictures: 5.7), <strong>Settings &gt; Plugin Content</strong> ticked in the Content Browser (5.3–5.5: <strong>Show Plugin Content</strong>), the folder <strong>Proving Grounds: 3D Platformer Mechanics</strong> under <strong>Plugins</strong>, and a level with an enemy, for example the demo map <strong>Course2_EnemiesHazards</strong>. Your creature as an <code>.fbx</code> or <code>.glb</code> with one animation per clip. Open the level first.</p>
+<h2 id="part-1-import-the-creature-and-check-its-scale-2-minutes-saves-an-hour">Part 1: import the creature and check its scale (2 minutes, saves an hour)</h2>
+<p>A creature that plays squashed, or whose bones are a tiny cluster at its feet, was exported with the mesh and the skeleton at different scales (common with FBX-to-glTF converters). Check before you build on it.</p>
+<ol>
+<li>Drag your <code>.fbx</code> or <code>.glb</code> into <strong>your own</strong> Content Browser folder (here <strong>MyMonster</strong>, not inside the plugin folder) and accept the defaults. You get a Skeletal Mesh, a Skeleton, a Physics Asset, the materials and one Animation Sequence per clip; a glTF import puts them in sub-folders (here the Skeletal Mesh is in <strong>MyMonster &gt; SK_LabBot_Crab &gt; SkeletalMeshes</strong>).</li>
+</ol>
+<p><img alt="Content Browser path to your folder and the imported Skeletal Mesh" src="../img/11_01_import.png" /></p>
+<ol start="2">
+<li>Double-click the Skeletal Mesh to open it. In the viewport toolbar open <strong>Show</strong> and choose <strong>Bones</strong> (5.3: <strong>Character &gt; Bones</strong>).</li>
+</ol>
+<p><img alt="Show menu with Bones" src="../img/11_02_show_bones.png" /></p>
+<p>Then pick <strong>All Hierarchy</strong>.</p>
+<p><img alt="Show &gt; Bones submenu with All Hierarchy" src="../img/11_02b_all_hierarchy.png" /></p>
+<p>The bones must sit <strong>inside the body</strong>, from the feet to the head. If they are a small cluster, or much bigger than the body, stop: fix it in your 3D tool (apply scale, re-export), not in Unreal.</p>
+<p><img alt="Bones drawn inside the body from the feet to the head" src="../img/11_02c_bones_inside.jpg" /></p>
+<h2 id="part-2-make-the-look">Part 2: make the look</h2>
+<ol start="3">
+<li>Duplicate the theme you play with into your own folder, and keep the original as a reset point. In the Content Browser go to <strong>Plugins &gt; Proving Grounds: 3D Platformer Mechanics &gt; Themes</strong>; the demo courses use <strong>DA_Lab_Course</strong>.</li>
+</ol>
+<p><img alt="Content Browser at the Themes folder with DA_Lab_Course" src="../img/11_03_theme.png" /></p>
+<p>Right-click it, choose <strong>Duplicate</strong>, and put the copy in your folder (here <strong>DA_MyTheme</strong> in <strong>MyMonster</strong>).</p>
+<p><img alt="Right-click menu of the theme with Duplicate" src="../img/11_03b_duplicate.png" /></p>
+<ol start="4">
+<li>Open the copy. In the Details search box type <strong>Enemy Looks</strong> and press the <strong>+</strong> at the Enemy Looks row. A new entry appears at the end of the list.</li>
+</ol>
+<p><img alt="Details search for Enemy Looks, the + button" src="../img/11_04_enemy_looks.png" /></p>
+<p>Type a name into its key field, for example <strong>MyMonster</strong>.</p>
+<p><img alt="The new entry with the key MyMonster" src="../img/11_04b_key_typed.png" /></p>
+<ol start="5">
+<li>Fill in the look:</li>
+</ol>
+<ul>
+<li><strong>Mesh</strong>: your Skeletal Mesh.</li>
+<li><strong>Scale</strong>: the size of your mesh in centimetres decides it. The enemy's hit box is built from the mesh bounds times <strong>Scale</strong> times <strong>Normal Size</strong>.</li>
+<li><strong>Mesh Yaw</strong>: 0 if the creature's front is its +X, <strong>-90 if its front is +Y</strong> (what glTF imports often give). With the right value it faces the way it walks.</li>
+<li><strong>Normal Size</strong>: how big it plays. Aim for a top between 120 and 190 cm so a full jump lands on it.</li>
+<li><strong>ZOffset</strong>: moves the mesh up or down from the stand-in's feet (the editor writes it as one word).</li>
+</ul>
+<p><img alt="The look with Mesh, Scale, Mesh Yaw and Normal Size filled in" src="../img/11_05_look_fields.png" /></p>
+<p>Open <strong>Clips</strong> and add one entry per state with <strong>+</strong>: the key and its Animation Sequence. The keys most creatures need are <code>Idle</code>, <code>Move</code>, <code>DeathBounce</code> (stomped) and <code>DeathSpin</code> (spun or thrown); the crab here brings seven clips (<code>Idle</code>, <code>Move</code>, <code>DeathBounce</code>, <code>DeathFlatten</code>, <code>DeathSpin</code>, <code>Falling</code>, <code>Landed</code>). More keys exist (<code>Attack</code> for shooters, <code>Windup</code> for chargers, <code>Turn</code> and others); a missing key falls back (<code>Windup</code> to <code>Idle</code>, <code>DeathFlatten</code> to <code>DeathBounce</code>, <code>Landed</code> to <code>Falling</code>).</p>
+<p><img alt="Clips opened: each state key with its Animation Sequence" src="../img/11_05b_clips.png" /></p>
+<h2 id="part-3-use-it">Part 3: use it</h2>
+<ol start="6">
+<li>Select <strong>BP_Control</strong> in the level and, in its Details, set <strong>3 Theme &gt; Theme</strong> to your copy (<strong>DA_MyTheme</strong>). Type <strong>Theme</strong> in the search box to find it.</li>
+</ol>
+<p><img alt="BP_Control Details searched for Theme" src="../img/11_06_theme_row.png" /></p>
+<p><img alt="Theme picker with DA_MyTheme in the list" src="../img/11_06b_pick.png" /></p>
+<p><img alt="Theme set to DA_MyTheme" src="../img/11_06c_theme_set.png" /></p>
+<ol start="7">
+<li>Select an enemy in the level and type your key into <strong>Look Name</strong> (<strong>None</strong> = the look of its kind).</li>
+</ol>
+<p><img alt="Enemy Details with Look Name set to MyMonster" src="../img/11_07_look_name.png" /></p>
+<p><strong>Restart Play after changing a theme.</strong></p>
+<h3 id="result">Result</h3>
+<p>Click <strong>Play</strong> and walk up to the enemy: it wears your creature.</p>
+<p><img alt="Play: the enemy is the imported crab" src="../img/11_07_result.jpg" /></p>
+<p><strong>Check in Play:</strong> it faces its walking direction and plays Idle and Move; it dies on a stomp and when spun (the death clip plays to its last frame); it hurts you on contact; it comes back after your respawn.</p>
+<p><strong>If it looks wrong:</strong> if the creature faces sideways change <strong>Mesh Yaw</strong> by 90. If it is too big or too small change <strong>Normal Size</strong> first, <strong>Scale</strong> second. If it sinks into or floats above the floor, repeat the scale check above.</p><div class="pn"><a href="10_rails_and_camera_views.html">&larr; 10. Rails and camera views</a><a href="12_themes.html">12. Themes &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>
