@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8. Use the kit with your own character - Proving Grounds: 3D Platformer Mechanics</title>
+<meta name="description" content="Documentation for Proving Grounds: 3D Platformer Mechanics, an Unreal Engine 5.7 code plugin by Joseph's.">
+<style>
+:root{--bg:#fff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--link:#0969da;--head:#1b2a41;--headfg:#fff;--accent:#e8590c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#151b23;--link:#4493f8;--head:#010409;--headfg:#e6edf3;--accent:#ff922b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:var(--head);color:var(--headfg);padding:14px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:var(--headfg)}header.top .t{font-weight:600;font-size:17px}header.top .sp{flex:1}
+header.top .sup{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:4px 10px;font-size:14px}
+.wrap{display:flex;max-width:1240px;margin:0 auto;padding:0 16px}
+nav.side{width:270px;flex:none;padding:24px 20px 40px 0;font-size:14.5px;position:sticky;top:0;align-self:flex-start;max-height:100vh;overflow:auto}
+nav.side h4{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.side a{display:block;padding:3px 8px;border-radius:6px;color:var(--fg)}nav.side a.cur{background:var(--soft);font-weight:600;border-left:3px solid var(--accent)}
+nav.side a:hover{background:var(--soft);text-decoration:none}
+main{min-width:0;flex:1;padding:28px 0 60px 24px;max-width:900px}
+main h1{font-size:2em;border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:0}
+main h2{border-bottom:1px solid var(--line);padding-bottom:.3em;margin-top:1.8em}main h3{margin-top:1.5em}
+code{background:var(--soft);padding:.15em .35em;border-radius:5px;font-size:88%}
+pre{background:var(--soft);padding:14px;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%;margin:1em 0}
+th,td{border:1px solid var(--line);padding:6px 12px;vertical-align:top}th{background:var(--soft);text-align:left}tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 55%,transparent)}
+blockquote{margin:1em 0;padding:0 1em;color:var(--muted);border-left:4px solid var(--line)}
+img{max-width:100%}hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 22px;font-size:14.5px}
+.toc ul{margin:4px 0;padding-left:20px}.toc b{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:22px 16px;text-align:center}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--headfg);border-radius:6px;padding:4px 10px;font-size:15px;cursor:pointer}
+@media (max-width:860px){.wrap{display:block;padding:0 16px}nav.side{display:none;position:static;width:auto;max-height:none;padding:8px 0}nav.side.open{display:block}.menu{display:inline-block}main{padding:18px 0 40px}}
+</style></head><body>
+<header class="top"><button class="menu" aria-label="Menu">Menu</button><a class="t" href="../../index.html">Proving Grounds: 3D Platformer Mechanics</a><span class="sp"></span>
+<a class="sup" href="https://github.com/josephs-assets/ProvingGrounds/issues">Support: GitHub issues</a></header>
+<div class="wrap"><nav class="side"><h4>Start</h4><a href="../../index.html">Documentation home</a><a href="../../BUYER_QUICKSTART.html">Quickstart</a><a href="../../README.html">Proving Grounds: 3D Platformer Mechanics - user guide</a><h4>Mechanics Reference</h4><a href="../../Mechanics/index.html">Overview</a><a href="../../Mechanics/Mechanics_at_a_Glance.html">Mechanics at a glance</a><a href="../../Mechanics/Double_Jump.html">Double Jump</a><a href="../../Mechanics/Spin.html">Spin</a><a href="../../Mechanics/Slide_and_Crouch.html">Slide and Crouch</a><a href="../../Mechanics/Slam.html">Slam</a><a href="../../Mechanics/Wall_Run.html">Wall Run</a><a href="../../Mechanics/Rope_Swing.html">Rope Swing</a><a href="../../Mechanics/Grind_Rail.html">Grind Rail</a><a href="../../Mechanics/Glide.html">Glide</a><a href="../../Mechanics/Mounts_and_Jetboard.html">Mounts and Jetboard</a><a href="../../Mechanics/Powers.html">Powers</a><a href="../../Mechanics/Shield.html">Shield</a><a href="../../Mechanics/Crates_and_Bounce.html">Crates, bounce and ground jump</a><h4>Recipes</h4><a href="../../Recipes/index.html">Overview</a><a href="../../Recipes/1_Only_Wall_Run.html">Recipe 1: Only wall run on my character</a><a href="../../Recipes/2_Only_Power_Ups.html">Recipe 2: Only power-ups</a><a href="../../Recipes/3_Unlock_Double_Jump_With_a_Pickup.html">Recipe 3: Unlock double jump with a pickup</a><a href="../../Recipes/4_Your_Own_Wall_Run_Animation.html">Recipe 4: My own wall-run animation in my Anim Blueprint</a><a href="../../Recipes/5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one?</a><a href="../../Recipes/6_Presets.html">Recipe 6: Three presets</a><h4>Reference</h4><a href="../../Abilities_and_Actions.html">Abilities and Actions</a><a href="../../API.html">Blueprint API reference</a><h4>Guides</h4><a href="../../BOSS_BODY.html">Build your own boss body</a><a href="../../SOUND.html">Sound: volume, sound keys and swapping sounds</a><a href="../../SWAP_ENEMY_MODEL.html">Swap an enemy&#x27;s model for your own</a><a href="../../Integration/ALS/README.html">ALS-Refactored sample</a><a href="../../THIRD_PARTY_NOTICES.html">Asset sources and third-party notices</a><h4>Visual guide</h4><a href="index.html">Overview</a><a href="03_find_the_controls.html">3. Find the controls</a><a href="05_ability_subsets.html">5. Mechanic subsets and Set Ability Enabled</a><a href="06_swap_the_hero.html">6. Swap the hero&#x27;s mesh and animations</a><a href="07_own_anim_blueprint.html">7. Drive your own Anim Blueprint</a><a href="08_integration_routes.html" class="cur">8. Use the kit with your own character</a><a href="10_rails_and_camera_views.html">10. Rails and camera views</a><a href="11_swap_enemy_model.html">11. Swap an enemy&#x27;s model</a><a href="12_themes.html">12. Themes</a><a href="13_boss_bodies.html">13. Boss bodies</a><a href="14_sound_and_music.html">14. Sound and music</a><a href="15_blueprint_api.html">15. Call the kit from Blueprint</a><a href="16_package_your_game.html">16. Package and ship your game</a></nav><main><h1 id="8-use-the-kit-with-your-own-character">8. Use the kit with your own character</h1>
+<p><strong>Goal:</strong> give a character you already have the kit's crates, enemies and checkpoints (Option A), or the kit's moves as well (Option B), and do the same on a Game Animation Sample (GASP) or ALS-Refactored character.</p>
+<p><strong>You need:</strong> Unreal Engine 5.3–5.8 with the plugin enabled (pictures: 5.7) and your own character Blueprint. Here that is the Third Person template's <strong>BP_ThirdPersonCharacter</strong> (Parts 1 and 2), GASP's <strong>SandboxCharacter_CMC</strong> (Part 3) and ALS-Refactored's <strong>B_Als_Character</strong> (Part 4). For the Play results a few kit actors were placed in each level (<strong>Plugins &gt; Proving Grounds: 3D Platformer Mechanics &gt; Blueprints</strong>: <strong>BP_Crate</strong>, <strong>BP_Enemy</strong>, <strong>BP_CheckpointTrigger</strong>, <strong>BP_GrindRail</strong>). Stop Play before you edit. Which route fits: <a href="../../Recipes/5_Option_A_or_B.html">Recipe 5, Option A, B or C</a>.</p>
+<h2 id="part-1-option-a-keep-your-character-as-it-is">Part 1: Option A, keep your character as it is</h2>
+<p>Your movement, jump, animation, camera and input stay yours; crates, enemies, checkpoints, death and respawn, kill volumes, hazards, pickups and triggers react to the character.</p>
+<ol>
+<li>Open your character Blueprint. In <strong>Components</strong> click <strong>Add</strong>, type <strong>Corridor Hero</strong> and click <strong>Corridor Hero</strong>.</li>
+</ol>
+<p><img alt="Components &gt; Add, searched for Corridor Hero" src="../img/08_01_add_component.png" /></p>
+<ol start="2">
+<li>Click <strong>Compile</strong>, then save.</li>
+</ol>
+<p><img alt="Compile in the character Blueprint" src="../img/08_02_compile.png" /></p>
+<h3 id="result-option-a">Result: Option A</h3>
+<p>Click <strong>Play</strong> and land on a kit crate: it breaks and bounces the character up at 754 cm/s. The Anim Blueprint (<strong>ABP_Unarmed</strong>) and the camera (<strong>FollowCamera</strong>) stay the character's own.</p>
+<p><img alt="Play, Option A: the Third Person character falls onto a kit crate; the crate breaks and bounces it" src="../img/08_02r_result_crate.jpg" /></p>
+<h2 id="part-2-option-b-the-kits-moves-on-your-character">Part 2: Option B, the kit's moves on your character</h2>
+<p>For characters on the standard Character Movement Component. Start from your character without a Corridor Hero component (Option B has one built in; remove the one from Part 1 first).</p>
+<ol start="3">
+<li>Click <strong>Class Settings</strong>. In the Details panel open the <strong>Parent Class</strong> list, type <strong>CorridorCharacter</strong> and click <strong>CorridorCharacter</strong>. Your components keep their names; the kit adds its own camera (<strong>CorridorCamera</strong> on <strong>CorridorCameraBoom</strong>).</li>
+</ol>
+<p><img alt="Class Settings, then Parent Class searched for CorridorCharacter" src="../img/08_03_parent_class.png" /></p>
+<ol start="4">
+<li>Click <strong>Class Defaults</strong> and type <strong>Mode</strong> in the Details search box. Under <strong>Corridor &gt; Integration</strong> set <strong>Animation Mode</strong>, <strong>Input Mode</strong> and <strong>Camera Mode</strong> to <strong>External</strong>: your mesh and Anim Blueprint, your input and your camera stay. <strong>Action Slot</strong> (default <strong>DefaultSlot</strong>) is the slot the kit's clips play on; <a href="07_own_anim_blueprint.html">topic 7</a> shows the Anim Blueprint side.</li>
+</ol>
+<p><img alt="Class Defaults searched for Mode: Animation, Input and Camera Mode set to External" src="../img/08_04_external.png" /></p>
+<ol start="5">
+<li>Click <strong>Compile</strong>, then save.</li>
+</ol>
+<p><img alt="Compile in the character Blueprint" src="../img/08_05_compile.png" /></p>
+<h3 id="result-option-b">Result: Option B</h3>
+<p>Click <strong>Play</strong> and press <strong>Jump</strong> twice: your own Jump input now runs the kit's jump, and the second press is the kit's double jump (feet 423 cm above the floor at the top). Its clip (<strong>MM_Jump</strong> of the kit's <strong>DA_HeroActions</strong>) plays on <strong>DefaultSlot</strong> of <strong>ABP_Unarmed</strong>, and <strong>FollowCamera</strong> stays the active camera.</p>
+<p><img alt="Play, Option B: the reparented Third Person character in the kit's double jump" src="../img/08_05r_result_double_jump.jpg" /></p>
+<h2 id="part-3-gasp-option-a-on-the-sandbox-character">Part 3: GASP, Option A on the Sandbox Character</h2>
+<p>On GASP use Option A only, on <strong>SandboxCharacter_CMC</strong> (the Character Movement version, <strong>Content &gt; Blueprints</strong>): crates, enemy stomps and checkpoints work and motion matching is untouched. The kit's own moves are not supported on the GASP character, and <strong>SandboxCharacter_Mover</strong> is not supported.</p>
+<ol start="6">
+<li>Open <strong>SandboxCharacter_CMC</strong>. In <strong>Components</strong> click <strong>Add</strong>, type <strong>Corridor Hero</strong> and click <strong>Corridor Hero</strong>.</li>
+</ol>
+<p><img alt="SandboxCharacter_CMC: Components &gt; Add, searched for Corridor Hero" src="../img/08_06_gasp_add_component.png" /></p>
+<ol start="7">
+<li>Click <strong>Compile</strong>, then save.</li>
+</ol>
+<p><img alt="Compile in SandboxCharacter_CMC" src="../img/08_07_gasp_compile.png" /></p>
+<h3 id="result-gasp">Result: GASP</h3>
+<p>Click <strong>Play</strong>. With a checkpoint, an enemy and a crate placed in GASP's <strong>DefaultLevel</strong>: the checkpoint trigger sets the respawn point, a stomp from above defeats the enemy (bounce 948 cm/s) and the crate breaks and bounces the character (752 cm/s). GASP's motion-matching Anim Blueprint (<strong>SandboxCharacter_CMC_ABP</strong>) and its own camera stay in charge; the picture is taken from a camera beside the character.</p>
+<p><img alt="Play with GASP's SandboxCharacter_CMC: it falls onto a kit crate; the crate breaks and bounces it" src="../img/08_07r_result_gasp.jpg" /></p>
+<h2 id="part-4-als-refactored-option-c">Part 4: ALS-Refactored (Option C)</h2>
+<p>ALS-Refactored is a C++ plugin, so this route needs a C++ project. The kit ships two sample classes as source in <strong>Documentation/Integration/ALS/</strong> (tested with ALS-Refactored tag <strong>ue-5.7</strong> on Unreal Engine 5.7). Before the editor steps:</p>
+<ul>
+<li>Copy <strong>AlsCorridorMovementComponent.h</strong>, <strong>AlsCorridorCharacter.h</strong> and <strong>AlsCorridorCharacter.cpp</strong> into your game module's source folder.</li>
+<li>In your module's <strong>.Build.cs</strong> add <code>"ALS", "ALSExtras", "EnhancedInput", "PlatformerKit"</code> to <code>PublicDependencyModuleNames</code>.</li>
+<li>In <strong>Plugins/ALS/Source/ALSExtras</strong> give ALS's example character an object-initializer constructor (two lines, exact text in the <a href="../../BUYER_QUICKSTART.html">Quickstart, Option C</a> step 3).</li>
+<li>Build the project and open the editor.</li>
+</ul>
+<ol start="8">
+<li>Open <strong>B_Als_Character</strong> (ALS plugin content, <strong>ALS &gt; Character</strong>; Content Browser <strong>Settings &gt; Plugin Content</strong> ticked). Click <strong>Class Settings</strong>, open the <strong>Parent Class</strong> list (it shows <strong>Als Character Example</strong>), type <strong>AlsCorridorCharacter</strong> and click <strong>AlsCorridorCharacter</strong>. Its Character Movement becomes <strong>AlsCorridorMovementComponent</strong>; mesh, Anim Blueprint (<strong>AB_Als</strong>), settings and camera stay.</li>
+</ol>
+<p><img alt="B_Als_Character: Class Settings, then Parent Class searched for AlsCorridorCharacter" src="../img/08_08_als_parent_class.png" /></p>
+<ol start="9">
+<li>Click <strong>Compile</strong>, then save.</li>
+</ol>
+<p><img alt="Compile in B_Als_Character" src="../img/08_09_als_compile.png" /></p>
+<p>For the slide and spin keys set <strong>Corridor &gt; Spin Action / Slide Action</strong> in Class Defaults to your Input Actions and add their keys to your Input Mapping Context. Jump stays ALS's Jump: on the ground ALS jumps, in the air it is the kit's double jump.</p>
+<h3 id="result-als-refactored">Result: ALS-Refactored</h3>
+<p>Click <strong>Play</strong>. <strong>AB_Als</strong> keeps animating, ALS jumps 90 cm on its own, and the kit's moves run on top: the double jump rises 211 cm above the press point, the slide takes the walk from 375 to 600 cm/s, the slam drops at 1286 cm/s and breaks a crate, and the character grinds a kit rail at 1029 cm/s (picture taken from a camera beside it). ALS has no grind or slide pose of its own: map <strong>Get Hero Traversal</strong> and <strong>Is Sliding</strong> in its Anim Blueprint.</p>
+<p><img alt="Play: the ALS character grinds a kit rail" src="../img/08_09r_result_als.jpg" /></p>
+<blockquote>
+<p><strong>If it doesn't work</strong>
+- Option A: nothing breaks and the enemy does not react: the component sits on another Blueprint than the one your game mode spawns, or the level has no kit actors.
+- Option B: two Corridor Hero components after the reparent: remove the one you added for Option A.
+- Option B: the character dies as soon as Play starts: your level lies below -1000 cm or above 6000 cm; change <strong>Kill Z</strong> / <strong>Kill Z Top</strong> (Class Defaults &gt; <strong>Corridor &gt; Death</strong>).
+- Option B: the kit's clips do not show: your Anim Blueprint needs a Slot node named like <strong>Action Slot</strong> (<a href="07_own_anim_blueprint.html">topic 7</a>).
+- ALS: <strong>AlsCorridorCharacter</strong> is not in the Parent Class list: the project was not rebuilt after copying the three files, or the editor was opened before the build finished.</p>
+</blockquote>
+<p>See also: <a href="../../BUYER_QUICKSTART.html">Quickstart, Integrate with your own character</a> · <a href="../../Recipes/5_Option_A_or_B.html">Recipe 5</a> · <a href="07_own_anim_blueprint.html">topic 7, your own Anim Blueprint</a></p><div class="pn"><a href="07_own_anim_blueprint.html">&larr; 7. Drive your own Anim Blueprint</a><a href="10_rails_and_camera_views.html">10. Rails and camera views &rarr;</a></div></main></div>
+<footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
+<script>
+(function(){var b=document.querySelector('.menu'),n=document.querySelector('nav.side');if(b)b.onclick=function(){n.classList.toggle('open')};
+var c=document.querySelector('nav.side a.cur');if(c&&c.scrollIntoView&&window.innerWidth>860){try{c.scrollIntoView({block:'center'})}catch(e){}}})();
+</script></body></html>
