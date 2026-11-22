@@ -39,7 +39,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <p><strong>Goal:</strong> your own clip plays on the wall and none of the kit's. <strong>Route:</strong> B with Animation Mode = External.</p>
 <h2 id="steps">Steps</h2>
 <ol>
-<li>Leave <strong>Anim Set</strong> empty (Class Defaults &gt; Corridor | Animation). The kit then plays no montage.</li>
+<li>Keep every Anim Set away from the hero: an empty character <strong>Anim Set</strong> falls back to the active theme's Anim Set (both shipped themes use <code>DA_HeroActions</code>), whose spin, slide, slam and double-jump clips then play on <strong>Action Slot</strong>. For none of the kit's clips, duplicate your theme, clear the copy's <strong>Hero &gt; Anim Set</strong> and select the copy on the level's <strong>BP_Control &gt; 3 Theme</strong>, with the character's own <strong>Anim Set</strong> (Class Defaults &gt; Corridor | Animation) left empty.</li>
 <li>In your Anim Blueprint, <strong>Update Animation</strong>: get your Corridor Character, call <strong>Get Corridor Action</strong>, store it in a variable.</li>
 <li>In the AnimGraph add a state <strong>Wall Run</strong> entered when the variable equals <strong>Wall Run</strong>; the exit rule is "not Wall Run".</li>
 <li>Blend inputs: <strong>Is Wall On Right</strong> (mirror the pose) and <strong>Is Wall Run Ending</strong> (play the fall-off), both on the character's movement component.</li>
@@ -94,7 +94,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 </ul>
 <h2 id="if-it-does-not-work">If it does not work</h2>
 <ul>
-<li>An Anim Set is still assigned: its clips play on the Action Slot on top of yours.</li>
+<li>An Anim Set still reaches the hero (on the character or, when that is empty, on the active theme): its clips play on the Action Slot on top of yours.</li>
 <li>The state compares the wrong value: print <code>Get Corridor Action</code> to the screen to see it change.</li>
 <li>You read the action in the Animation thread without copying it: store it in Update Animation first.</li>
 </ul><div class="pn"><a href="3_Unlock_Double_Jump_With_a_Pickup.html">&larr; Recipe 3: Unlock double jump with a pickup</a><a href="5_Option_A_or_B.html">Recipe 5: Option A, B or C - which one? &rarr;</a></div></main></div>

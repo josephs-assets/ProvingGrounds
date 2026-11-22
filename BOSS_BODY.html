@@ -105,14 +105,14 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 </tr>
 <tr>
 <td><strong>Launch Points</strong></td>
-<td>Optional named points on the part that missiles can fly from (section 7).</td>
+<td>Optional points in the part's own space (cm) that a missile rain's missiles go up from; they move with the part (section 7).</td>
 </tr>
 <tr>
 <td><strong>Moves</strong></td>
 <td>What the part does (section 3).</td>
 </tr>
 <tr>
-<td><strong>Hazard</strong> fields</td>
+<td><strong>Hazard While Moving</strong> fields</td>
 <td>Optional hurt zone while the part moves (section 5).</td>
 </tr>
 </tbody>
@@ -171,8 +171,8 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <tbody>
 <tr>
 <td><strong>Spin</strong></td>
-<td>Axis, Speed</td>
-<td>Turns round the axis at Speed degrees per second.</td>
+<td>Axis, Speed, Time, Hold Time</td>
+<td>Turns round the axis at Speed degrees per second: with the Idle trigger all the time, with any other trigger for Time + Hold Time (Time is also the ease in).</td>
 </tr>
 <tr>
 <td><strong>Hinge</strong></td>
@@ -186,36 +186,36 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 </tr>
 <tr>
 <td><strong>Pulse</strong></td>
-<td>Range, Speed</td>
-<td>Scales up and down.</td>
+<td>Range, Time, Hold Time</td>
+<td>Grows by Range (0.04 = 4 %) over Time, holds, shrinks back over Time.</td>
 </tr>
 <tr>
 <td><strong>Hide</strong></td>
-<td>Time</td>
-<td>Moves the part away and hides it (it comes back on Retry).</td>
+<td>Axis, Range, Time</td>
+<td>Flies Range cm along the axis over Time while it tumbles, then stays hidden until the parts are restored (a retry or a new fight).</td>
 </tr>
 <tr>
 <td><strong>Signal</strong></td>
-<td>Signal Index, Colour, Intensity</td>
-<td>Sets a light-up slot (section 4).</td>
+<td>Signal Index, Signal Color, Signal Intensity, Time, Hold Time</td>
+<td>No motion: lights its signal slot for Time + Hold Time (section 4).</td>
 </tr>
 </tbody>
 </table>
-<p>Common fields: <strong>Delay</strong> (seconds after the trigger before the move starts), <strong>Time</strong>, <strong>Hold Time</strong>, <strong>Sfx</strong> (section 8).</p>
+<p>Common fields: <strong>Delay</strong> (seconds after the trigger before the move starts), <strong>Time</strong>, <strong>Hold Time</strong> (-1 = hold until the parts are restored), <strong>Signal Index</strong> (any move can light a signal slot while it plays; -1 = none) with <strong>Signal Color</strong> and <strong>Signal Intensity</strong>, <strong>Sfx</strong> (section 8).</p>
 <h2 id="4-signals-lights-and-glow">4. Signals - lights and glow</h2>
 <p>A <strong>Signal</strong> slot on a part lets a move change a material colour and glow.</p>
 <ol>
 <li>Give the part a material with a vector parameter for colour and a scalar parameter for glow. The shipped <code>M_Boss_Signal</code> has <code>Color</code> and <code>Intensity</code>; <code>MI_Boss_Signal</code> is an instance of it.</li>
 <li>In the part's <strong>Signals</strong>, add a slot: <strong>Slot</strong> (the material slot on the mesh), <strong>Color Param</strong> and <strong>Intensity Param</strong> (the parameter names), and the idle colour and idle intensity.</li>
-<li>In a move, choose <strong>Motion = Signal</strong>, set <strong>Signal Index</strong> (the slot), <strong>Colour</strong> and <strong>Intensity</strong>. Tick <strong>Shot Color</strong> to take the colour of the attack that is being telegraphed.</li>
+<li>In a move, choose <strong>Motion = Signal</strong>, set <strong>Signal Index</strong> (the slot), <strong>Signal Color</strong> and <strong>Signal Intensity</strong>. Tick <strong>Shot Color</strong> to take the colour of the attack that is being telegraphed.</li>
 </ol>
 <h2 id="5-hazard-while-moving">5. Hazard While Moving</h2>
 <p>A part can hurt the hero while one of its moves plays, for example a swinging boom.</p>
 <ul>
-<li><strong>Hazard</strong>: on.</li>
+<li><strong>Hazard While Moving</strong>: on.</li>
 <li><strong>Hazard Center</strong> and <strong>Hazard Extent</strong>: a box in the part's own space, in centimetres before the part's scale.</li>
 <li><strong>Hazard Moves</strong>: which moves hurt (indices into <strong>Moves</strong>). Empty = every move except Idle and Track Hero.</li>
-<li><strong>Hazard Death</strong>: the hero dies (off = a normal hit, which the shield absorbs).</li>
+<li><strong>Hazard Death</strong>: the death kind when the box hits the hero (default <strong>Touch</strong>; also Fall, Explosion, Squash, Electric, Burn and more). The shield companion takes the hit first unless <strong>Hazard Ignores Shield</strong> is on.</li>
 <li><strong>Hazard Ignores Shield</strong>: the shield does not help.</li>
 </ul>
 <p>The hero is hit only while the move is actually running, through the same path as every other hazard (shield, death, respawn). Always give the player a telegraph first: make the hazardous move start from a <strong>Step Started</strong> trigger with a <strong>Delay</strong>, and add a <strong>Signal</strong> move that lights the part up earlier. In the shipped Boss 2 the boom lights up and swings 0.25 s after it starts; leave more time in your own boss if the arena is small.</p>
@@ -234,7 +234,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <li>Details &gt; Events &gt; <strong>+</strong> next to <strong>On Step Started</strong> (or in the Level Blueprint, drag the loop and choose <em>Assign On Step Started</em>).</li>
 <li>Use <code>Lead Time</code> for your own flash, sound or camera shake.</li>
 </ol>
-<p><strong>Missile launch points:</strong> give a part <strong>Launch Points</strong>, then set the <code>MissileRain</code> step's <strong>Launch Point Tag</strong> to the point's tag. Missiles fly out of these points in turn, with <strong>Launch Delay</strong> between them.</p>
+<p><strong>Missile launch points:</strong> give a part <strong>Launch Points</strong>, then add the body to the Missile Rain actor's <strong>Launchers</strong> (category Missiles). The Missile Rain's <strong>Launch Point Tag</strong> must equal the body's <strong>Launch Point Tag</strong> (Boss category; both default to <code>MissileLaunch</code>). Missiles fly out of these points in turn, with <strong>Launch Delay</strong> between them.</p>
 <p><strong>Boss target:</strong> <code>ACorridorBossTarget</code> has <strong>Arrival Radius</strong>: a spun enemy ends its flight at that distance from the point, so it lands on the boss's shell instead of inside it.</p>
 <h2 id="8-sound-per-move">8. Sound per move</h2>
 <p>Each move has an <strong>Sfx</strong> field: the theme sound key played when the move starts (after <strong>Delay</strong>). The shipped bosses use <code>BossServo</code>, <code>BossServoFast</code>, <code>BossTelegraph</code>, <code>BossSpinUp</code>, <code>BossPartEject</code> and <code>BossDefeat</code>. Idle and Track Hero moves have none. Keys, volume and replacing a sound: see <a href="SOUND.html">SOUND.md</a>.</p>

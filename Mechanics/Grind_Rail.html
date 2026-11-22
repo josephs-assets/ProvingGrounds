@@ -115,6 +115,16 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <td>The camera rides the rail behind the hero (the rail-follow camera: the hero's Rail Camera settings, or this rail's own). <em>(Details: Corridor | Rail)</em></td>
 </tr>
 <tr>
+<td><strong>Override Camera</strong> (<code>bOverrideCamera</code>)</td>
+<td>false</td>
+<td>Use this rail's own rail-follow camera (<strong>Camera Settings</strong>) instead of the hero's (<strong>Camera Director &gt; Rail Camera</strong>). Needs <strong>Rail Camera</strong> on. <em>(Details: Corridor | Rail)</em></td>
+</tr>
+<tr>
+<td><strong>Camera Settings</strong> (<code>CameraSettings</code>)</td>
+<td>-</td>
+<td>This rail's rail-follow camera, used with <strong>Override Camera</strong>. <em>(Details: Corridor | Rail)</em></td>
+</tr>
+<tr>
 <td><strong>Curve Lean Radius</strong> (<code>CurveLeanRadius</code>)</td>
 <td>600</td>
 <td>Riding a curve this tight (radius, cm) leans the hero fully into it; wider curves lean less. 0 = no lean from curves (the stick still leans). <em>(Details: Corridor | Rail)</em></td>
@@ -123,6 +133,16 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 <td><strong>Curve Bank Angle</strong> (<code>CurveBankAngle</code>)</td>
 <td>12</td>
 <td>Degrees the body banks into a curve at full lean (riding only; it eases out near the rail's end). 0 = stays upright. <em>(Details: Corridor | Rail)</em></td>
+</tr>
+<tr>
+<td><strong>Tightest Curve Radius</strong> (<code>TightestCurveRadius</code>)</td>
+<td>read only</td>
+<td>Measured from the line: the tightest curve's radius seen from above (cm; 0 = straight). <em>(Details: Corridor | Rail)</em></td>
+</tr>
+<tr>
+<td><strong>Peak Turn Rate</strong> (<code>PeakTurnRate</code>)</td>
+<td>read only</td>
+<td>Measured from the line: how fast the heading turns there at <strong>Speed</strong> (deg/s). Over 150 the rail camera's <strong>Max Turn Rate</strong> holds the view back on that curve; widen the curve or lower <strong>Speed</strong>. <em>(Details: Corridor | Rail)</em></td>
 </tr>
 <tr>
 <td><strong>Both Ways</strong> (<code>bBothWays</code>)</td>

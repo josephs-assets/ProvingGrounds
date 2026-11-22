@@ -166,7 +166,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;paddin
 </tbody>
 </table>
 <h2 id="6-use-your-own-animation">6. Use your own animation</h2>
-<p>Leave <strong>Anim Set</strong> empty so the kit plays no montage. In your Anim Blueprint read <code>Get Corridor Action</code> and switch on <strong>Double Jump</strong>; use <code>On Action Started</code> for the sound. Locomotion comes back by itself when the action ends.</p>
+<p>An empty character <strong>Anim Set</strong> falls back to the active theme's Anim Set (both shipped themes use <code>DA_HeroActions</code>), and with Animation Mode External its double-jump clip plays on <strong>Action Slot</strong>. For your own clip only, duplicate your theme, clear the copy's <strong>Hero &gt; Anim Set</strong> and select the copy on the level's <strong>BP_Control &gt; 3 Theme</strong>, with the character's own <strong>Anim Set</strong> (Class Defaults &gt; Corridor | Animation) left empty. In your Anim Blueprint read <code>Get Corridor Action</code> and switch on <strong>Double Jump</strong>; use <code>On Action Started</code> for the sound. Locomotion comes back by itself when the action ends.</p>
 <h2 id="7-see-it-in-the-demo">7. See it in the demo</h2>
 <p><code>Course1_RunAndJump</code>: stand at the first wide gap and press Jump twice. <code>System_Gallery</code> has the same gap rows.</p>
 <h2 id="8-pitfalls">8. Pitfalls</h2>

@@ -42,14 +42,14 @@ Six steps, all in the Content Browser and the Details panel.</p>
 <p>A creature that plays squashed, or whose bones are a tiny cluster at its feet, was exported with the mesh and the skeleton at different scales (common with FBX-to-glTF converters).</p>
 <ol>
 <li>Import your <code>.fbx</code> or <code>.glb</code> (drag it into the Content Browser, accept the defaults). You get a Skeletal Mesh, a Skeleton and one Animation Sequence per clip.</li>
-<li>Open the Skeletal Mesh. Switch on <strong>Character &gt; Bones</strong> (or <strong>Show &gt; Bones</strong>).</li>
+<li>Open the Skeletal Mesh. In the viewport open <strong>Show &gt; Bones</strong> and pick <strong>All Hierarchy</strong> (older engine versions: <strong>Character &gt; Bones</strong>).</li>
 <li>The bones must sit <strong>inside the body</strong>, from the feet to the head. If they are a small cluster, or much larger than the body, stop. Fix it in your 3D tool (apply scale, re-export), not in Unreal.</li>
 <li>Open one animation clip and press Play in its preview: the creature must keep its shape.</li>
 </ol>
 <h2 id="the-six-steps">The six steps</h2>
 <ol>
 <li><strong>Import.</strong> Done above.</li>
-<li><strong>Duplicate a theme.</strong> Duplicate the theme you play with (Content Browser &gt; PlatformerKit Content &gt; Themes, for the demo courses <code>DA_Lab_Course</code>) into your own folder. Keep the original as a reset point.</li>
+<li><strong>Duplicate a theme.</strong> Duplicate the theme you play with (Content Browser &gt; <strong>Proving Grounds: 3D Platformer Mechanics &gt; Themes</strong>, for the demo courses <code>DA_Lab_Course</code>) into your own folder. Keep the original as a reset point.</li>
 <li>
 <p><strong>Add a look.</strong> Open the duplicate, <strong>Enemies &gt; Enemy Looks</strong>, press <strong>+</strong> and type a name for the key, for example <code>MyMonster</code>.</p>
 </li>
@@ -59,7 +59,7 @@ Six steps, all in the Content Browser and the Details panel.</p>
    - <strong>Scale</strong>: the size of your mesh in centimetres decides it. The enemy's hit box is built from the mesh bounds times <strong>Scale</strong> times <strong>Normal Size</strong>. Example: a 357 cm tall creature at Scale 0.25 and Normal Size 1.5 became a 134 cm enemy with its feet on the floor.
    - <strong>Mesh Yaw</strong>: 0 if the creature's front is its +X, <strong>-90 if its front is +Y</strong> (what glTF imports usually give). With the right value the creature faces the direction it walks.
    - <strong>Normal Size</strong>: how big it plays. Aim for a top between 120 and 190 cm so a full jump lands on it.
-   - <strong>Clips</strong>: add one entry per state: <code>Idle</code>, <code>Move</code>, <code>Attack</code> (shooters), <code>Windup</code> (chargers), <code>DeathBounce</code> (stomped), <code>DeathSpin</code> (spun or thrown). Other keys: <code>DeathFlatten</code>, <code>Turn</code>, <code>Fuse</code>, <code>Pickup</code>, <code>Walk</code>, <code>ShieldForward</code>, <code>ShieldUp</code>, <code>Hidden</code>, <code>HideIn</code>, <code>Appear</code>. A missing key falls back (<code>Windup</code> to <code>Idle</code>, <code>DeathFlatten</code> to <code>DeathBounce</code>).
+   - <strong>Clips</strong>: add one entry per state: <code>Idle</code>, <code>Move</code>, <code>Attack</code> (shooters), <code>Windup</code> (chargers), <code>DeathBounce</code> (stomped), <code>DeathSpin</code> (spun or thrown). Other keys: <code>DeathFlatten</code>, <code>Turn</code>, <code>Fuse</code>, <code>Pickup</code>, <code>Walk</code>, <code>ShieldForward</code>, <code>ShieldUp</code>, <code>Hidden</code>, <code>HideIn</code>, <code>Appear</code>, <code>Falling</code>, <code>Landed</code>. A missing key falls back (<code>Windup</code> to <code>Idle</code>, <code>DeathFlatten</code> to <code>DeathBounce</code>, <code>Landed</code> to <code>Falling</code>).
    - <strong>Muzzle Socket / Prop / Shot Mesh</strong> (shooters only): a bone name of your skeleton, or a socket you add in the Skeletal Mesh editor. The shot leaves from it.</p>
 </li>
 <li>
@@ -69,7 +69,7 @@ Six steps, all in the Content Browser and the Details panel.</p>
 </ol>
 <p><strong>Restart Play after changing a theme.</strong></p>
 <h2 id="check-it-in-play">Check it in Play</h2>
-<p>Walk up to the enemy and check: it faces its walking direction; it plays Idle and Walk; it dies on a stomp and when spun (the death clip plays to its last frame); it hurts you on contact; it comes back after your respawn; a shooter's shot leaves the muzzle bone.</p>
+<p>Walk up to the enemy and check: it faces its walking direction; it plays Idle and Move; it dies on a stomp and when spun (the death clip plays to its last frame); it hurts you on contact; it comes back after your respawn; a shooter's shot leaves the muzzle bone.</p>
 <p>If the creature faces sideways change <strong>Mesh Yaw</strong> by 90. If it is too big or too small change <strong>Normal Size</strong> first, <strong>Scale</strong> second. If it sinks into or floats above the floor, check the skeleton-scale test above.</p><div class="pn"><a href="SOUND.html">&larr; Sound: volume, sound keys and swapping sounds</a><a href="Integration/ALS/README.html">Corridor Platformer kit + ALS-Refactored (sample source) &rarr;</a></div></main></div>
 <footer>Proving Grounds: 3D Platformer Mechanics &middot; documentation by Joseph's &middot; <a href="https://github.com/josephs-assets/ProvingGrounds/issues">Support</a></footer>
 <script>
